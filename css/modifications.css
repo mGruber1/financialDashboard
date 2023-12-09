@@ -19,3 +19,11 @@ h6 {
 .card-body {
   overflow-y: scroll;
 }
+
+.emptyDataDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow-y: unset !important;
+}

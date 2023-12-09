@@ -20,7 +20,7 @@ function getYearlyAverageValues() {
       });
   });
 }
-function getFixedCosts() {
+export const getFixedCosts = () => {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:3000/api/getFixedCosts")
       .then((response) => {
@@ -41,7 +41,7 @@ function getFixedCosts() {
       });
   });
 }
-function getIncomeRate() {
+export const getIncomeRate = () => {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:3000/api/getIncomeRate")
       .then((response) => {
@@ -62,7 +62,7 @@ function getIncomeRate() {
 
 const backendURL = "http://localhost:3000/api/ConnectionTest";
 
-async function checkBackendReachability() {
+export const checkBackendReachability = async () => {
   try {
     const response = await fetch(`${backendURL}`);
     if (response.ok) {
