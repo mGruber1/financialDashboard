@@ -1,0 +1,21 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: unset;
+}
+.card-header {
+  padding: 8px;
+  text-align: center;
+  background-color: #92b9e7;
+}
+.card {
+  width: 300px;
+  height: 300px;
+}
+
+.card-body {
+  overflow-y: scroll;
+}
