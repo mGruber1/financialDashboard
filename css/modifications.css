@@ -12,8 +12,8 @@ h6 {
   background-color: #92b9e7;
 }
 .card {
-  width: 300px;
-  height: 300px;
+  height: 250px;
+  min-width: 250px;
 }
 
 .card-body {
