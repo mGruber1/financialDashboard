@@ -21,6 +21,27 @@ export const getFixedCosts = () => {
       });
   });
 }
+export const getSumFixedCosts = () => {
+  return new Promise((resolve, reject) => {
+    fetch("http://localhost:3000/api/getSumFixedCosts")
+      .then((response) => {
+        if (!response.ok) {
+          reject("Network response was not ok");
+          return 1;
+        }
+        return response.json();
+      })
+      .then((data) => {
+        resolve(data);
+
+        return 0;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        reject(error);
+      });
+  });
+}
 export const getIncomeRate = () => {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:3000/api/getIncomeRate")

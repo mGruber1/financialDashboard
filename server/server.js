@@ -70,6 +70,18 @@ app.get('/api/getIncomeRate', (req, res) => {
 });
 
 app.get('/api/getFixedCosts', (req, res) => {
+  pool.query('SELECT rent, insurance, internet, groceries, investment_plan, car_gas,health FROM fixed_costs;', (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    res.json(results);
+  });
+});
+
+app.get('/api/getSumFixedCosts', (req, res) => {
   pool.query('SELECT rent, insurance, internet, groceries, investment_plan, car_gas,health, (rent+insurance+internet+groceries+investment_plan+car_gas+health) AS total_fixed_costs FROM fixed_costs;', (error, results, fields) => {
     if (error) {
       console.error(error);
