@@ -8,7 +8,7 @@
       crossorigin="anonymous"
     />
     <link href="./css/modifications.css" rel="stylesheet" />
-    <style></style>
+    <link href="./css/echarts.css" rel="stylesheet"/>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DatenJahr</title>
@@ -51,6 +51,14 @@
               <table class="table" id="dataList"></table>
             </div>
           </div>
+          <div class="card">
+            <div class="card-header">
+              <h5>Chart Test</h5>
+            </div>
+            <div class="card-body">
+              <div id="chartContainer"></table>
+            </div>
+          </div>
         </div>
         <div class="col-2 h-100"></div>
       </div>
@@ -71,5 +79,7 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+<script src="node_modules/echarts/dist/echarts.js"></script>
+<script src="./js/modules/echartOptions.js"></script>
   </body>
 </html>

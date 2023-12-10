@@ -1,8 +1,8 @@
 "use strict"
-// Initialize the echarts instance based on the prepared dom
-var myChart = echarts.init(document.getElementById('main'));
 
-// Specify the configuration items and data for the chart
+var myChart = echarts.init(document.getElementById('chartContainer'));
+
+
 var option = {
   title: {
     text: 'ECharts Getting Started Example'
@@ -24,5 +24,4 @@ var option = {
   ]
 };
 
-// Display the chart using the configuration items and data just specified.
 myChart.setOption(option);
