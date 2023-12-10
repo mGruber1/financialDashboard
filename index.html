@@ -13,7 +13,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DatenJahr</title>
   </head>
-  <script type="module" src="./js/modules/dataHandling.js"></script>
+  <script type="module">
+    import {
+      dataField,
+      showEmptyDataMessage,
+      loadData,
+      createNewDataRow,
+      handleIncomeRate,
+      handleFixedCosts,
+      handleFixedCostsIncomeRateRatio,
+      handleFuckYouMoney,
+      calculateFixedCostsIncomeRateRatio,
+      calculateFuckYouMoney,
+    } from "./js/modules/dataHandling.js";
+
+    import { checkBackendAvailability } from "./js/modules/apiCalls.js";
+
+    if (await checkBackendAvailability()) {
+      loadData();
+    } else {
+      showEmptyDataMessage();
+    }
+  </script>
   <body class="h-100">
     <div
       class="container-fluid h-100 border border-danger"

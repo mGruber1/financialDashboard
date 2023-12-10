@@ -62,7 +62,7 @@ export const getIncomeRate = () => {
 
 const backendURL = "http://localhost:3000/api/ConnectionTest";
 
-export const checkBackendReachability = async () => {
+export const checkBackendAvailability = async () => {
   try {
     const response = await fetch(`${backendURL}`);
     if (response.ok) {

@@ -1,7 +1,6 @@
 "use strict"
 
 import {
-  checkBackendReachability,
   getFixedCosts,
   getIncomeRate,
 } from "./apiCalls.js";
@@ -39,7 +38,7 @@ export const createNewDataRow = (cellDescription, value, unit) => {
     descriptionCell.innerHTML = cellDescription;
   
     const valueCell = document.createElement("td");
-    valueCell.innerHTML = value.toFixed(2) + unit;
+    valueCell.innerHTML = value.toFixed(2) + " "+unit;
   
     newRow.appendChild(descriptionCell);
     newRow.appendChild(valueCell);
@@ -48,33 +47,27 @@ export const createNewDataRow = (cellDescription, value, unit) => {
 }
 
 export const handleIncomeRate = (incomeRate) => {
-    createNewDataRow("Income Rate",incomeRate, " €");
+    createNewDataRow("Income Rate",incomeRate, "€");
 };
 
 export const handleFixedCosts = () => {
-    createNewDataRow("Fixed Costs",incomeRate, " €");
+    createNewDataRow("Fixed Costs",incomeRate, "€");
 };
 
 export const handleFixedCostsIncomeRateRatio = (fixedCostsIncomeRateRatio) => {
-    createNewDataRow("IC/C-Ratio",fixedCostsIncomeRateRatio, " %");
+    createNewDataRow("IC/C-Ratio",fixedCostsIncomeRateRatio, "%");
 }
 
 export const handleFuckYouMoney = (fuckYouMoney) => {
-    createNewDataRow("FuckYou-Money",fuckYouMoney," €");
+    createNewDataRow("FuckYou-Money",fuckYouMoney,"€");
 }
 
 export const calculateFixedCostsIncomeRateRatio = (incomeRate, fixedCosts) => {
     const fixedCostsIncomeRateRatio = (fixedCosts / incomeRate * 100);
-    console.log(fixedCostsIncomeRateRatio)
     return fixedCostsIncomeRateRatio;
 }
 
 export const calculateFuckYouMoney = (incomeRate, fixedCosts) => {
     const fuckYouMoney = incomeRate - fixedCosts;
     return fuckYouMoney
-}
-if (await checkBackendReachability()) {
-  loadData();
-} else {
-  showEmptyDataMessage();
 }

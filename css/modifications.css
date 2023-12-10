@@ -12,7 +12,7 @@ h6 {
   background-color: #92b9e7;
 }
 .card {
-  height: 250px;
+  max-height: 250px;
   min-width: 250px;
 }
 
