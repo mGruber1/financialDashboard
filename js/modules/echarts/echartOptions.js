@@ -10,22 +10,26 @@ export const echartOptions = (monthlyCosts) => {
     tooltip: {},
     xAxis: {
       data: data.map(item => item.name),
+      name: 'Month',
+      nameLocation: 'middle',
+      nameGap: 20,
     },
     yAxis: {
       type: 'value',
-      axisLabel: {
-        show: false,
-      }
     },
-    series: [
+    series: 
       {
-        name: 'sales',
         type: 'bar',
-        data: data.map(item => item.value.toFixed(2) )
-      }
-    ],
+        data: data.map(item => item.value.toFixed(2) ),
+        itemStyle: {
+          color: function (param) {
+            const color =["#a9a9a9"]
+            return color
+          }
+      }},
     label: {
       show: true, // Set this to true to display data labels
+      position: 'top'
    }
   };
 

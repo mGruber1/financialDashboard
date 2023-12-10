@@ -10,6 +10,7 @@ import {
     echartOptions
 } from "../echarts/echartOptions.js";
 
+import { createNewDataRow } from "../utils/createNewDataRow.js";
 export const dataField = document.getElementById("dataList");
 export const chartContainer = document.getElementById("chartContainer");
 
@@ -42,34 +43,22 @@ export const loadData = async () => {
   handleMonthlyCosts(monthlyCosts, echartOptions);
 };
 
-export const createNewDataRow = (cellDescription, value, unit) => {
-    const newRow = document.createElement("tr");
-    const descriptionCell = document.createElement("td");
-    descriptionCell.innerHTML = cellDescription;
-  
-    const valueCell = document.createElement("td");
-    valueCell.innerHTML = value.toFixed(2) + " "+unit;
-  
-    newRow.appendChild(descriptionCell);
-    newRow.appendChild(valueCell);
-  
-    dataField.appendChild(newRow);
-}
+
 
 export const handleIncomeRate = (incomeRate) => {
-    createNewDataRow("Income Rate",incomeRate, "€");
+    createNewDataRow(dataField,"Income Rate",incomeRate, "€");
 };
 
 export const handleFixedCosts = () => {
-    createNewDataRow("Fixed Costs",incomeRate, "€");
+    createNewDataRow(dataField,"Fixed Costs",incomeRate, "€");
 };
 
 export const handleFixedCostsIncomeRateRatio = (fixedCostsIncomeRateRatio) => {
-    createNewDataRow("IC/C-Ratio",fixedCostsIncomeRateRatio, "%");
+    createNewDataRow(dataField,"IC/C-Ratio",fixedCostsIncomeRateRatio, "%");
 }
 
 export const handleFuckYouMoney = (fuckYouMoney) => {
-    createNewDataRow("FuckYou-Money",fuckYouMoney,"€");
+    createNewDataRow(dataField,"FuckYou-Money",fuckYouMoney,"€");
 }
 
 export const handleMonthlyCosts = (monthlyCosts, echartOptions) => {
