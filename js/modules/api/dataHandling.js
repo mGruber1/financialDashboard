@@ -11,22 +11,25 @@ import {
 } from "../echarts/echartOptions.js";
 
 import { createNewDataRow } from "../utils/createNewDataRow.js";
-export const dataField = document.getElementById("dataList");
-export const chartContainer = document.getElementById("chartContainer");
 
 let fixedCosts = 0;
 let incomeRate = 0;
 let monthlyCosts = 0;
+// let displayFieldList = displayFieldList
+let generalInfoField = document.getElementById("generalInfo");
 
-export const showEmptyDataMessage = () => {
-  const newRow = document.createElement("tr");
-  const newCell = document.createElement("td");
-  newCell.innerHTML = "No Data Available!";
+export const showEmptyDataMessage = (displayFieldList) => {
 
-  newRow.appendChild(newCell);
-  dataField.appendChild(newRow);
+    for (const element of displayFieldList) {
+          const newRow = document.createElement("tr");
+            const newCell = document.createElement("td");
+            newCell.innerHTML = "No Data Available!";
+            newRow.appendChild(newCell);
 
-  dataField.classList.add("emptyDataDisplay");
+            element.appendChild(newRow);
+            element.classList.add("emptyDataDisplay");
+            element.parentElement.style.overflowY = "hidden";
+    }
 };
 
 export const loadData = async () => {
@@ -44,21 +47,20 @@ export const loadData = async () => {
 };
 
 
-
 export const handleIncomeRate = (incomeRate) => {
-    createNewDataRow(dataField,"Income Rate",incomeRate, "€");
+    createNewDataRow(generalInfoField,"Income Rate",incomeRate, "€");
 };
 
 export const handleFixedCosts = () => {
-    createNewDataRow(dataField,"Fixed Costs",incomeRate, "€");
+    createNewDataRow(generalInfoField,"Fixed Costs",fixedCosts, "€");
 };
 
 export const handleFixedCostsIncomeRateRatio = (fixedCostsIncomeRateRatio) => {
-    createNewDataRow(dataField,"IC/C-Ratio",fixedCostsIncomeRateRatio, "%");
+    createNewDataRow(generalInfoField,"IC/C-Ratio",fixedCostsIncomeRateRatio, "%");
 }
 
 export const handleFuckYouMoney = (fuckYouMoney) => {
-    createNewDataRow(dataField,"FuckYou-Money",fuckYouMoney,"€");
+    createNewDataRow(generalInfoField,"FuckYou-Money",fuckYouMoney,"€");
 }
 
 export const handleMonthlyCosts = (monthlyCosts, echartOptions) => {

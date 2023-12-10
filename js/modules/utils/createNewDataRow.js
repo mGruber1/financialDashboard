@@ -1,6 +1,6 @@
 "use strict"
 
-export const createNewDataRow = (dataField, cellDescription, value, unit) => {
+export const createNewDataRow = (element, cellDescription, value, unit) => {
     const newRow = document.createElement("tr");
     const descriptionCell = document.createElement("td");
     descriptionCell.innerHTML = cellDescription;
@@ -11,5 +11,5 @@ export const createNewDataRow = (dataField, cellDescription, value, unit) => {
     newRow.appendChild(descriptionCell);
     newRow.appendChild(valueCell);
   
-    dataField.appendChild(newRow);
+    element.appendChild(newRow);
 }

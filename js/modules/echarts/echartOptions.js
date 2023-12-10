@@ -23,12 +23,12 @@ export const echartOptions = (monthlyCosts) => {
         data: data.map(item => item.value.toFixed(2) ),
         itemStyle: {
           color: function (param) {
-            const color =["#a9a9a9"]
+            const color =["#000000"]
             return color
           }
       }},
     label: {
-      show: true, // Set this to true to display data labels
+      show: true,
       position: 'top'
    }
   };
