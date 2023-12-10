@@ -15,7 +15,6 @@ import { createNewDataRow } from "../utils/createNewDataRow.js";
 let fixedCosts = 0;
 let incomeRate = 0;
 let monthlyCosts = 0;
-// let displayFieldList = displayFieldList
 let generalInfoField = document.getElementById("generalInfo");
 
 export const showEmptyDataMessage = (displayFieldList) => {
@@ -33,7 +32,12 @@ export const showEmptyDataMessage = (displayFieldList) => {
 };
 
 export const loadData = async () => {
-  let data = await Promise.all([getIncomeRate(), getFixedCosts(), getMonthlyCosts()]);
+    try {
+        var data = await Promise.all([getIncomeRate(), getFixedCosts(), getMonthlyCosts()]);
+    } catch(error ) {
+        console.error('Error fetching data:', error);
+    }
+
 
   fixedCosts = data[1][0].total_fixed_costs;
   incomeRate = data[0][0].netto_pt;
