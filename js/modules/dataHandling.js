@@ -29,36 +29,50 @@ export const loadData = async () => {
 
   handleIncomeRate(incomeRate);
   handleFixedCosts(fixedCosts);
+  handleFixedCostsIncomeRateRatio(calculateFixedCostsIncomeRateRatio(incomeRate,fixedCosts));
+  handleFuckYouMoney(calculateFuckYouMoney(incomeRate, fixedCosts));
 };
 
+export const createNewDataRow = (cellDescription, value, unit) => {
+    const newRow = document.createElement("tr");
+    const descriptionCell = document.createElement("td");
+    descriptionCell.innerHTML = cellDescription;
+  
+    const valueCell = document.createElement("td");
+    valueCell.innerHTML = value.toFixed(2) + unit;
+  
+    newRow.appendChild(descriptionCell);
+    newRow.appendChild(valueCell);
+  
+    dataField.appendChild(newRow);
+}
+
 export const handleIncomeRate = (incomeRate) => {
-  const newRow = document.createElement("tr");
-  const descriptionCell = document.createElement("td");
-  descriptionCell.innerHTML = "Income Rate";
-
-  const valueCell = document.createElement("td");
-  valueCell.innerHTML = incomeRate.toFixed(2) + " €";
-
-  newRow.appendChild(descriptionCell);
-  newRow.appendChild(valueCell);
-
-  dataField.appendChild(newRow);
+    createNewDataRow("Income Rate",incomeRate, " €");
 };
 
 export const handleFixedCosts = () => {
-  const newRow = document.createElement("tr");
-  const descriptionCell = document.createElement("td");
-  descriptionCell.innerHTML = "Fixed Costs";
-
-  const valueCell = document.createElement("td");
-  valueCell.innerHTML = fixedCosts.toFixed(2) + " €";
-
-  newRow.appendChild(descriptionCell);
-  newRow.appendChild(valueCell);
-
-  dataField.appendChild(newRow);
+    createNewDataRow("Fixed Costs",incomeRate, " €");
 };
 
+export const handleFixedCostsIncomeRateRatio = (fixedCostsIncomeRateRatio) => {
+    createNewDataRow("IC/C-Ratio",fixedCostsIncomeRateRatio, " %");
+}
+
+export const handleFuckYouMoney = (fuckYouMoney) => {
+    createNewDataRow("FuckYou-Money",fuckYouMoney," €");
+}
+
+export const calculateFixedCostsIncomeRateRatio = (incomeRate, fixedCosts) => {
+    const fixedCostsIncomeRateRatio = (fixedCosts / incomeRate * 100);
+    console.log(fixedCostsIncomeRateRatio)
+    return fixedCostsIncomeRateRatio;
+}
+
+export const calculateFuckYouMoney = (incomeRate, fixedCosts) => {
+    const fuckYouMoney = incomeRate - fixedCosts;
+    return fuckYouMoney
+}
 if (await checkBackendReachability()) {
   loadData();
 } else {
