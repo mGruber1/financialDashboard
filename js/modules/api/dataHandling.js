@@ -3,11 +3,19 @@
 import {
   getFixedCosts,
   getIncomeRate,
+  getMonthlyCosts
 } from "./apiCalls.js";
 
+import {
+    echartOptions
+} from "../echarts/echartOptions.js";
+
 export const dataField = document.getElementById("dataList");
+export const chartContainer = document.getElementById("chartContainer");
+
 let fixedCosts = 0;
 let incomeRate = 0;
+let monthlyCosts = 0;
 
 export const showEmptyDataMessage = () => {
   const newRow = document.createElement("tr");
@@ -21,15 +29,17 @@ export const showEmptyDataMessage = () => {
 };
 
 export const loadData = async () => {
-  let data = await Promise.all([getIncomeRate(), getFixedCosts()]);
+  let data = await Promise.all([getIncomeRate(), getFixedCosts(), getMonthlyCosts()]);
 
   fixedCosts = data[1][0].total_fixed_costs;
   incomeRate = data[0][0].netto_pt;
+  monthlyCosts = data[2];
 
   handleIncomeRate(incomeRate);
   handleFixedCosts(fixedCosts);
   handleFixedCostsIncomeRateRatio(calculateFixedCostsIncomeRateRatio(incomeRate,fixedCosts));
   handleFuckYouMoney(calculateFuckYouMoney(incomeRate, fixedCosts));
+  handleMonthlyCosts(monthlyCosts, echartOptions);
 };
 
 export const createNewDataRow = (cellDescription, value, unit) => {
@@ -60,6 +70,11 @@ export const handleFixedCostsIncomeRateRatio = (fixedCostsIncomeRateRatio) => {
 
 export const handleFuckYouMoney = (fuckYouMoney) => {
     createNewDataRow("FuckYou-Money",fuckYouMoney,"€");
+}
+
+export const handleMonthlyCosts = (monthlyCosts, echartOptions) => {
+    var chart = echarts.init(chartContainer);
+    chart.setOption(echartOptions(monthlyCosts));
 }
 
 export const calculateFixedCostsIncomeRateRatio = (incomeRate, fixedCosts) => {

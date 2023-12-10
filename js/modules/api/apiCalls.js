@@ -1,25 +1,5 @@
 "use strict";
-function getYearlyAverageValues() {
-  return new Promise((resolve, reject) => {
-    fetch("http://localhost:3000/api/getYearlyAverageValues")
-      .then((response) => {
-        if (!response.ok) {
-          reject("Network response was not ok");
-          return 1;
-        }
-        return response.json();
-      })
-      .then((data) => {
-        resolve(data);
 
-        return 0;
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        reject(error);
-      });
-  });
-}
 export const getFixedCosts = () => {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:3000/api/getFixedCosts")
@@ -44,6 +24,25 @@ export const getFixedCosts = () => {
 export const getIncomeRate = () => {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:3000/api/getIncomeRate")
+      .then((response) => {
+        if (!response.ok) {
+          reject("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        reject(error);
+      });
+  });
+}
+
+export const getMonthlyCosts = () => {
+  return new Promise((resolve, reject) => {
+    fetch("http://localhost:3000/api/getMonthlyCosts")
       .then((response) => {
         if (!response.ok) {
           reject("Network response was not ok");
