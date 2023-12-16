@@ -20,7 +20,7 @@ export const getFixedCosts = () => {
         reject(error);
       });
   });
-}
+};
 export const getSumFixedCosts = () => {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:3000/api/getSumFixedCosts")
@@ -41,7 +41,7 @@ export const getSumFixedCosts = () => {
         reject(error);
       });
   });
-}
+};
 export const getIncomeRate = () => {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:3000/api/getIncomeRate")
@@ -59,7 +59,7 @@ export const getIncomeRate = () => {
         reject(error);
       });
   });
-}
+};
 
 export const getMonthlyCosts = () => {
   return new Promise((resolve, reject) => {
@@ -78,7 +78,44 @@ export const getMonthlyCosts = () => {
         reject(error);
       });
   });
-}
+};
+
+export const getAverageCarGasCosts = () => {
+  return new Promise((resolve, reject) => {
+    fetch("http://localhost:3000/api/getAverageCarGasCosts")
+      .then((response) => {
+        if (!response.ok) {
+          reject("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        reject(error);
+      });
+  });
+};
+export const getMonthlyCarGasCosts = () => {
+  return new Promise((resolve, reject) => {
+    fetch("http://localhost:3000/api/getMonthlyCarGasCosts")
+      .then((response) => {
+        if (!response.ok) {
+          reject("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        reject(error);
+      });
+  });
+};
 
 const backendURL = "http://localhost:3000/api/ConnectionTest";
 
@@ -93,4 +130,4 @@ export const checkBackendAvailability = async () => {
   } catch (error) {
     return false;
   }
-}
+};

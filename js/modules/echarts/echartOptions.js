@@ -20,12 +20,6 @@ export const echartOptionsMonthlyCosts = (monthlyCosts) => {
     series: {
       type: "bar",
       data: data.map((item) => item.value.toFixed(2)),
-      itemStyle: {
-        color: function (param) {
-          const color = ["#000000"];
-          return color;
-        },
-      },
     },
     label: {
       show: true,
@@ -54,16 +48,41 @@ export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
         radius: "55%",
         center: ["50%", "50%"],
         data: data,
-        itemStyle: {
-          emphasis: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: "rgba(0, 0, 0, 0.5)",
-          },
-        },
       },
     ],
   };
 
+  return options;
+};
+
+export const echartOptionsMonthlyCarGasCosts = (monthlyCarGasCosts) => {
+  const months = monthlyCarGasCosts.map((entry) => entry.month);
+  const amounts = monthlyCarGasCosts.map((entry) => entry.amount);
+
+  const options = {
+    grid: {
+      top: "10%",
+      bottom: "10%",
+      left: "10%",
+      right: "10%",
+    },
+    xAxis: {
+      type: "category",
+      boundaryGap: false,
+      data: months,
+      show: false,
+    },
+    yAxis: {
+      type: "value",
+      show: false,
+    },
+    series: [
+      {
+        data: amounts,
+        type: "line",
+        areaStyle: {},
+      },
+    ],
+  };
   return options;
 };

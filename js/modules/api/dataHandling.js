@@ -5,9 +5,12 @@ import {
   getSumFixedCosts,
   getIncomeRate,
   getMonthlyCosts,
+  getAverageCarGasCosts,
+  getMonthlyCarGasCosts,
 } from "./apiCalls.js";
 
 import {
+  echartOptionsMonthlyCarGasCosts,
   echartOptionsFixedCostsDistribution,
   echartOptionsMonthlyCosts,
 } from "../echarts/echartOptions.js";
@@ -18,6 +21,8 @@ let fixedCosts = 0;
 let sumFixedCosts = 0;
 let incomeRate = 0;
 let monthlyCosts = 0;
+let averageCarGasCosts = 0;
+let monthlyCarGasCosts = 0;
 let generalInfoField = document.getElementById("generalInfo");
 
 export const showEmptyDataMessage = (displayFieldList) => {
@@ -40,6 +45,8 @@ export const loadData = async () => {
       getSumFixedCosts(),
       getMonthlyCosts(),
       getFixedCosts(),
+      getAverageCarGasCosts(),
+      getMonthlyCarGasCosts(),
     ]);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -48,6 +55,9 @@ export const loadData = async () => {
   sumFixedCosts = data[1][0].total_fixed_costs;
   incomeRate = data[0][0].netto_pt;
   monthlyCosts = data[2];
+  averageCarGasCosts = data[4][0].averageCarGasCosts.toFixed(2);
+  monthlyCarGasCosts = data[5];
+  console.log(monthlyCarGasCosts);
 
   handleIncomeRate(incomeRate);
   handleFixedCosts(sumFixedCosts);
@@ -57,6 +67,8 @@ export const loadData = async () => {
   handleFuckYouMoney(calculateFuckYouMoney(incomeRate, sumFixedCosts));
   handleMonthlyCosts(echartOptionsMonthlyCosts(monthlyCosts));
   handleFixedCostsDistribution(echartOptionsFixedCostsDistribution(fixedCosts));
+  handleAverageCarGasCosts(averageCarGasCosts);
+  handleMonthlyCarGasCosts(echartOptionsMonthlyCarGasCosts(monthlyCarGasCosts));
 };
 
 export const handleIncomeRate = (incomeRate) => {
@@ -74,6 +86,20 @@ export const handleFixedCostsIncomeRateRatio = (fixedCostsIncomeRateRatio) => {
     fixedCostsIncomeRateRatio,
     "%"
   );
+};
+
+export const handleAverageCarGasCosts = (averageCarGasCosts) => {
+  let averageCarGasDisplayField = document.getElementById(
+    "averageCarGasDisplayField"
+  );
+  averageCarGasDisplayField.innerHTML = averageCarGasCosts + " €";
+};
+
+export const handleMonthlyCarGasCosts = (echartOptions) => {
+  var monthlyCarGasCostsChart = echarts.init(
+    document.getElementById("monthlyCarGasCostsChart")
+  );
+  monthlyCarGasCostsChart.setOption(echartOptions);
 };
 
 export const handleFuckYouMoney = (fuckYouMoney) => {
