@@ -16,6 +16,7 @@ export const echartOptionsMonthlyCosts = (monthlyCosts) => {
     },
     yAxis: {
       type: "value",
+      show: false,
     },
     series: {
       type: "bar",
@@ -65,6 +66,10 @@ export const echartOptionsMonthlyCarGasCosts = (monthlyCarGasCosts) => {
       bottom: "10%",
       left: "10%",
       right: "10%",
+    },
+    tooltip: {
+      trigger: "item",
+      formatter: "{b}: {c})",
     },
     xAxis: {
       type: "category",
