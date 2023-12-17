@@ -43,18 +43,6 @@ let monthlyCosts = 0;
 let averageCarGasCosts = 0;
 let monthlyCarGasCosts = 0;
 
-// export const showEmptyDataMessage = (displayFieldList) => {
-//   for (const element of displayFieldList) {
-//     const newRow = document.createElement("tr");
-//     const newCell = document.createElement("td");
-//     newCell.innerHTML = "No Data Available!";
-//     newRow.appendChild(newCell);
-//     element.appendChild(newRow);
-//     element.classList.add("emptyDataDisplay");
-//     element.parentElement.style.overflowY = "hidden";
-//   }
-// };
-
 export const loadData = async () => {
   try {
     var data = await Promise.all([

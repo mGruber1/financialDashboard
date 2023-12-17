@@ -60,3 +60,18 @@ export const calculateFuckYouMoney = (incomeRate, fixedCosts) => {
   const fuckYouMoney = incomeRate - fixedCosts;
   return fuckYouMoney;
 };
+
+export const showEmptyDataMessage = () => {
+  const cardBodies = document.getElementsByClassName("card-body");
+
+  for (let cardBody of cardBodies) {
+    let emptyMessageContainer = document.createElement("div");
+    emptyMessageContainer.classList.add("emptyDataDisplay");
+
+    let emptyMessage = document.createElement("span");
+    emptyMessage.innerHTML = "No Data Available";
+
+    emptyMessageContainer.appendChild(emptyMessage);
+    cardBody.appendChild(emptyMessageContainer);
+  }
+};

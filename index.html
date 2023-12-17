@@ -15,16 +15,17 @@
   </head>
   <script type="module">
     import {
-      loadData
+      loadData,
     } from "./js/modules/api/dataHandling.js";
 
     import { checkBackendAvailability } from "./js/modules/api/apiCalls.js";
+    import {showEmptyDataMessage} from "./js/modules/api/dataHandlingFunctions.js";
     import displayFieldList from "./js/modules/misc/displayFieldList.js";
 
     if (await checkBackendAvailability()) {
       loadData();
     } else {
-      // TODO Implement Empty Display Function, the old one does not work anymore
+      showEmptyDataMessage();
     }
   </script>
   <body class="w-100 h-100">
