@@ -4,7 +4,7 @@
 
 import {
   generalInfoField,
-  monthlyCostsBarChart,
+  monthlyCostsField,
   fixedCostsDistributionField,
   monthlyCarGasChart,
 } from "../utils/getElements.js";
@@ -12,7 +12,7 @@ import {
 let displayFieldList = [];
 displayFieldList = [
   generalInfoField,
-  monthlyCostsBarChart,
+  monthlyCostsField,
   fixedCostsDistributionField,
   monthlyCarGasChart,
 ];

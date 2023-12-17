@@ -15,7 +15,26 @@ import {
   echartOptionsMonthlyCosts,
 } from "../echarts/echartOptions.js";
 
-import { createNewDataRow } from "../utils/createNewDataRow.js";
+import {
+  handleIncomeRate,
+  handleFixedCosts,
+  handleFixedCostsIncomeRateRatio,
+  handleAverageCarGasCosts,
+  handleMonthlyCarGasCosts,
+  handleFuckYouMoney,
+  handleMonthlyCosts,
+  handleFixedCostsDistribution,
+  calculateFixedCostsIncomeRateRatio,
+  calculateFuckYouMoney,
+} from "./dataHandlingFunctions.js";
+
+import {
+  averageCarGasDisplayField,
+  generalInfoField,
+  monthlyCarGasCostsChart,
+  monthlyCostsBarChart,
+  fixedDistributionChart,
+} from "../utils/getElements.js";
 
 let fixedCosts = 0;
 let sumFixedCosts = 0;
@@ -23,20 +42,18 @@ let incomeRate = 0;
 let monthlyCosts = 0;
 let averageCarGasCosts = 0;
 let monthlyCarGasCosts = 0;
-let generalInfoField = document.getElementById("generalInfo");
 
-export const showEmptyDataMessage = (displayFieldList) => {
-  for (const element of displayFieldList) {
-    const newRow = document.createElement("tr");
-    const newCell = document.createElement("td");
-    newCell.innerHTML = "No Data Available!";
-    newRow.appendChild(newCell);
-
-    element.appendChild(newRow);
-    element.classList.add("emptyDataDisplay");
-    element.parentElement.style.overflowY = "hidden";
-  }
-};
+// export const showEmptyDataMessage = (displayFieldList) => {
+//   for (const element of displayFieldList) {
+//     const newRow = document.createElement("tr");
+//     const newCell = document.createElement("td");
+//     newCell.innerHTML = "No Data Available!";
+//     newRow.appendChild(newCell);
+//     element.appendChild(newRow);
+//     element.classList.add("emptyDataDisplay");
+//     element.parentElement.style.overflowY = "hidden";
+//   }
+// };
 
 export const loadData = async () => {
   try {
@@ -57,75 +74,28 @@ export const loadData = async () => {
   monthlyCosts = data[2];
   averageCarGasCosts = data[4][0].averageCarGasCosts.toFixed(2);
   monthlyCarGasCosts = data[5];
-  console.log(monthlyCarGasCosts);
 
-  handleIncomeRate(incomeRate);
-  handleFixedCosts(sumFixedCosts);
+  handleIncomeRate(incomeRate, generalInfoField);
+  handleFixedCosts(sumFixedCosts, generalInfoField);
   handleFixedCostsIncomeRateRatio(
-    calculateFixedCostsIncomeRateRatio(incomeRate, sumFixedCosts)
+    calculateFixedCostsIncomeRateRatio(incomeRate, sumFixedCosts),
+    generalInfoField
   );
-  handleFuckYouMoney(calculateFuckYouMoney(incomeRate, sumFixedCosts));
-  handleMonthlyCosts(echartOptionsMonthlyCosts(monthlyCosts));
-  handleFixedCostsDistribution(echartOptionsFixedCostsDistribution(fixedCosts));
-  handleAverageCarGasCosts(averageCarGasCosts);
-  handleMonthlyCarGasCosts(echartOptionsMonthlyCarGasCosts(monthlyCarGasCosts));
-};
-
-export const handleIncomeRate = (incomeRate) => {
-  createNewDataRow(generalInfoField, "Income Rate", incomeRate, "€");
-};
-
-export const handleFixedCosts = () => {
-  createNewDataRow(generalInfoField, "Fixed Costs", sumFixedCosts, "€");
-};
-
-export const handleFixedCostsIncomeRateRatio = (fixedCostsIncomeRateRatio) => {
-  createNewDataRow(
-    generalInfoField,
-    "IC/C-Ratio",
-    fixedCostsIncomeRateRatio,
-    "%"
+  handleFuckYouMoney(
+    calculateFuckYouMoney(incomeRate, sumFixedCosts),
+    generalInfoField
   );
-};
-
-export const handleAverageCarGasCosts = (averageCarGasCosts) => {
-  let averageCarGasDisplayField = document.getElementById(
-    "averageCarGasDisplayField"
+  handleMonthlyCosts(
+    echartOptionsMonthlyCosts(monthlyCosts),
+    monthlyCostsBarChart
   );
-  averageCarGasDisplayField.innerHTML = averageCarGasCosts + " €";
-};
-
-export const handleMonthlyCarGasCosts = (echartOptions) => {
-  var monthlyCarGasCostsChart = echarts.init(
-    document.getElementById("monthlyCarGasCostsChart")
+  handleFixedCostsDistribution(
+    echartOptionsFixedCostsDistribution(fixedCosts),
+    fixedDistributionChart
   );
-  monthlyCarGasCostsChart.setOption(echartOptions);
-};
-
-export const handleFuckYouMoney = (fuckYouMoney) => {
-  createNewDataRow(generalInfoField, "FuckYou-Money", fuckYouMoney, "€");
-};
-
-export const handleMonthlyCosts = (echartOptions) => {
-  var monthlyCostsBarChart = echarts.init(
-    document.getElementById("monthlyCostsBarChart")
+  handleAverageCarGasCosts(averageCarGasCosts, averageCarGasDisplayField);
+  handleMonthlyCarGasCosts(
+    echartOptionsMonthlyCarGasCosts(monthlyCarGasCosts),
+    monthlyCarGasCostsChart
   );
-  monthlyCostsBarChart.setOption(echartOptions);
-};
-
-export const handleFixedCostsDistribution = (echartOptions) => {
-  var fixedDistributionChart = echarts.init(
-    document.getElementById("fixedCostsDistributionChart")
-  );
-  fixedDistributionChart.setOption(echartOptions);
-};
-
-export const calculateFixedCostsIncomeRateRatio = (incomeRate, fixedCosts) => {
-  const fixedCostsIncomeRateRatio = (fixedCosts / incomeRate) * 100;
-  return fixedCostsIncomeRateRatio;
-};
-
-export const calculateFuckYouMoney = (incomeRate, fixedCosts) => {
-  const fuckYouMoney = incomeRate - fixedCosts;
-  return fuckYouMoney;
 };

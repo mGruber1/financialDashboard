@@ -15,7 +15,6 @@
   </head>
   <script type="module">
     import {
-      showEmptyDataMessage,
       loadData
     } from "./js/modules/api/dataHandling.js";
 
@@ -25,7 +24,7 @@
     if (await checkBackendAvailability()) {
       loadData();
     } else {
-      showEmptyDataMessage(displayFieldList);
+      // TODO Implement Empty Display Function, the old one does not work anymore
     }
   </script>
   <body class="w-100 h-100">
@@ -65,9 +64,6 @@
           <div class="row">
             <div class="col d-flex justify-content-center">
               <div class="card">
-                <!-- <div class="card-header text-start" style="background-color: white; border-bottom: none;">
-                  <h5>Car Gas</h5>
-                </div> -->
                 <div class="card-body">
                   <h5>Car Gas</h5>
                   <h2 class="d-inline" id="averageCarGasDisplayField"></h2>
