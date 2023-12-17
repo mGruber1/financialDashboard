@@ -7,11 +7,13 @@ const monthlyCostsBarChart = document.getElementById("monthlyCostsBarChart");
 const fixedCostsDistributionField = document.getElementById(
   "fixedCostsDistributionChart"
 );
+const monthlyCarGasChart = document.getElementById("monthlyCarGasCostsChart");
 
 let displayFieldList = [];
 displayFieldList = [
   generalInfoField,
   monthlyCostsBarChart,
   fixedCostsDistributionField,
+  monthlyCarGasChart,
 ];
 export default displayFieldList;
