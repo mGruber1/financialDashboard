@@ -2,12 +2,12 @@
 
 // Add new displayFields here! Currently used to display No Data Available
 
-const generalInfoField = document.getElementById("generalInfo");
-const monthlyCostsBarChart = document.getElementById("monthlyCostsBarChart");
-const fixedCostsDistributionField = document.getElementById(
-  "fixedCostsDistributionChart"
-);
-const monthlyCarGasChart = document.getElementById("monthlyCarGasCostsChart");
+import {
+  generalInfoField,
+  monthlyCostsBarChart,
+  fixedCostsDistributionField,
+  monthlyCarGasChart,
+} from "../utils/getElements.js";
 
 let displayFieldList = [];
 displayFieldList = [
