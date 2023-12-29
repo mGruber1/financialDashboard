@@ -22,3 +22,17 @@ export const monthlyCarGasCostsChart = echarts.init(
 export const fixedDistributionChart = echarts.init(
   document.getElementById("fixedCostsDistributionChart")
 );
+
+export const averageInvestmentCostsField = document.getElementById(
+  "averageInvestmentCostsField"
+);
+export const monthlyInvestmentCostsChart = echarts.init(
+  document.getElementById("monthlyInvestmentCostsChart")
+);
+
+export const averageGroceryCostsField = document.getElementById(
+  "averageGroceryCostsField"
+);
+export const monthlyGroceryCostsChart = echarts.init(
+  document.getElementById("monthlyGroceryCostsChart")
+);

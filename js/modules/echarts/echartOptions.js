@@ -103,3 +103,75 @@ export const echartOptionsMonthlyCarGasCosts = (monthlyCarGasCosts) => {
   };
   return options;
 };
+
+export const echartOptionsMonthlyInvestmentCosts = (monthlyInvestmentCosts) => {
+  const months = monthlyInvestmentCosts.map((entry) => entry.month);
+  const amounts = monthlyInvestmentCosts.map((entry) => entry.amount);
+
+  const options = {
+    grid: {
+      top: "10%",
+      bottom: "10%",
+      left: "10%",
+      right: "10%",
+    },
+    tooltip: {
+      trigger: "item",
+      formatter: "{b}: {c})",
+    },
+    xAxis: {
+      type: "category",
+      boundaryGap: false,
+      data: months,
+      show: false,
+    },
+    yAxis: {
+      type: "value",
+      show: false,
+    },
+    series: [
+      {
+        data: amounts,
+        type: "line",
+        areaStyle: {},
+      },
+    ],
+  };
+  return options;
+};
+
+export const echartOptionsMonthlyGroceryCosts = (monthlyGroceryCosts) => {
+  const months = monthlyGroceryCosts.map((entry) => entry.month);
+  const amounts = monthlyGroceryCosts.map((entry) => entry.amount);
+
+  const options = {
+    grid: {
+      top: "10%",
+      bottom: "10%",
+      left: "10%",
+      right: "10%",
+    },
+    tooltip: {
+      trigger: "item",
+      formatter: "{b}: {c})",
+    },
+    xAxis: {
+      type: "category",
+      boundaryGap: false,
+      data: months,
+      show: false,
+    },
+    yAxis: {
+      type: "value",
+      show: false,
+    },
+    series: [
+      {
+        data: amounts,
+        type: "line",
+        areaStyle: {},
+      },
+    ],
+  };
+  return options;
+};

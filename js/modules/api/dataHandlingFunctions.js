@@ -36,6 +36,34 @@ export const handleMonthlyCarGasCosts = (
   monthlyCarGasCostsChart.setOption(echartOptions);
 };
 
+export const handleAverageInvestmentCosts = (
+  averageInvestmentCosts,
+  averageInvestmentCostsField
+) => {
+  averageInvestmentCostsField.innerHTML = averageInvestmentCosts + " €";
+};
+
+export const handleMonthlyInvestmentCosts = (
+  echartOptions,
+  monthlyInvestmentCostsChart
+) => {
+  monthlyInvestmentCostsChart.setOption(echartOptions);
+};
+
+export const handleAverageGroceryCosts = (
+  averageGroceryCosts,
+  averageGroceryCostsDisplayField
+) => {
+  averageGroceryCostsDisplayField.innerHTML = averageGroceryCosts + " €";
+};
+
+export const handleMonthlyGroceryCosts = (
+  echartOptions,
+  monthlyGroceryCostsChart
+) => {
+  monthlyGroceryCostsChart.setOption(echartOptions);
+};
+
 export const handleFuckYouMoney = (fuckYouMoney, generalInfoField) => {
   createNewDataRow(generalInfoField, "FuckYou-Money", fuckYouMoney, "€");
 };

@@ -98,9 +98,85 @@ export const getAverageCarGasCosts = () => {
       });
   });
 };
+
+export const getAverageGroceryCosts = () => {
+  return new Promise((resolve, reject) => {
+    fetch("http://localhost:3000/api/getAverageGroceryCosts")
+      .then((response) => {
+        if (!response.ok) {
+          reject("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        reject(error);
+      });
+  });
+};
+
+export const getMonthlyGroceryCosts = () => {
+  return new Promise((resolve, reject) => {
+    fetch("http://localhost:3000/api/getMonthlyGroceryCosts")
+      .then((response) => {
+        if (!response.ok) {
+          reject("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        reject(error);
+      });
+  });
+};
+
+export const getAverageInvestmentCosts = () => {
+  return new Promise((resolve, reject) => {
+    fetch("http://localhost:3000/api/getAverageInvestmentCosts")
+      .then((response) => {
+        if (!response.ok) {
+          reject("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        reject(error);
+      });
+  });
+};
+
 export const getMonthlyCarGasCosts = () => {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:3000/api/getMonthlyCarGasCosts")
+      .then((response) => {
+        if (!response.ok) {
+          reject("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        reject(error);
+      });
+  });
+};
+export const getMonthlyInvestmentPlanCosts = () => {
+  return new Promise((resolve, reject) => {
+    fetch("http://localhost:3000/api/getMonthlyInvestmentPlanCosts")
       .then((response) => {
         if (!response.ok) {
           reject("Network response was not ok");

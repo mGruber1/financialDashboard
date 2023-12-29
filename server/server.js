@@ -27,18 +27,6 @@ app.get("/api/ConnectionTest", (req, res) => {
   res.json({ status: 0 });
 });
 
-// app.get('/api/getYearlyAverageValues', (req, res) => {
-//   pool.query('SELECT type, AVG(amount) AS average_amount FROM expenditures WHERE year LIKE 2023 GROUP BY type ORDER BY average_amount DESC;', (error, results, fields) => {
-//     if (error) {
-//       console.error(error);
-//       res.status(500).send('Internal Server Error');
-//       return;
-//     }
-
-//     res.json(results);
-//   });
-// });
-
 app.get("/api/getMonthlyCosts", (req, res) => {
   pool.query(
     `
@@ -119,6 +107,66 @@ app.get("/api/getAverageCarGasCosts", (req, res) => {
 app.get("/api/getMonthlyCarGasCosts", (req, res) => {
   pool.query(
     'SELECT amount, month FROM expenditures where type="car-gas" and year = 2023 ORDER BY month;',
+    (error, results, fields) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+
+      res.json(results);
+    }
+  );
+});
+
+app.get("/api/getAverageInvestmentCosts", (req, res) => {
+  pool.query(
+    'SELECT AVG(amount) as averageInvestmentCosts FROM expenditures WHERE year = 2023 AND type= "investment-plan";',
+    (error, results, fields) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+
+      res.json(results);
+    }
+  );
+});
+
+app.get("/api/getMonthlyInvestmentPlanCosts", (req, res) => {
+  pool.query(
+    'SELECT amount, month FROM expenditures where type="investment-plan" and year = 2023 ORDER BY month;',
+    (error, results, fields) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+
+      res.json(results);
+    }
+  );
+});
+
+app.get("/api/getAverageGroceryCosts", (req, res) => {
+  pool.query(
+    'SELECT AVG(amount) as averageGroceryCosts FROM expenditures WHERE year = 2023 AND type= "grocery";',
+    (error, results, fields) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+
+      res.json(results);
+    }
+  );
+});
+
+app.get("/api/getMonthlyGroceryCosts", (req, res) => {
+  pool.query(
+    'SELECT amount, month FROM expenditures where type="grocery" and year = 2023 ORDER BY month;',
     (error, results, fields) => {
       if (error) {
         console.error(error);
