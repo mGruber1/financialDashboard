@@ -7,6 +7,12 @@ export const echartOptionsMonthlyCosts = (monthlyCosts) => {
   }));
 
   var options = {
+    grid: {
+      top: "10%",
+      bottom: "10%",
+      left: "10%",
+      right: "10%",
+    },
     tooltip: {},
     xAxis: {
       data: data.map((item) => item.name),
@@ -39,6 +45,12 @@ export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
   }));
 
   const options = {
+    grid: {
+      top: "10%",
+      bottom: "10%",
+      left: "10%",
+      right: "10%",
+    },
     tooltip: {
       trigger: "item",
       formatter: "{b}: {c} ({d}%)",
