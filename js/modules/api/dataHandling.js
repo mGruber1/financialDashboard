@@ -125,7 +125,7 @@ export const loadData = async () => {
   handleAverageGroceryCosts(averageGroceryCosts, averageGroceryCostsField);
 
   handleMonthlyGroceryCosts(
-    echartOptionsMonthlyInvestmentCosts(monthlyGroceryCosts),
+    echartOptionsMonthlyGroceryCosts(monthlyGroceryCosts),
     monthlyGroceryCostsChart
   );
 };
