@@ -64,8 +64,8 @@ export const handleMonthlyGroceryCosts = (
   monthlyGroceryCostsChart.setOption(echartOptions);
 };
 
-export const handleFuckYouMoney = (fuckYouMoney, generalInfoField) => {
-  createNewDataRow(generalInfoField, "FuckYou-Money", fuckYouMoney, "€");
+export const handleSurplusFunds = (surplusFunds, generalInfoField) => {
+  createNewDataRow(generalInfoField, "Surplus-Funds", surplusFunds, "€");
 };
 
 export const handleMonthlyCosts = (echartOptions, monthlyCostsBarChart) => {
@@ -84,9 +84,9 @@ export const calculateFixedCostsIncomeRateRatio = (incomeRate, fixedCosts) => {
   return fixedCostsIncomeRateRatio;
 };
 
-export const calculateFuckYouMoney = (incomeRate, fixedCosts) => {
-  const fuckYouMoney = incomeRate - fixedCosts;
-  return fuckYouMoney;
+export const calculateSurPlusFunds = (incomeRate, fixedCosts) => {
+  const surplusFunds = incomeRate - fixedCosts;
+  return surplusFunds;
 };
 
 export const showEmptyDataMessage = () => {

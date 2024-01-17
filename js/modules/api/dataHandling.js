@@ -27,7 +27,6 @@ import {
   handleFixedCostsIncomeRateRatio,
   handleAverageCarGasCosts,
   handleMonthlyCarGasCosts,
-  handleFuckYouMoney,
   handleMonthlyCosts,
   handleFixedCostsDistribution,
   handleAverageInvestmentCosts,
@@ -35,7 +34,8 @@ import {
   handleAverageGroceryCosts,
   handleMonthlyGroceryCosts,
   calculateFixedCostsIncomeRateRatio,
-  calculateFuckYouMoney,
+  calculateSurPlusFunds,
+  handleSurplusFunds,
 } from "./dataHandlingFunctions.js";
 
 import {
@@ -94,8 +94,8 @@ export const loadData = async () => {
     calculateFixedCostsIncomeRateRatio(incomeRate, sumFixedCosts),
     generalInfoField
   );
-  handleFuckYouMoney(
-    calculateFuckYouMoney(incomeRate, sumFixedCosts),
+  handleSurplusFunds(
+    calculateSurPlusFunds(incomeRate, sumFixedCosts),
     generalInfoField
   );
   handleMonthlyCosts(
