@@ -171,7 +171,7 @@ app.get("/api/getAverageGroceryCosts", (req, res) => {
 
 app.get("/api/getMonthlyGroceryCosts", (req, res) => {
   pool.query(
-    `SELECT amount, month FROM expenditures where type="grocery" and year = ${currentYear} ORDER BY month;`,
+    `SELECT amount, month FROM expenditures where type="grocery" and year = ${currentYear} d ORDER BY month;`,
     (error, results, fields) => {
       if (error) {
         console.error(error);
