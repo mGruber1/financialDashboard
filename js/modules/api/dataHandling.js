@@ -79,7 +79,7 @@ export const loadData = async () => {
   }
   fixedCosts = data[3];
   sumFixedCosts = data[1][0].total_fixed_costs;
-  incomeRate = data[0][0].netto_pt;
+  incomeRate = data[0][0].amount;
   monthlyCosts = data[2];
   averageCarGasCosts = data[4][0].averageCarGasCosts.toFixed(2);
   monthlyCarGasCosts = data[5];

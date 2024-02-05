@@ -15,8 +15,10 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-const currentDate = new Date();
+var currentDate = new Date();
 const currentYear = currentDate.getFullYear();
+currentDate.setDate(0);
+var lastMonth = currentDate.getMonth() + 1; // Note: Month is zero-based, so we add 1
 
 app.use(
   cors({
@@ -53,7 +55,7 @@ app.get("/api/getMonthlyCosts", (req, res) => {
 });
 
 app.get("/api/getIncomeRate", (req, res) => {
-  pool.query("SELECT netto_pt FROM revenues;", (error, results, fields) => {
+  pool.query(`SELECT amount FROM revenues WHERE month = ${lastMonth} AND year = ${currentYear};`, (error, results, fields) => {
     if (error) {
       console.error(error);
       res.status(500).send("Internal Server Error");
@@ -66,7 +68,7 @@ app.get("/api/getIncomeRate", (req, res) => {
 
 app.get("/api/getFixedCosts", (req, res) => {
   pool.query(
-    "SELECT rent, insurance, internet, groceries, investment_plan, car_gas,health FROM fixed_costs;",
+    "SELECT rent, insurance, grocery,investment_plan, car_gas, health, bank_deposit, shopping,leisure_spending FROM fixed_costs;",
     (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -81,7 +83,7 @@ app.get("/api/getFixedCosts", (req, res) => {
 
 app.get("/api/getSumFixedCosts", (req, res) => {
   pool.query(
-    "SELECT rent, insurance, internet, groceries, investment_plan, car_gas,health, (rent+insurance+internet+groceries+investment_plan+car_gas+health) AS total_fixed_costs FROM fixed_costs;",
+    "SELECT rent, insurance, grocery,investment_plan, car_gas, health, bank_deposit, shopping,leisure_spending,(rent + insurance + grocery + investment_plan + car_gas + health + bank_deposit + shopping + leisure_spending) AS total_fixed_costs FROM fixed_costs; ",
     (error, results, fields) => {
       if (error) {
         console.error(error);
