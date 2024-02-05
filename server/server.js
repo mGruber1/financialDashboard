@@ -15,6 +15,9 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+
 app.use(
   cors({
     origin: "http://localhost",
@@ -30,10 +33,12 @@ app.get("/api/ConnectionTest", (req, res) => {
 app.get("/api/getMonthlyCosts", (req, res) => {
   pool.query(
     `
-  SELECT month, SUM(amount) AS total_spending
-  FROM expenditures
-  GROUP BY month
-  ORDER BY month;
+    SELECT month, SUM(amount) AS total_spending
+    FROM expenditures
+    WHERE year = ${currentYear}
+    GROUP BY month
+    ORDER BY month;
+    
   `,
     (error, results, fields) => {
       if (error) {
@@ -91,7 +96,7 @@ app.get("/api/getSumFixedCosts", (req, res) => {
 
 app.get("/api/getAverageCarGasCosts", (req, res) => {
   pool.query(
-    'SELECT AVG(amount) as averageCarGasCosts FROM expenditures WHERE year = 2023 AND type= "car-gas";',
+    `SELECT AVG(amount) as averageCarGasCosts FROM expenditures WHERE year = ${currentYear} AND type= "car-gas";`,
     (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -106,7 +111,7 @@ app.get("/api/getAverageCarGasCosts", (req, res) => {
 
 app.get("/api/getMonthlyCarGasCosts", (req, res) => {
   pool.query(
-    'SELECT amount, month FROM expenditures where type="car-gas" and year = 2023 ORDER BY month;',
+    `SELECT amount, month FROM expenditures where type="car-gas" and year = ${currentYear} ORDER BY month;`,
     (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -121,7 +126,7 @@ app.get("/api/getMonthlyCarGasCosts", (req, res) => {
 
 app.get("/api/getAverageInvestmentCosts", (req, res) => {
   pool.query(
-    'SELECT AVG(amount) as averageInvestmentCosts FROM expenditures WHERE year = 2023 AND type= "investment-plan";',
+    `SELECT AVG(amount) as averageInvestmentCosts FROM expenditures WHERE year = ${currentYear} AND type= "investment-plan";`,
     (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -136,7 +141,7 @@ app.get("/api/getAverageInvestmentCosts", (req, res) => {
 
 app.get("/api/getMonthlyInvestmentPlanCosts", (req, res) => {
   pool.query(
-    'SELECT amount, month FROM expenditures where type="investment-plan" and year = 2023 ORDER BY month;',
+    `SELECT amount, month FROM expenditures where type="investment-plan" and year = ${currentYear} ORDER BY month;`,
     (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -151,7 +156,7 @@ app.get("/api/getMonthlyInvestmentPlanCosts", (req, res) => {
 
 app.get("/api/getAverageGroceryCosts", (req, res) => {
   pool.query(
-    'SELECT AVG(amount) as averageGroceryCosts FROM expenditures WHERE year = 2023 AND type= "grocery";',
+    `SELECT AVG(amount) as averageGroceryCosts FROM expenditures WHERE year = ${currentYear} AND type= "grocery";`,
     (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -166,7 +171,7 @@ app.get("/api/getAverageGroceryCosts", (req, res) => {
 
 app.get("/api/getMonthlyGroceryCosts", (req, res) => {
   pool.query(
-    'SELECT amount, month FROM expenditures where type="grocery" and year = 2023 ORDER BY month;',
+    `SELECT amount, month FROM expenditures where type="grocery" and year = ${currentYear} ORDER BY month;`,
     (error, results, fields) => {
       if (error) {
         console.error(error);
