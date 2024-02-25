@@ -72,6 +72,10 @@ export const handleMonthlyExpenditures = (echartOptions, monthlyCostsBarChart) =
   monthlyCostsBarChart.setOption(echartOptions);
 };
 
+export const handleMonthlyRevenues = () => {
+  console.log("hello!");
+}
+
 export const handleFixedCostsDistribution = (
   echartOptions,
   fixedDistributionChart

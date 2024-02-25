@@ -1,9 +1,9 @@
 "use strict";
 
-export const echartOptionsMonthlyCosts = (monthlyCosts) => {
-  const data = monthlyCosts.map((item) => ({
+export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
+  const data = monthlyExpenditures.map((item) => ({
     name: item.month,
-    value: item.total_spending,
+    value: item.monthly_expenditures,
   }));
 
   var options = {

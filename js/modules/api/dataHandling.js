@@ -11,12 +11,13 @@ import {
   getAverageInvestmentCosts,
   getAverageGroceryCosts,
   getMonthlyGroceryCosts,
+  getMonthlyRevenues,
 } from "./apiCalls.js";
 
 import {
   echartOptionsMonthlyCarGasCosts,
   echartOptionsFixedCostsDistribution,
-  echartOptionsMonthlyCosts,
+  echartOptionsMonthlyExpenditures,
   echartOptionsMonthlyInvestmentCosts,
   echartOptionsMonthlyGroceryCosts,
 } from "../echarts/echartOptions.js";
@@ -36,13 +37,14 @@ import {
   calculateFixedCostsIncomeRateRatio,
   calculateSurPlusFunds,
   handleSurplusFunds,
+  handleMonthlyRevenues,
 } from "./dataHandlingFunctions.js";
 
 import {
   averageCarGasDisplayField,
   generalInfoField,
   monthlyCarGasCostsChart,
-  monthlyCostsBarChart,
+  monthlyExpendituresBarChart,
   fixedDistributionChart,
   averageInvestmentCostsField,
   monthlyInvestmentCostsChart,
@@ -59,6 +61,7 @@ let averageInvestmentCosts = 0;
 let monthlyInvestmentCosts = 0;
 let averageGroceryCosts = 0;
 let monthlyGroceryCosts = 0;
+let monthlyRevenues = 0;
 
 export const loadData = async () => {
   try {
@@ -73,6 +76,7 @@ export const loadData = async () => {
       getAverageInvestmentCosts(),
       getAverageGroceryCosts(),
       getMonthlyGroceryCosts(),
+      getMonthlyRevenues()
     ]);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -87,6 +91,7 @@ export const loadData = async () => {
   averageInvestmentCosts = data[7][0].averageInvestmentCosts.toFixed(2);
   averageGroceryCosts = data[8][0].averageGroceryCosts.toFixed(2);
   monthlyGroceryCosts = data[9];
+  monthlyRevenues = data[10];
 
   handleIncomeRate(incomeRate, generalInfoField);
   handleFixedCosts(sumFixedCosts, generalInfoField);
@@ -99,9 +104,10 @@ export const loadData = async () => {
     generalInfoField
   );
   handleMonthlyExpenditures(
-    echartOptionsMonthlyCosts(monthlyExpenditures),
-    monthlyCostsBarChart
+    echartOptionsMonthlyExpenditures(monthlyExpenditures),
+    monthlyExpendituresBarChart
   );
+  handleMonthlyRevenues();
   handleFixedCostsDistribution(
     echartOptionsFixedCostsDistribution(fixedCosts),
     fixedDistributionChart

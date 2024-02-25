@@ -34,8 +34,30 @@ app.get("/api/ConnectionTest", (req, res) => {
 app.get("/api/getMonthlyExpenditures", (req, res) => {
   pool.query(
     `
-    SELECT month, SUM(amount) AS total_spending
+    SELECT month, SUM(amount) AS monthly_expenditures
     FROM expenditures
+    WHERE year = ${currentYear}
+    GROUP BY month
+    ORDER BY month;
+    
+  `,
+    (error, results, fields) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+
+      res.json(results);
+    }
+  );
+});
+
+app.get("/api/getMonthlyRevenues", (req, res) => {
+  pool.query(
+    `
+    SELECT month, SUM(amount) AS monthly_revenues
+    FROM revenues
     WHERE year = ${currentYear}
     GROUP BY month
     ORDER BY month;

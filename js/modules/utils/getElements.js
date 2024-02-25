@@ -2,8 +2,8 @@
 
 export const generalInfoField = document.getElementById("generalInfo");
 export const monthlyCostsField = document.getElementById("monthlyCostsField");
-export const monthlyCostsBarChart = echarts.init(
-  document.getElementById("monthlyCostsBarChart")
+export const monthlyExpendituresBarChart = echarts.init(
+  document.getElementById("monthlyExpendituresBarChart")
 );
 export const fixedCostsDistributionField = document.getElementById(
   "fixedCostsDistributionChart"

@@ -80,6 +80,25 @@ export const getMonthlyExpenditures = () => {
   });
 };
 
+export const getMonthlyRevenues = () => {
+  return new Promise((resolve, reject) => {
+    fetch("http://localhost:3000/api/getMonthlyRevenues")
+      .then((response) => {
+        if (!response.ok) {
+          reject("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        reject(error);
+      });
+  });
+};
+
 export const getAverageCarGasCosts = () => {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:3000/api/getAverageCarGasCosts")
