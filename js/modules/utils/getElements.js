@@ -1,46 +1,33 @@
 "use strict";
 
-export const generalInfoField = document.getElementById("generalInfo");
+const getElement = (id) => document.getElementById(id);
 
-export const monthlyRevenuesBarChart = echarts.init(
-  document.getElementById("monthlyRevenuesBarChart")
-);
-
-export const monthlyExpendituresBarChart = echarts.init(
-  document.getElementById("monthlyExpendituresBarChart")
-);
-
-export const monthlyProfitBarChart = echarts.init(
-  document.getElementById("monthlyProfitsBarChart")
-)
-export const fixedCostsDistributionField = document.getElementById(
-  "fixedCostsDistributionChart"
-);
-export const monthlyCarGasChart = document.getElementById(
-  "monthlyCarGasCostsChart"
-);
-
-export const averageCarGasDisplayField = document.getElementById(
-  "averageCarGasDisplayField"
-);
-export const monthlyCarGasCostsChart = echarts.init(
-  document.getElementById("monthlyCarGasCostsChart")
-);
-
-export const fixedDistributionChart = echarts.init(
-  document.getElementById("fixedCostsDistributionChart")
-);
-
-export const averageInvestmentCostsField = document.getElementById(
-  "averageInvestmentCostsField"
-);
-export const monthlyInvestmentCostsChart = echarts.init(
-  document.getElementById("monthlyInvestmentCostsChart")
-);
-
-export const averageGroceryCostsField = document.getElementById(
-  "averageGroceryCostsField"
-);
-export const monthlyGroceryCostsChart = echarts.init(
-  document.getElementById("monthlyGroceryCostsChart")
-);
+export const {
+  generalInfoField,
+  monthlyRevenuesBarChart,
+  monthlyExpendituresBarChart,
+  monthlyProfitBarChart,
+  fixedCostsDistributionField,
+  monthlyCarGasChart,
+  averageCarGasDisplayField,
+  monthlyCarGasCostsChart,
+  fixedDistributionChart,
+  averageInvestmentCostsField,
+  monthlyInvestmentCostsChart,
+  averageGroceryCostsField,
+  monthlyGroceryCostsChart,
+} = {
+  generalInfoField: getElement("generalInfo"),
+  monthlyRevenuesBarChart: echarts.init(getElement("monthlyRevenuesBarChart")),
+  monthlyExpendituresBarChart: echarts.init(getElement("monthlyExpendituresBarChart")),
+  monthlyProfitBarChart: echarts.init(getElement("monthlyProfitsBarChart")),
+  fixedCostsDistributionField: getElement("fixedCostsDistributionChart"),
+  monthlyCarGasChart: getElement("monthlyCarGasCostsChart"),
+  averageCarGasDisplayField: getElement("averageCarGasDisplayField"),
+  monthlyCarGasCostsChart: echarts.init(getElement("monthlyCarGasCostsChart")),
+  fixedDistributionChart: echarts.init(getElement("fixedCostsDistributionChart")),
+  averageInvestmentCostsField: getElement("averageInvestmentCostsField"),
+  monthlyInvestmentCostsChart: echarts.init(getElement("monthlyInvestmentCostsChart")),
+  averageGroceryCostsField: getElement("averageGroceryCostsField"),
+  monthlyGroceryCostsChart: echarts.init(getElement("monthlyGroceryCostsChart")),
+};
