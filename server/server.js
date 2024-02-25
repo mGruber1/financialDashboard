@@ -4,7 +4,6 @@ const cors = require("cors");
 const app = express();
 const port = 3000;
 
-// Create a connection pool
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
@@ -18,7 +17,7 @@ const pool = mysql.createPool({
 var currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 currentDate.setDate(0);
-var lastMonth = currentDate.getMonth() + 1; // Note: Month is zero-based, so we add 1
+var lastMonth = currentDate.getMonth() + 1;
 
 app.use(
   cors({
