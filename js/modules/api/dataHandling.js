@@ -21,6 +21,7 @@ import {
   echartOptionsMonthlyInvestmentCosts,
   echartOptionsMonthlyGroceryCosts,
   echartOptionsMonthlyProfits,
+  echartOptionsMonthlyRevenues,
 } from "../echarts/echartOptions.js";
 
 import {
@@ -39,6 +40,7 @@ import {
   calculateSurPlusFunds,
   handleSurplusFunds,
   handleMonthlyProfits,
+  handleMonthlyRevenues,
 } from "./dataHandlingFunctions.js";
 
 import {
@@ -51,6 +53,7 @@ import {
   monthlyInvestmentCostsChart,
   monthlyGroceryCostsChart,
   monthlyProfitBarChart,
+  monthlyRevenuesBarChart,
 } from "../utils/getElements.js";
 
 let fixedCosts = 0;
@@ -104,6 +107,11 @@ export const loadData = async () => {
   handleSurplusFunds(
     calculateSurPlusFunds(incomeRate, sumFixedCosts),
     generalInfoField
+  );
+
+  handleMonthlyRevenues(
+    echartOptionsMonthlyRevenues(monthlyRevenues),
+    monthlyRevenuesBarChart
   );
   handleMonthlyExpenditures(
     echartOptionsMonthlyExpenditures(monthlyExpenditures),

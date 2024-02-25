@@ -68,6 +68,10 @@ export const handleSurplusFunds = (surplusFunds, generalInfoField) => {
   createNewDataRow(generalInfoField, "Surplus-Funds", surplusFunds, "€");
 };
 
+export const handleMonthlyRevenues = (echartOptions, monthlyRevenuesBarChart) => {
+  monthlyRevenuesBarChart.setOption(echartOptions);
+};
+
 export const handleMonthlyExpenditures = (echartOptions, monthlyExpendituresBarChart) => {
   monthlyExpendituresBarChart.setOption(echartOptions);
 };

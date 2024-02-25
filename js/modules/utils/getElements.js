@@ -1,6 +1,11 @@
 "use strict";
 
 export const generalInfoField = document.getElementById("generalInfo");
+
+export const monthlyRevenuesBarChart = echarts.init(
+  document.getElementById("monthlyRevenuesBarChart")
+);
+
 export const monthlyExpendituresBarChart = echarts.init(
   document.getElementById("monthlyExpendituresBarChart")
 );

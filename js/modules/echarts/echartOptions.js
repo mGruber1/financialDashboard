@@ -1,12 +1,15 @@
 "use strict";
 
-export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
-  const data = monthlyExpenditures.map((item) => ({
+export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
+  const data = monthlyRevenues.map((item) => ({
     name: item.month,
-    value: item.monthly_expenditures,
+    value: item.monthly_revenues,
   }));
 
   var options = {
+    title: {
+      text: "Revenues"
+    },
     grid: {
       top: "10%",
       bottom: "20%",
@@ -35,6 +38,57 @@ export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
         position: "top",
         formatter: '{c} €',
       },
+      itemStyle: {
+        color: 'grey'
+      }
+    },
+  };
+
+
+  return options;
+};
+
+export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
+  const data = monthlyExpenditures.map((item) => ({
+    name: item.month,
+    value: item.monthly_expenditures,
+  }));
+
+  var options = {
+    title: {
+      text: "Expenditures"
+    },
+    grid: {
+      top: "10%",
+      bottom: "20%",
+      left: "10%",
+      right: "10%",
+    },
+    tooltip: {},
+    xAxis: {
+      data: data.map((item) => item.name),
+      name: "Month",
+      nameLocation: "middle",
+      nameGap: 20,
+    },
+    yAxis: {
+      type: "value",
+      axisLabel: {
+        formatter: '{value} €',
+      },
+      show: false,
+    },
+    series: {
+      type: "bar",
+      data: data.map((item) => item.value.toFixed(2)),
+      label: {
+        show: true,
+        position: "top",
+        formatter: '{c} €',
+      },
+      itemStyle: {
+        color: 'grey'
+      }
     },
   };
 
@@ -60,9 +114,15 @@ export const echartOptionsMonthlyProfits = (monthlyRevenues, monthlyExpenditures
   const data = differenceArray.map((item) => ({
     name: item.month,
     value: item.difference,
+    itemStyle: {
+      color: item.difference >= 0 ? 'green' : 'red',
+    },
   }));
 
   var options = {
+    title: {
+      text: "Profits"
+    },
     grid: {
       top: "10%",
       bottom: "20%",
