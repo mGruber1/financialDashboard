@@ -61,9 +61,9 @@ export const getIncomeRate = () => {
   });
 };
 
-export const getMonthlyCosts = () => {
+export const getMonthlyExpenditures = () => {
   return new Promise((resolve, reject) => {
-    fetch("http://localhost:3000/api/getMonthlyCosts")
+    fetch("http://localhost:3000/api/getMonthlyExpenditures")
       .then((response) => {
         if (!response.ok) {
           reject("Network response was not ok");

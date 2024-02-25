@@ -4,7 +4,7 @@ import {
   getFixedCosts,
   getSumFixedCosts,
   getIncomeRate,
-  getMonthlyCosts,
+  getMonthlyExpenditures,
   getAverageCarGasCosts,
   getMonthlyCarGasCosts,
   getMonthlyInvestmentPlanCosts,
@@ -27,7 +27,7 @@ import {
   handleFixedCostsIncomeRateRatio,
   handleAverageCarGasCosts,
   handleMonthlyCarGasCosts,
-  handleMonthlyCosts,
+  handleMonthlyExpenditures,
   handleFixedCostsDistribution,
   handleAverageInvestmentCosts,
   handleMonthlyInvestmentCosts,
@@ -52,7 +52,7 @@ import {
 let fixedCosts = 0;
 let sumFixedCosts = 0;
 let incomeRate = 0;
-let monthlyCosts = 0;
+let monthlyExpenditures = 0;
 let averageCarGasCosts = 0;
 let monthlyCarGasCosts = 0;
 let averageInvestmentCosts = 0;
@@ -65,7 +65,7 @@ export const loadData = async () => {
     var data = await Promise.all([
       getIncomeRate(),
       getSumFixedCosts(),
-      getMonthlyCosts(),
+      getMonthlyExpenditures(),
       getFixedCosts(),
       getAverageCarGasCosts(),
       getMonthlyCarGasCosts(),
@@ -80,7 +80,7 @@ export const loadData = async () => {
   fixedCosts = data[3];
   sumFixedCosts = data[1][0].total_fixed_costs;
   incomeRate = data[0][0].amount;
-  monthlyCosts = data[2];
+  monthlyExpenditures = data[2];
   averageCarGasCosts = data[4][0].averageCarGasCosts.toFixed(2);
   monthlyCarGasCosts = data[5];
   monthlyInvestmentCosts = data[6];
@@ -98,8 +98,8 @@ export const loadData = async () => {
     calculateSurPlusFunds(incomeRate, sumFixedCosts),
     generalInfoField
   );
-  handleMonthlyCosts(
-    echartOptionsMonthlyCosts(monthlyCosts),
+  handleMonthlyExpenditures(
+    echartOptionsMonthlyCosts(monthlyExpenditures),
     monthlyCostsBarChart
   );
   handleFixedCostsDistribution(

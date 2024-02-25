@@ -31,7 +31,7 @@ app.get("/api/ConnectionTest", (req, res) => {
   res.json({ status: 0 });
 });
 
-app.get("/api/getMonthlyCosts", (req, res) => {
+app.get("/api/getMonthlyExpenditures", (req, res) => {
   pool.query(
     `
     SELECT month, SUM(amount) AS total_spending
