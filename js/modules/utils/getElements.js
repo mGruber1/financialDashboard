@@ -4,6 +4,10 @@ export const generalInfoField = document.getElementById("generalInfo");
 export const monthlyExpendituresBarChart = echarts.init(
   document.getElementById("monthlyExpendituresBarChart")
 );
+
+export const monthlyProfitBarChart = echarts.init(
+  document.getElementById("monthlyProfitsBarChart")
+)
 export const fixedCostsDistributionField = document.getElementById(
   "fixedCostsDistributionChart"
 );
