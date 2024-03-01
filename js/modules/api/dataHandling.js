@@ -44,17 +44,21 @@ import {
 } from "./dataHandlingFunctions.js";
 
 import {
-  averageCarGasDisplayField,
-  generalInfoField,
   monthlyCarGasCostsChart,
   monthlyExpendituresBarChart,
   fixedDistributionChart,
-  averageInvestmentCostsField,
   monthlyInvestmentCostsChart,
   monthlyGroceryCostsChart,
   monthlyProfitBarChart,
   monthlyRevenuesBarChart,
-} from "../utils/getElements.js";
+} from "../utils/initEcharts.js";
+
+import {
+  generalInfoField,
+  averageCarGasDisplayField,
+  averageInvestmentCostsField,
+  averageGroceryCostsField
+} from "../utils/getFields.js"
 
 let fixedCosts = 0;
 let sumFixedCosts = 0;
