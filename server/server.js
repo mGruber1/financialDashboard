@@ -89,7 +89,7 @@ app.get("/api/getIncomeRate", (req, res) => {
 
 app.get("/api/getFixedCosts", (req, res) => {
   pool.query(
-    "SELECT rent, insurance, grocery,investment_plan, car_gas, health, bank_deposit, shopping,leisure_spending FROM fixed_costs;",
+    "SELECT rent, insurance, grocery,investment_plan, car_gas, health, savings, shopping,leisure_spending FROM fixed_costs;",
     (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -104,7 +104,7 @@ app.get("/api/getFixedCosts", (req, res) => {
 
 app.get("/api/getSumFixedCosts", (req, res) => {
   pool.query(
-    "SELECT rent, insurance, grocery,investment_plan, car_gas, health, bank_deposit, shopping,leisure_spending,(rent + insurance + grocery + investment_plan + car_gas + health + bank_deposit + shopping + leisure_spending) AS total_fixed_costs FROM fixed_costs; ",
+    "SELECT rent, insurance, grocery,investment_plan, car_gas, health, savings, shopping,leisure_spending,(rent + insurance + grocery + investment_plan + car_gas + health + savings + shopping + leisure_spending) AS total_fixed_costs FROM fixed_costs; ",
     (error, results, fields) => {
       if (error) {
         console.error(error);
