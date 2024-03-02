@@ -13,6 +13,12 @@
         <title>DatenJahr</title>
         <script type="module">
             import {expenditureSubmitDataButtonEventListener, revenueSubmitDataButtonEventListener} from "./js/modules/utils/addEventListener.js";
+            import { checkBackendAvailability } from "./js/modules/api/apiCalls.js";
+            import {showEmptyDataMessage} from "./js/modules/api/dataHandlingFunctions.js";
+
+            if (await checkBackendAvailability() === false) {
+              showEmptyDataMessage();
+            }
         </script>
       </head>
 <body class="w-100 h-100">

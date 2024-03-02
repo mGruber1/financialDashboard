@@ -98,7 +98,7 @@ export const calculateSurPlusFunds = (incomeRate, fixedCosts) => {
 };
 
 export const showEmptyDataMessage = () => {
-  const cardBodies = document.getElementsByClassName("card-body");
+  const cardBodies = document.getElementsByClassName("card");
 
   for (let cardBody of cardBodies) {
     let emptyMessageContainer = document.createElement("div");
