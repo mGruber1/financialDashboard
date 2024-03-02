@@ -3,13 +3,11 @@
 import { isExpenditureDataEmpty, sendExpenditureDataToServer, getExpenditureData, isRevenueDataEmpty, sendRevenueDataToServer, getRevenueData } from "./eventListenerFunctions.js";
 import { expenditureSubmitDataButton, revenueSubmitDataButton } from "./getFields.js";
 
-// newData.html Event Listeners
-
 export const expenditureSubmitDataButtonEventListener = expenditureSubmitDataButton.addEventListener("click", () => {
     if (!isExpenditureDataEmpty()) {
         sendExpenditureDataToServer(getExpenditureData());
     } else {
-        console.log("it is empty");
+        alert("No empty Data allowed");
     }
 });
 
@@ -17,7 +15,7 @@ export const revenueSubmitDataButtonEventListener = revenueSubmitDataButton.addE
     if (!isRevenueDataEmpty()) {
         sendRevenueDataToServer(getRevenueData());
     } else {
-        console.log("it is empty");
+        alert("No empty Data allowed");
     }
 });
 

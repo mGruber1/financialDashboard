@@ -40,6 +40,10 @@ export const sendExpenditureDataToServer = async (data) => {
         if (response.ok) {
             const result = await response.json();
             console.log(result);
+            expenditureTypeField.value = "";
+            expenditureMonthField.value = "";
+            expenditureYearField.value = "";
+            expenditureAmountField.value = "";
         } else {
             console.error("Failed to insert data:", response.statusText);
         }
@@ -60,6 +64,9 @@ export const sendRevenueDataToServer = async (data) => {
 
         if (response.ok) {
             const result = await response.json();
+            revenueYearField.value = "";
+            revenueMonthField.value = "";
+            revenueAmountField.value = "";
             console.log(result);
         } else {
             console.error("Failed to insert data:", response.statusText);
