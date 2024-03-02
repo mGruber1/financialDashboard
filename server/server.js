@@ -26,6 +26,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(express.json());
 
 app.get("/api/ConnectionTest", (req, res) => {
   res.json({ status: 0 });
@@ -209,4 +210,24 @@ app.get("/api/getMonthlyGroceryCosts", (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
+});
+
+// newData-stuff
+
+app.post("/api/insertMonthlyExpenditures", (req, res) => {
+
+  const data = req.body.data;
+
+  pool.query(
+    `INSERT INTO expenditures (type, month, year, amount) VALUES ('${data[0]}', ${data[1]}, ${data[2]}, ${data[3]})`,
+    (error, results, fields) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+    }
+  );
+
+  res.json({ status: 0, message: "Data inserted successfully" });
 });

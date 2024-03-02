@@ -12,6 +12,26 @@ export const isDataSetEmpty = () => {
 
 export const getDataSet = () => {
     const dataSet = [typeField.value, monthField.value, yearField.value, amountField.value];
-    console.log(dataSet);
     return dataSet
 }
+
+export const sendDataSetToServer = async (data) => {
+    try {
+        const response = await fetch("http://localhost:3000/api/insertMonthlyExpenditures", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ data }),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result);
+        } else {
+            console.error("Failed to insert data:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+};
