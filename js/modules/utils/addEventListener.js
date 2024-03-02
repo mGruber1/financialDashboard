@@ -1,13 +1,21 @@
 "use strict"
 
-import { isDataSetEmpty, getDataSet, sendDataSetToServer } from "./eventListenerFunctions.js";
-import { submitDataButton } from "./getFields.js";
+import { isExpenditureDataEmpty, sendExpenditureDataToServer, getExpenditureData, isRevenueDataEmpty, sendRevenueDataToServer, getRevenueData } from "./eventListenerFunctions.js";
+import { expenditureSubmitDataButton, revenueSubmitDataButton } from "./getFields.js";
 
 // newData.html Event Listeners
 
-export const submitDataButtonEventListener = submitDataButton.addEventListener("click", () => {
-    if (!isDataSetEmpty()) {
-        sendDataSetToServer(getDataSet());
+export const expenditureSubmitDataButtonEventListener = expenditureSubmitDataButton.addEventListener("click", () => {
+    if (!isExpenditureDataEmpty()) {
+        sendExpenditureDataToServer(getExpenditureData());
+    } else {
+        console.log("it is empty");
+    }
+});
+
+export const revenueSubmitDataButtonEventListener = revenueSubmitDataButton.addEventListener("click", () => {
+    if (!isRevenueDataEmpty()) {
+        sendRevenueDataToServer(getRevenueData());
     } else {
         console.log("it is empty");
     }

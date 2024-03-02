@@ -9,8 +9,13 @@ export const averageGroceryCostsField = getElement("averageGroceryCostsField");
 export const insertNewRowSubmitButton = getElement("insertNewRowSubmitButton");
 
 // Fields For newData.html
-export const typeField = getElement("type");
-export const monthField = getElement("month");
-export const yearField = getElement("year");
-export const amountField = getElement("amount");
-export const submitDataButton = getElement("submitDataButton");
+export const expenditureTypeField = getElement("expenditure_type");
+export const expenditureMonthField = getElement("expenditure_month");
+export const expenditureYearField = getElement("expenditure_year");
+export const expenditureAmountField = getElement("expenditure_amount");
+export const expenditureSubmitDataButton = getElement("expenditure_submitDataButton");
+
+export const revenueMonthField = getElement("revenue_month");
+export const revenueYearField = getElement("revenue_year");
+export const revenueAmountField = getElement("revenue_amount");
+export const revenueSubmitDataButton = getElement("revenue_submitDataButton");

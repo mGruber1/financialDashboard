@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>DatenJahr</title>
         <script type="module">
-            import {submitDataButtonEventListener} from "./js/modules/utils/addEventListener.js";
+            import {expenditureSubmitDataButtonEventListener, revenueSubmitDataButtonEventListener} from "./js/modules/utils/addEventListener.js";
         </script>
       </head>
 <body class="w-100 h-100">
@@ -49,21 +49,49 @@
             <div class="col">
               <div class="card">
                 <div class="card-header">
-                  <h5>Insert New Dataset</h5>
+                  <h5>New Expenditure</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="type">Type</label>
-                                <input type="text" class="form-control" id="type">
-                                <label for="month">Month</label>
-                                <input type="text" class="form-control" id="month">
-                                <label for="year">Year</label>
-                                <input type="text" class="form-control" id="year">
+                                <label for="expenditure_type">Type</label>
+                                <input type="text" class="form-control" id="expenditure_type">
+                                <label for="expenditure_month">Month</label>
+                                <input type="text" class="form-control" id="expenditure_month">
+                                <label for="expenditure_year">Year</label>
+                                <input type="text" class="form-control" id="expenditure_year">
                                 <label for="amount">Amount</label>
-                                <input type="text" class="form-control" id="amount">
-                                <button type="button" class="mt-4 btn btn-sm btn-primary form-control" id="submitDataButton">Submit</button>
+                                <input type="text" class="form-control" id="expenditure_amount">
+                                <button type="button" class="mt-4 btn btn-sm btn-primary form-control" id="expenditure_submitDataButton">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+      </div>
+      <div class="row w-100">
+        <div class="col h-100 p-2">
+          <div class="row mb-2">
+            <div class="col">
+              <div class="card">
+                <div class="card-header">
+                  <h5>New Revenue</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="year">Year</label>
+                                <input type="text" class="form-control" id="revenue_year">
+                                <label for="month">Month</label>
+                                <input type="text" class="form-control" id="revenue_month">
+                                <label for="amount">Amount</label>
+                                <input type="text" class="form-control" id="revenue_amount">
+                                <button type="button" class="mt-4 btn btn-sm btn-primary form-control" id="revenue_submitDataButton">Submit</button>
                             </div>
                         </div>
                     </div>

@@ -1,23 +1,56 @@
 "use strict"
 
-import { typeField, monthField, yearField, amountField } from "./getFields.js"
+import { expenditureTypeField, expenditureMonthField, expenditureYearField, expenditureAmountField, revenueYearField, revenueMonthField, revenueAmountField } from "./getFields.js"
 
-export const isDataSetEmpty = () => {
-    if (typeField.value != "" && monthField.value != "" && yearField.value != "" && amountField.value != "") {
+export const isExpenditureDataEmpty = () => {
+    if (expenditureTypeField.value != "" && expenditureMonthField.value != "" && expenditureYearField.value != "" && expenditureAmountField.value != "") {
+        return false
+    } else {
+        return true
+    }
+}
+export const isRevenueDataEmpty = () => {
+    if (revenueYearField.value != "" && revenueMonthField.value != "" && revenueAmountField.value != "") {
         return false
     } else {
         return true
     }
 }
 
-export const getDataSet = () => {
-    const dataSet = [typeField.value, monthField.value, yearField.value, amountField.value];
+export const getExpenditureData = () => {
+    const dataSet = [expenditureTypeField.value, expenditureMonthField.value, expenditureYearField.value, expenditureAmountField.value];
     return dataSet
 }
 
-export const sendDataSetToServer = async (data) => {
+export const getRevenueData = () => {
+    const dataSet = [revenueYearField.value, revenueMonthField.value, revenueAmountField.value];
+    return dataSet
+}
+
+export const sendExpenditureDataToServer = async (data) => {
     try {
         const response = await fetch("http://localhost:3000/api/insertMonthlyExpenditures", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ data }),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result);
+        } else {
+            console.error("Failed to insert data:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+};
+
+export const sendRevenueDataToServer = async (data) => {
+    try {
+        const response = await fetch("http://localhost:3000/api/insertMonthlyRevenues", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
