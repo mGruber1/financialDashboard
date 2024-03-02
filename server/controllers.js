@@ -3,6 +3,7 @@ var currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 currentDate.setDate(0);
 var lastMonth = currentDate.getMonth() + 1;
+
 const getMonthlyExpenditures = (req, res) => {
     pool.query(
         `
@@ -47,6 +48,7 @@ const getMonthlyRevenues = (req, res) => {
     );
 }
 
+// TODO: Change to 3490 in netto 
 const getIncomeRate = (req, res) => {
     pool.query(`SELECT amount FROM revenues WHERE month = ${lastMonth} AND year = ${currentYear};`, (error, results, fields) => {
         if (error) {

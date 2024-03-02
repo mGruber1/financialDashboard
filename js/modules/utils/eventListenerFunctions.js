@@ -44,8 +44,10 @@ export const sendExpenditureDataToServer = async (data) => {
             expenditureMonthField.value = "";
             expenditureYearField.value = "";
             expenditureAmountField.value = "";
+            alert("Success!")
         } else {
             console.error("Failed to insert data:", response.statusText);
+            alert(response.statusText);
         }
     } catch (error) {
         console.error("Error:", error);
@@ -67,9 +69,10 @@ export const sendRevenueDataToServer = async (data) => {
             revenueYearField.value = "";
             revenueMonthField.value = "";
             revenueAmountField.value = "";
-            console.log(result);
+            alert("Success!")
         } else {
             console.error("Failed to insert data:", response.statusText);
+            alert(response.statusText);
         }
     } catch (error) {
         console.error("Error:", error);
