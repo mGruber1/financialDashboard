@@ -105,7 +105,7 @@ export const showEmptyDataMessage = () => {
     emptyMessageContainer.classList.add("emptyDataDisplay");
 
     let emptyMessage = document.createElement("span");
-    emptyMessage.innerHTML = "No Data Available";
+    emptyMessage.innerHTML = "No Connection To Database";
 
     emptyMessageContainer.appendChild(emptyMessage);
     cardBody.appendChild(emptyMessageContainer);
