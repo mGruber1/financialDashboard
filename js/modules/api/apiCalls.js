@@ -1,8 +1,9 @@
 "use strict";
+import { BACKEND_HOST } from "../../../client-env.js";
 
 const fetchApiData = async (apiEndpoint) => {
   try {
-    const response = await fetch(`http://localhost:3000/api/${apiEndpoint}`);
+    const response = await fetch("http://"+BACKEND_HOST+":3000/api/"+apiEndpoint);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -10,6 +11,17 @@ const fetchApiData = async (apiEndpoint) => {
   } catch (error) {
     console.error("Error:", error);
     throw error;
+  }
+};
+
+const backendURL = "http://"+BACKEND_HOST+":3000/api/ConnectionTest";
+
+export const checkBackendAvailability = async () => {
+  try {
+    const response = await fetch(backendURL);
+    return response.ok;
+  } catch (error) {
+    return false;
   }
 };
 
@@ -25,13 +37,3 @@ export const getAverageInvestmentCosts = () => fetchApiData("getAverageInvestmen
 export const getMonthlyCarGasCosts = () => fetchApiData("getMonthlyCarGasCosts");
 export const getMonthlyInvestmentPlanCosts = () => fetchApiData("getMonthlyInvestmentPlanCosts");
 
-const backendURL = "http://localhost:3000/api/ConnectionTest";
-
-export const checkBackendAvailability = async () => {
-  try {
-    const response = await fetch(backendURL);
-    return response.ok;
-  } catch (error) {
-    return false;
-  }
-};
