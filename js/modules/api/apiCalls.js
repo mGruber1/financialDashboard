@@ -1,9 +1,11 @@
 "use strict";
 import { BACKEND_HOST } from "../../../client-env.js";
 
-const fetchApiData = async (apiEndpoint) => {
+const apiUrl = (endpoint) => `http://${BACKEND_HOST}:3000/api/${endpoint}`;
+
+const fetchData = async (endpoint) => {
   try {
-    const response = await fetch("http://"+BACKEND_HOST+":3000/api/"+apiEndpoint);
+    const response = await fetch(apiUrl(endpoint));
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -14,26 +16,24 @@ const fetchApiData = async (apiEndpoint) => {
   }
 };
 
-const backendURL = "http://"+BACKEND_HOST+":3000/api/ConnectionTest";
-
 export const checkBackendAvailability = async () => {
   try {
-    const response = await fetch(backendURL);
+    const response = await fetch(apiUrl("ConnectionTest"));
     return response.ok;
   } catch (error) {
+    console.error("Error:", error);
     return false;
   }
 };
 
-export const getFixedCosts = () => fetchApiData("getFixedCosts");
-export const getSumFixedCosts = () => fetchApiData("getSumFixedCosts");
-export const getIncomeRate = () => fetchApiData("getIncomeRate");
-export const getMonthlyExpenditures = () => fetchApiData("getMonthlyExpenditures");
-export const getMonthlyRevenues = () => fetchApiData("getMonthlyRevenues");
-export const getAverageCarGasCosts = () => fetchApiData("getAverageCarGasCosts");
-export const getAverageGroceryCosts = () => fetchApiData("getAverageGroceryCosts");
-export const getMonthlyGroceryCosts = () => fetchApiData("getMonthlyGroceryCosts");
-export const getAverageInvestmentCosts = () => fetchApiData("getAverageInvestmentCosts");
-export const getMonthlyCarGasCosts = () => fetchApiData("getMonthlyCarGasCosts");
-export const getMonthlyInvestmentPlanCosts = () => fetchApiData("getMonthlyInvestmentPlanCosts");
-
+export const getFixedCosts = () => fetchData("getFixedCosts");
+export const getSumFixedCosts = () => fetchData("getSumFixedCosts");
+export const getIncomeRate = () => fetchData("getIncomeRate");
+export const getMonthlyExpenditures = () => fetchData("getMonthlyExpenditures");
+export const getMonthlyRevenues = () => fetchData("getMonthlyRevenues");
+export const getAverageCarGasCosts = () => fetchData("getAverageCarGasCosts");
+export const getAverageGroceryCosts = () => fetchData("getAverageGroceryCosts");
+export const getMonthlyGroceryCosts = () => fetchData("getMonthlyGroceryCosts");
+export const getAverageInvestmentCosts = () => fetchData("getAverageInvestmentCosts");
+export const getMonthlyCarGasCosts = () => fetchData("getMonthlyCarGasCosts");
+export const getMonthlyInvestmentPlanCosts = () => fetchData("getMonthlyInvestmentPlanCosts");
