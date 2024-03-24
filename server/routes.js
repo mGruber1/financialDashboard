@@ -17,6 +17,10 @@ router.get("/getAverageInvestmentCosts", controllers.getAverageInvestmentCosts);
 router.get("/getMonthlyInvestmentPlanCosts", controllers.getMonthlyInvestmentPlanCosts);
 router.get("/getAverageGroceryCosts", controllers.getAverageGroceryCosts);
 router.get("/getMonthlyGroceryCosts", controllers.getMonthlyGroceryCosts);
+router.get("/getAverageShoppingCosts", controllers.getAverageShoppingCosts);
+router.get("/getMonthlyShoppingCosts", controllers.getMonthlyShoppingCosts);
+router.get("/getAverageLeisureCosts", controllers.getAverageLeisureCosts);
+router.get("/getMonthlyLeisureCosts", controllers.getMonthlyLeisureCosts);
 router.post("/insertMonthlyExpenditures", controllers.insertMonthlyExpenditures);
 router.post("/insertMonthlyRevenues", controllers.insertMonthlyRevenues);
 

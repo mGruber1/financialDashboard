@@ -12,6 +12,10 @@ import {
   getAverageGroceryCosts,
   getMonthlyGroceryCosts,
   getMonthlyRevenues,
+  getAverageShoppingCosts,
+  getMonthlyShoppingCosts,
+  getAverageLeisureCosts,
+  getMonthlyLeisureCosts
 } from "./apiCalls.js";
 
 import {
@@ -22,6 +26,7 @@ import {
   echartOptionsMonthlyGroceryCosts,
   echartOptionsMonthlyProfits,
   echartOptionsMonthlyRevenues,
+  echartOptionsMonthlyShoppingCosts,
 } from "../echarts/echartOptions.js";
 
 import {
@@ -41,23 +46,31 @@ import {
   handleSurplusFunds,
   handleMonthlyProfits,
   handleMonthlyRevenues,
+  handleAverageShoppingCosts,
+  handleMonthlyShoppingCosts,
+  handleAverageLeisureCosts,
+  handleMonthlyLeisureCosts
 } from "./dataHandlingFunctions.js";
 
 import {
   monthlyCarGasCostsChart,
   monthlyExpendituresBarChart,
+  monthlyShoppingCostsChart,
   fixedDistributionChart,
   monthlyInvestmentCostsChart,
   monthlyGroceryCostsChart,
   monthlyProfitBarChart,
   monthlyRevenuesBarChart,
+  monthlyLeisureCostsChart
 } from "../utils/initEcharts.js";
 
 import {
   generalInfoField,
   averageCarGasDisplayField,
   averageInvestmentCostsField,
-  averageGroceryCostsField
+  averageGroceryCostsField,
+  averageShoppingCostsField,
+  averageLeisureCostsField
 } from "../utils/getFields.js"
 
 let fixedCosts = 0;
@@ -71,6 +84,10 @@ let monthlyInvestmentCosts = 0;
 let averageGroceryCosts = 0;
 let monthlyGroceryCosts = 0;
 let monthlyRevenues = 0;
+let averageShoppingCosts = 0;
+let monthlyShoppingCosts = 0;
+let averageLeisureCosts = 0;
+let monthlyLeisureCosts = 0;
 
 export const loadData = async () => {
   try {
@@ -85,7 +102,11 @@ export const loadData = async () => {
       getAverageInvestmentCosts(),
       getAverageGroceryCosts(),
       getMonthlyGroceryCosts(),
-      getMonthlyRevenues()
+      getMonthlyRevenues(),
+      getAverageShoppingCosts(),
+      getMonthlyShoppingCosts(),
+      getAverageLeisureCosts(),
+      getMonthlyLeisureCosts()
     ]);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -101,6 +122,10 @@ export const loadData = async () => {
   averageGroceryCosts = data[8][0].averageGroceryCosts.toFixed(2);
   monthlyGroceryCosts = data[9];
   monthlyRevenues = data[10];
+  averageShoppingCosts = data[11][0].averageShoppingCosts.toFixed(2);
+  monthlyShoppingCosts = data[12];
+  averageLeisureCosts = data[13][0].averageLeisureCosts.toFixed(2);
+  monthlyLeisureCosts = data[14];
 
   handleIncomeRate(incomeRate, generalInfoField);
   handleFixedCosts(sumFixedCosts, generalInfoField);
@@ -152,4 +177,19 @@ export const loadData = async () => {
     echartOptionsMonthlyGroceryCosts(monthlyGroceryCosts),
     monthlyGroceryCostsChart
   );
+
+  handleAverageShoppingCosts(averageShoppingCosts, averageShoppingCostsField);
+
+  handleMonthlyShoppingCosts(
+    echartOptionsMonthlyShoppingCosts(monthlyShoppingCosts),
+    monthlyShoppingCostsChart
+  )
+  handleAverageLeisureCosts(averageLeisureCosts, averageLeisureCostsField);
+
+  handleMonthlyLeisureCosts(
+    echartOptionsMonthlyShoppingCosts(monthlyLeisureCosts),
+    monthlyLeisureCostsChart
+  )
 };
+
+

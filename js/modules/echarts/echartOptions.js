@@ -170,28 +170,31 @@ export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
   }));
 
   const options = {
-    grid: {
-      top: "20%",
-      bottom: "20%",
-      left: "20%",
-      right: "20%",
+    title: {
+      text: "Fixed Cost Distribution",
+      left: "center"
     },
     tooltip: {
       trigger: "item",
-      formatter: "{b}: {c} ({d}%)",
+      formatter: "{b}: {c} € ({d}%)", 
     },
     series: [
       {
         type: "pie",
-        radius: "55%",
         center: ["50%", "50%"],
         data: data,
+        label: {
+          show: true,
+          position: "outside",
+          formatter: '{b}: {d}%',
+        },
       },
     ],
   };
 
   return options;
 };
+
 
 export const echartOptionsMonthlyCarGasCosts = (monthlyCarGasCosts) => {
   const months = monthlyCarGasCosts.map((entry) => entry.month);
@@ -268,6 +271,78 @@ export const echartOptionsMonthlyInvestmentCosts = (monthlyInvestmentCosts) => {
 export const echartOptionsMonthlyGroceryCosts = (monthlyGroceryCosts) => {
   const months = monthlyGroceryCosts.map((entry) => entry.month);
   const amounts = monthlyGroceryCosts.map((entry) => entry.amount);
+
+  const options = {
+    grid: {
+      top: "10%",
+      bottom: "10%",
+      left: "10%",
+      right: "10%",
+    },
+    tooltip: {
+      trigger: "item",
+      formatter: "{b}: {c})",
+    },
+    xAxis: {
+      type: "category",
+      boundaryGap: false,
+      data: months,
+      show: false,
+    },
+    yAxis: {
+      type: "value",
+      show: false,
+    },
+    series: [
+      {
+        data: amounts,
+        type: "line",
+        areaStyle: {},
+      },
+    ],
+  };
+  return options;
+};
+
+export const echartOptionsMonthlyShoppingCosts = (monthlyShoppingCosts) => {
+  const months = monthlyShoppingCosts.map((entry) => entry.month);
+  const amounts = monthlyShoppingCosts.map((entry) => entry.amount);
+
+  const options = {
+    grid: {
+      top: "10%",
+      bottom: "10%",
+      left: "10%",
+      right: "10%",
+    },
+    tooltip: {
+      trigger: "item",
+      formatter: "{b}: {c})",
+    },
+    xAxis: {
+      type: "category",
+      boundaryGap: false,
+      data: months,
+      show: false,
+    },
+    yAxis: {
+      type: "value",
+      show: false,
+    },
+    series: [
+      {
+        data: amounts,
+        type: "line",
+        areaStyle: {},
+      },
+    ],
+  };
+  return options;
+};
+
+export const echartOptionsMonthlyLeisureCosts = (monthlyLeisureCosts) => {
+  const months = monthlyLeisureCosts.map((entry) => entry.month);
+  const amounts = monthlyLeisureCosts.map((entry) => entry.amount);
 
   const options = {
     grid: {

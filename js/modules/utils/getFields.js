@@ -6,6 +6,8 @@ export const generalInfoField = getElement("generalInfoField");
 export const averageCarGasDisplayField = getElement("averageCarGasDisplayField");
 export const averageInvestmentCostsField = getElement("averageInvestmentCostsField");
 export const averageGroceryCostsField = getElement("averageGroceryCostsField");
+export const averageLeisureCostsField = getElement("averageLeisureCostsField");
+export const averageShoppingCostsField = getElement("averageShoppingCostsField");
 export const insertNewRowSubmitButton = getElement("insertNewRowSubmitButton");
 
 // Fields For newData.html

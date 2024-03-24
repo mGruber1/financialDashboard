@@ -57,6 +57,34 @@ export const handleAverageGroceryCosts = (
   averageGroceryCostsDisplayField.innerHTML = averageGroceryCosts + " €";
 };
 
+export const handleAverageShoppingCosts = (
+  averageShoppingCosts,
+  averageShoppingCostsField
+) => {
+  averageShoppingCostsField.innerHTML = averageShoppingCosts + " €";
+}
+
+export const handleMonthlyShoppingCosts = (
+  echartOptions,
+  monthlyShoppingCostsChart
+) => {
+  monthlyShoppingCostsChart.setOption(echartOptions);
+}
+
+export const handleAverageLeisureCosts = (
+  averageLeisureCosts,
+  averageLeisureCostsField
+) => {
+  averageLeisureCostsField.innerHTML = averageLeisureCosts + " €";
+}
+
+export const handleMonthlyLeisureCosts = (
+  echartOptions,
+  monthlyLeisureCostsChart
+) => {
+  monthlyLeisureCostsChart.setOption(echartOptions);
+};
+
 export const handleMonthlyGroceryCosts = (
   echartOptions,
   monthlyGroceryCostsChart

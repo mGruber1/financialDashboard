@@ -165,6 +165,65 @@ const getAverageGroceryCosts = (req, res) => {
     );
 }
 
+const getAverageShoppingCosts = (req, res) => {
+    pool.query(
+        `SELECT AVG(amount) as averageShoppingCosts FROM expenditures WHERE year = ${currentYear} AND type= "shopping";`,
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send("Internal Server Error");
+                return;
+            }
+
+            res.json(results);
+        }
+    );
+}
+
+const getMonthlyShoppingCosts = (req, res) => {
+    pool.query(
+        `SELECT amount, month FROM expenditures where type="shopping" and year = ${currentYear} ORDER BY month;`,
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send("Internal Server Error");
+                return;
+            }
+
+            res.json(results);
+        }
+    );
+}
+
+const getAverageLeisureCosts = (req, res) => {
+    pool.query(
+        `SELECT AVG(amount) as averageLeisureCosts FROM expenditures WHERE year = ${currentYear} AND type= "leisure-spending";`,
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send("Internal Server Error");
+                return;
+            }
+
+            res.json(results);
+        }
+    );
+}
+const getMonthlyLeisureCosts = (req, res) => {
+    pool.query(
+        `SELECT amount, month FROM expenditures where type="leisure-spending" and year = ${currentYear} ORDER BY month;`,
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send("Internal Server Error");
+                return;
+            }
+
+            res.json(results);
+        }
+    );
+}
+
 const getMonthlyGroceryCosts = (req, res) => {
     pool.query(
         `SELECT amount, month FROM expenditures where type="grocery" and year = ${currentYear} ORDER BY month;`,
@@ -225,6 +284,10 @@ module.exports = {
     getAverageGroceryCosts,
     getMonthlyGroceryCosts,
     insertMonthlyExpenditures,
-    insertMonthlyRevenues
+    insertMonthlyRevenues,
+    getAverageShoppingCosts,
+    getMonthlyShoppingCosts,
+    getAverageLeisureCosts,
+    getMonthlyLeisureCosts
 
 };
