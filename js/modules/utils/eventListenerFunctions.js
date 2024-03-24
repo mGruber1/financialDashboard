@@ -1,5 +1,5 @@
 "use strict"
-
+import { BACKEND_HOST } from "../../../client-env.js"
 import { expenditureTypeField, expenditureMonthField, expenditureYearField, expenditureAmountField, revenueYearField, revenueMonthField, revenueAmountField } from "./getFields.js"
 
 export const isExpenditureDataEmpty = () => {
@@ -29,7 +29,7 @@ export const getRevenueData = () => {
 
 export const sendExpenditureDataToServer = async (data) => {
     try {
-        const response = await fetch("http://localhost:3000/api/insertMonthlyExpenditures", {
+        const response = await fetch("http://"+BACKEND_HOST+":3000/api/insertMonthlyExpenditures", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -39,7 +39,6 @@ export const sendExpenditureDataToServer = async (data) => {
 
         if (response.ok) {
             const result = await response.json();
-            console.log(result);
             expenditureTypeField.value = "";
             expenditureMonthField.value = "";
             expenditureYearField.value = "";
@@ -56,7 +55,7 @@ export const sendExpenditureDataToServer = async (data) => {
 
 export const sendRevenueDataToServer = async (data) => {
     try {
-        const response = await fetch("http://localhost:3000/api/insertMonthlyRevenues", {
+        const response = await fetch("http://"+BACKEND_HOST+":3000/api/insertMonthlyRevenues", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
