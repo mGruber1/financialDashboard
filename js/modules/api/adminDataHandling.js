@@ -7,7 +7,7 @@ import { populateDropdownField } from "./adminDataHandlingFunctions.js";
 import { expenditureTypeField, fixedCostsField } from "../utils/getFields.js";
 
 let categories = [];
-console.log("sdf");
+
 export const loadData = async () => {
   try {
     var data = await Promise.all([getCategories()]);
