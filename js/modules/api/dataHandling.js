@@ -16,7 +16,7 @@ import {
   getMonthlyShoppingCosts,
   getAverageLeisureCosts,
   getMonthlyLeisureCosts,
-} from "./apiCalls.js";
+} from "./fetchData.js";
 
 import {
   echartOptionsMonthlyCarGasCosts,

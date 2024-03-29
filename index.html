@@ -12,7 +12,7 @@
       loadData,
     } from "./js/modules/api/dataHandling.js";
 
-    import { checkBackendAvailability } from "./js/modules/api/apiCalls.js";
+    import { checkBackendAvailability } from "./js/modules/api/fetchData.js";
     import {showEmptyDataMessage} from "./js/modules/api/dataHandlingFunctions.js";
 
     if (await checkBackendAvailability()) {

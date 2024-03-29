@@ -2,7 +2,7 @@
 
 import {
   getCategories
-} from "./apiCalls.js";
+} from "./fetchData.js";
 
 
 import {

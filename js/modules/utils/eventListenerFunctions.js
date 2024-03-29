@@ -1,61 +1,30 @@
-"use strict"
-import { BACKEND_HOST } from "../../../client-env.js"
-import { expenditureTypeField, expenditureMonthField, expenditureYearField, expenditureAmountField, revenueYearField, revenueMonthField, revenueAmountField, categoryNameField, categoryDescriptionField, fixedCostsField, fixedCostsAmountField} from "./getFields.js"
+"use strict";
+import { BACKEND_HOST } from "../../../client-env.js";
+import { expenditureTypeField, expenditureMonthField, expenditureYearField, expenditureAmountField, revenueYearField, revenueMonthField, revenueAmountField, categoryNameField, categoryDescriptionField, fixedCostsField, fixedCostsAmountField } from "./getFields.js";
 
-export const isExpenditureDataEmpty = () => {
-    if (expenditureTypeField.value != "" && expenditureMonthField.value != "" && expenditureYearField.value != "" && expenditureAmountField.value != "") {
-        return false
-    } else {
-        return true
-    }
-}
-export const isRevenueDataEmpty = () => {
-    if (revenueYearField.value != "" && revenueMonthField.value != "" && revenueAmountField.value != "") {
-        return false
-    } else {
-        return true
-    }
-}
+const isFieldDataEmpty = (...fields) => fields.some(field => field.value === "");
 
-export const isCategoryDataEmpty = () => {
-    if (categoryNameField.value != "" && categoryDescriptionField.value != "") {
-        return false
-    } else {
-        return true
-    }
-}
+export const isExpenditureDataEmpty = () => isFieldDataEmpty(expenditureTypeField, expenditureMonthField, expenditureYearField, expenditureAmountField);
 
-export const isFixedCostsDataEmtpy = () => {
-    if (fixedCostsField.value != "" && fixedCostsAmountField.value != "") {
-        return false
-    } else {
-        return true
-    }
-}
+export const isRevenueDataEmpty = () => isFieldDataEmpty(revenueYearField, revenueMonthField, revenueAmountField);
 
-export const getExpenditureData = () => {
-    const dataSet = [expenditureTypeField.value, expenditureMonthField.value, expenditureYearField.value, expenditureAmountField.value];
-    return dataSet
-}
+export const isCategoryDataEmpty = () => isFieldDataEmpty(categoryNameField, categoryDescriptionField);
 
-export const getRevenueData = () => {
-    const dataSet = [revenueYearField.value, revenueMonthField.value, revenueAmountField.value];
-    return dataSet
-}
+export const isFixedCostsDataEmtpy = () => isFieldDataEmpty(fixedCostsField, fixedCostsAmountField);
 
-export const getCategoryData = () => {
-    const dataSet = [categoryNameField.value, categoryDescriptionField.value];
-    return dataSet
-}
+const getFieldData = (...fields) => fields.map(field => field.value);
 
-export const getFixedCostsData = () => {
-    const dataSet = [fixedCostsField.value, fixedCostsAmountField.value];
-    return dataSet
-}
+export const getExpenditureData = () => getFieldData(expenditureTypeField, expenditureMonthField, expenditureYearField, expenditureAmountField);
 
-export const sendExpenditureDataToServer = async (data) => {
+export const getRevenueData = () => getFieldData(revenueYearField, revenueMonthField, revenueAmountField);
+
+export const getCategoryData = () => getFieldData(categoryNameField, categoryDescriptionField);
+
+export const getFixedCostsData = () => getFieldData(fixedCostsField, fixedCostsAmountField);
+
+const sendFormDataToServer = async (url, data, successMessage) => {
     try {
-        const response = await fetch("http://"+BACKEND_HOST+":3000/api/insertMonthlyExpenditures", {
+        const response = await fetch(`http://${BACKEND_HOST}:3000/api/${url}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -65,11 +34,7 @@ export const sendExpenditureDataToServer = async (data) => {
 
         if (response.ok) {
             const result = await response.json();
-            expenditureTypeField.value = "";
-            expenditureMonthField.value = "";
-            expenditureYearField.value = "";
-            expenditureAmountField.value = "";
-            alert("Success!")
+            successMessage && alert(successMessage);
         } else {
             console.error("Failed to insert data:", response.statusText);
             alert(response.statusText);
@@ -77,76 +42,20 @@ export const sendExpenditureDataToServer = async (data) => {
     } catch (error) {
         console.error("Error:", error);
     }
+};
+
+export const sendExpenditureDataToServer = async (data) => {
+    await sendFormDataToServer("insertMonthlyExpenditures", data, "Success!");
 };
 
 export const sendRevenueDataToServer = async (data) => {
-    try {
-        const response = await fetch("http://"+BACKEND_HOST+":3000/api/insertMonthlyRevenues", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ data }),
-        });
-
-        if (response.ok) {
-            const result = await response.json();
-            revenueYearField.value = "";
-            revenueMonthField.value = "";
-            revenueAmountField.value = "";
-            alert("Success!")
-        } else {
-            console.error("Failed to insert data:", response.statusText);
-            alert(response.statusText);
-        }
-    } catch (error) {
-        console.error("Error:", error);
-    }
+    await sendFormDataToServer("insertMonthlyRevenues", data, "Success!");
 };
 
 export const sendCategoryDataToServer = async (data) => {
-    try {
-        const response = await fetch("http://"+BACKEND_HOST+":3000/api/insertNewCategory", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ data }),
-        });
-
-        if (response.ok) {
-            const result = await response.json();
-            categoryNameField.value = "";
-            categoryDescriptionField.value = "";
-            alert("Success!")
-        } else {
-            console.error("Failed to insert data:", response.statusText);
-            alert(response.statusText);
-        }
-    } catch (error) {
-        console.error("Error:", error);
-    }
-}
+    await sendFormDataToServer("insertNewCategory", data, "Success!");
+};
 
 export const sendFixedCostsDataToServer = async (data) => {
-    try {
-        const response = await fetch("http://"+BACKEND_HOST+":3000/api/updateFixedCosts", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ data }),
-        });
-
-        if (response.ok) {
-            const result = await response.json();
-            fixedCostsAmountField.value = "";
-            alert("Success!")
-        } else {
-            console.error("Failed to insert data:", response.statusText);
-            alert(response.statusText);
-        }
-    } catch (error) {
-        console.error("Error:", error);
-    }
+    await sendFormDataToServer("updateFixedCosts", data, "Success!");
 };
