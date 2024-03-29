@@ -1,5 +1,7 @@
 "use strict";
 
+import { defaultGrid, defaultTooltip, defaultXAxis, defaultYAxis, defaultSeries } from "./echartConstants.js";
+
 export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
   const data = monthlyRevenues.map((item) => ({
     name: item.month,
@@ -202,30 +204,22 @@ export const echartOptionsMonthlyCarGasCosts = (monthlyCarGasCosts) => {
 
   const options = {
     grid: {
-      top: "10%",
-      bottom: "10%",
-      left: "10%",
-      right: "10%",
+      ...defaultGrid
     },
     tooltip: {
-      trigger: "item",
-      formatter: "{b}: {c})",
+      ...defaultTooltip
     },
     xAxis: {
-      type: "category",
-      boundaryGap: false,
-      data: months,
-      show: false,
+      ...defaultXAxis,
+      data: months
     },
     yAxis: {
-      type: "value",
-      show: false,
+      ...defaultYAxis
     },
     series: [
       {
         data: amounts,
-        type: "line",
-        areaStyle: {},
+        ...defaultSeries
       },
     ],
   };
@@ -238,30 +232,22 @@ export const echartOptionsMonthlyInvestmentCosts = (monthlyInvestmentCosts) => {
 
   const options = {
     grid: {
-      top: "10%",
-      bottom: "10%",
-      left: "10%",
-      right: "10%",
+      ...defaultGrid
     },
     tooltip: {
-      trigger: "item",
-      formatter: "{b}: {c})",
+      ...defaultTooltip
     },
     xAxis: {
-      type: "category",
-      boundaryGap: false,
-      data: months,
-      show: false,
+      ...defaultXAxis,
+      data: months
     },
     yAxis: {
-      type: "value",
-      show: false,
+      ...defaultYAxis
     },
     series: [
       {
         data: amounts,
-        type: "line",
-        areaStyle: {},
+        ...defaultSeries
       },
     ],
   };
@@ -274,30 +260,22 @@ export const echartOptionsMonthlyGroceryCosts = (monthlyGroceryCosts) => {
 
   const options = {
     grid: {
-      top: "10%",
-      bottom: "10%",
-      left: "10%",
-      right: "10%",
+      ...defaultGrid
     },
     tooltip: {
-      trigger: "item",
-      formatter: "{b}: {c})",
+      ...defaultTooltip
     },
     xAxis: {
-      type: "category",
-      boundaryGap: false,
-      data: months,
-      show: false,
+      ...defaultXAxis,
+      data: months
     },
     yAxis: {
-      type: "value",
-      show: false,
+      ...defaultYAxis
     },
     series: [
       {
         data: amounts,
-        type: "line",
-        areaStyle: {},
+        ...defaultSeries
       },
     ],
   };
@@ -310,30 +288,22 @@ export const echartOptionsMonthlyShoppingCosts = (monthlyShoppingCosts) => {
 
   const options = {
     grid: {
-      top: "10%",
-      bottom: "10%",
-      left: "10%",
-      right: "10%",
+      ...defaultGrid
     },
     tooltip: {
-      trigger: "item",
-      formatter: "{b}: {c})",
+      ...defaultTooltip
     },
     xAxis: {
-      type: "category",
-      boundaryGap: false,
-      data: months,
-      show: false,
+      ...defaultXAxis,
+      data: months
     },
     yAxis: {
-      type: "value",
-      show: false,
+      ...defaultYAxis
     },
     series: [
       {
         data: amounts,
-        type: "line",
-        areaStyle: {},
+        ...defaultSeries
       },
     ],
   };
@@ -346,30 +316,22 @@ export const echartOptionsMonthlyLeisureCosts = (monthlyLeisureCosts) => {
 
   const options = {
     grid: {
-      top: "10%",
-      bottom: "10%",
-      left: "10%",
-      right: "10%",
+      ...defaultGrid
     },
     tooltip: {
-      trigger: "item",
-      formatter: "{b}: {c})",
+      ...defaultTooltip
     },
     xAxis: {
-      type: "category",
-      boundaryGap: false,
-      data: months,
-      show: false,
+      ...defaultXAxis,
+      data: months
     },
     yAxis: {
-      type: "value",
-      show: false,
+      ...defaultYAxis
     },
     series: [
       {
         data: amounts,
-        type: "line",
-        areaStyle: {},
+        ...defaultSeries
       },
     ],
   };
