@@ -125,6 +125,18 @@ export const calculateSurPlusFunds = (incomeRate, fixedCosts) => {
   return surplusFunds;
 };
 
+// ADMIN
+
+export const populateCategoryDropDown = (categories, categoryDropdownField) => {
+  categoryDropdownField.innerHTML = '';
+  categories.forEach(category => {
+    const optionElement = document.createElement('option');
+    optionElement.value = category.name;
+    optionElement.textContent = category.name;
+    categoryDropdownField.appendChild(optionElement);
+  })
+}
+
 export const showEmptyDataMessage = () => {
   const cardBodies = document.getElementsByClassName("card");
 

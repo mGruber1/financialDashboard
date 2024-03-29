@@ -10,9 +10,12 @@
             import {expenditureSubmitDataButtonEventListener, revenueSubmitDataButtonEventListener} from "./js/modules/utils/addEventListener.js";
             import { checkBackendAvailability } from "./js/modules/api/apiCalls.js";
             import {showEmptyDataMessage} from "./js/modules/api/dataHandlingFunctions.js";
+            import {loadData} from "./js/modules/api/adminDataHandling.js";
 
             if (await checkBackendAvailability() === false) {
               showEmptyDataMessage();
+            } else {
+              loadData();
             }
         </script>
       </head>
@@ -53,7 +56,7 @@
                       <div class="col">
                           <div class="form-group h-100 d-flex flex-column">
                               <label for="expenditure_type">Type</label>
-                              <input type="text" class="form-control" id="expenditure_type">
+                              <select id="expenditure_type" class="form-control"></select>
                               <label for="expenditure_month">Month</label>
                               <input type="text" class="form-control" id="expenditure_month">
                               <label for="expenditure_year">Year</label>
