@@ -22,6 +22,20 @@ export const getCategoryData = () => getFieldData(categoryNameField, categoryDes
 
 export const getFixedCostsData = () => getFieldData(fixedCostsField, fixedCostsAmountField);
 
+const clearInputFields = () => {
+    expenditureTypeField.value = "";
+    expenditureMonthField.value = "";
+    expenditureYearField.value = "";
+    expenditureAmountField.value = "";
+    revenueYearField.value = "";
+    revenueMonthField.value = "";
+    revenueAmountField.value = "";
+    categoryNameField.value = "";
+    categoryDescriptionField.value = "";
+    fixedCostsField.value = "";
+    fixedCostsAmountField.value = "";
+};
+
 const sendFormDataToServer = async (url, data, successMessage) => {
     try {
         const response = await fetch(`http://${BACKEND_HOST}:3000/api/${url}`, {
@@ -35,6 +49,7 @@ const sendFormDataToServer = async (url, data, successMessage) => {
         if (response.ok) {
             const result = await response.json();
             successMessage && alert(successMessage);
+            clearInputFields();
         } else {
             console.error("Failed to insert data:", response.statusText);
             alert(response.statusText);

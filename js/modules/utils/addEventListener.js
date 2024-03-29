@@ -1,6 +1,6 @@
 "use strict";
 
-import { isExpenditureDataEmpty, sendExpenditureDataToServer, getExpenditureData, isRevenueDataEmpty, sendRevenueDataToServer, getRevenueData, isCategoryDataEmpty, sendCategoryDataToServer, getCategoryData, isFixedCostsDataEmtpy, sendFixedCostsDataToServer, getFixedCostsData } from "./eventListenerFunctions.js";
+import { isExpenditureDataEmpty, sendExpenditureDataToServer, getExpenditureData, isRevenueDataEmpty, sendRevenueDataToServer, getRevenueData, isCategoryDataEmpty, sendCategoryDataToServer, getCategoryData, isFixedCostsDataEmtpy, sendFixedCostsDataToServer, getFixedCostsData } from "./formDataHandler.js";
 import { expenditureSubmitDataButton, revenueSubmitDataButton, categorySubmitDataButton, fixedCostsSubmitDataButton } from "./getFields.js";
 
 const createEventListener = (button, dataCheckFunction, sendDataFunction, getDataFunction) => {
