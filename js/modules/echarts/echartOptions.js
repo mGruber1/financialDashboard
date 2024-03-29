@@ -1,6 +1,12 @@
 "use strict";
 
-import { defaultGrid, defaultTooltip, defaultXAxis, defaultYAxis, defaultSeries } from "./echartConstants.js";
+import {
+  defaultGrid,
+  defaultTooltip,
+  defaultXAxis,
+  defaultYAxis,
+  defaultSeries,
+} from "./echartConstants.js";
 
 export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
   const data = monthlyRevenues.map((item) => ({
@@ -28,7 +34,7 @@ export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
     yAxis: {
       type: "value",
       axisLabel: {
-        formatter: '{value} €',
+        formatter: "{value} €",
       },
       show: false,
     },
@@ -38,15 +44,13 @@ export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
       label: {
         show: true,
         position: "top",
-        formatter: '{c} €',
+        formatter: "{c} €",
       },
       itemStyle: {
-        color: 'grey'
-      }
+        color: "grey",
+      },
     },
   };
-  
-
 
   return options;
 };
@@ -61,8 +65,8 @@ export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
     title: {
       text: "Expenditures",
       textStyle: {
-        padding: [0, 0, 50, 0]
-      }
+        padding: [0, 0, 50, 0],
+      },
     },
     grid: {
       top: "20%",
@@ -80,7 +84,7 @@ export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
     yAxis: {
       type: "value",
       axisLabel: {
-        formatter: '{value} €',
+        formatter: "{value} €",
       },
       show: false,
     },
@@ -90,44 +94,51 @@ export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
       label: {
         show: true,
         position: "top",
-        formatter: '{c} €',
+        formatter: "{c} €",
       },
       itemStyle: {
-        color: 'grey'
-      }
+        color: "grey",
+      },
     },
   };
-
 
   return options;
 };
 
-export const echartOptionsMonthlyProfits = (monthlyRevenues, monthlyExpenditures) => {
+export const echartOptionsMonthlyProfits = (
+  monthlyRevenues,
+  monthlyExpenditures
+) => {
   if (monthlyRevenues.length === monthlyExpenditures.length) {
     var differenceArray = monthlyRevenues.map((item, index) => {
       if (item.month === monthlyExpenditures[index].month) {
         return {
           month: item.month,
-          difference: (item.monthly_revenues - monthlyExpenditures[index].monthly_expenditures).toFixed(2)
+          difference: (
+            item.monthly_revenues -
+            monthlyExpenditures[index].monthly_expenditures
+          ).toFixed(2),
         };
       } else {
         return null;
       }
-    })
+    });
   } else {
-    console.log("Arrays must have the same length for element-wise subtraction.");
+    console.log(
+      "Arrays must have the same length for element-wise subtraction."
+    );
   }
   const data = differenceArray.map((item) => ({
     name: item.month,
     value: item.difference,
     itemStyle: {
-      color: item.difference >= 0 ? 'green' : 'red',
+      color: item.difference >= 0 ? "green" : "red",
     },
   }));
 
   var options = {
     title: {
-      text: "Profits"
+      text: "Profits",
     },
     grid: {
       top: "10%",
@@ -145,7 +156,7 @@ export const echartOptionsMonthlyProfits = (monthlyRevenues, monthlyExpenditures
     yAxis: {
       type: "value",
       axisLabel: {
-        formatter: '{value} €',
+        formatter: "{value} €",
       },
       show: false,
     },
@@ -155,11 +166,10 @@ export const echartOptionsMonthlyProfits = (monthlyRevenues, monthlyExpenditures
       label: {
         show: true,
         position: "top",
-        formatter: '{c} €',
+        formatter: "{c} €",
       },
     },
   };
-
 
   return options;
 };
@@ -174,11 +184,11 @@ export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
   const options = {
     title: {
       text: "Fixed Cost Distribution",
-      left: "center"
+      left: "center",
     },
     tooltip: {
       trigger: "item",
-      formatter: "{b}: {c} € ({d}%)", 
+      formatter: "{b}: {c} € ({d}%)",
     },
     series: [
       {
@@ -188,7 +198,7 @@ export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
         label: {
           show: true,
           position: "outside",
-          formatter: '{b}: {d}%',
+          formatter: "{b}: {d}%",
         },
       },
     ],
@@ -197,29 +207,28 @@ export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
   return options;
 };
 
-
 export const echartOptionsMonthlyCarGasCosts = (monthlyCarGasCosts) => {
   const months = monthlyCarGasCosts.map((entry) => entry.month);
   const amounts = monthlyCarGasCosts.map((entry) => entry.amount);
 
   const options = {
     grid: {
-      ...defaultGrid
+      ...defaultGrid,
     },
     tooltip: {
-      ...defaultTooltip
+      ...defaultTooltip,
     },
     xAxis: {
       ...defaultXAxis,
-      data: months
+      data: months,
     },
     yAxis: {
-      ...defaultYAxis
+      ...defaultYAxis,
     },
     series: [
       {
         data: amounts,
-        ...defaultSeries
+        ...defaultSeries,
       },
     ],
   };
@@ -232,22 +241,22 @@ export const echartOptionsMonthlyInvestmentCosts = (monthlyInvestmentCosts) => {
 
   const options = {
     grid: {
-      ...defaultGrid
+      ...defaultGrid,
     },
     tooltip: {
-      ...defaultTooltip
+      ...defaultTooltip,
     },
     xAxis: {
       ...defaultXAxis,
-      data: months
+      data: months,
     },
     yAxis: {
-      ...defaultYAxis
+      ...defaultYAxis,
     },
     series: [
       {
         data: amounts,
-        ...defaultSeries
+        ...defaultSeries,
       },
     ],
   };
@@ -260,22 +269,22 @@ export const echartOptionsMonthlyGroceryCosts = (monthlyGroceryCosts) => {
 
   const options = {
     grid: {
-      ...defaultGrid
+      ...defaultGrid,
     },
     tooltip: {
-      ...defaultTooltip
+      ...defaultTooltip,
     },
     xAxis: {
       ...defaultXAxis,
-      data: months
+      data: months,
     },
     yAxis: {
-      ...defaultYAxis
+      ...defaultYAxis,
     },
     series: [
       {
         data: amounts,
-        ...defaultSeries
+        ...defaultSeries,
       },
     ],
   };
@@ -288,22 +297,22 @@ export const echartOptionsMonthlyShoppingCosts = (monthlyShoppingCosts) => {
 
   const options = {
     grid: {
-      ...defaultGrid
+      ...defaultGrid,
     },
     tooltip: {
-      ...defaultTooltip
+      ...defaultTooltip,
     },
     xAxis: {
       ...defaultXAxis,
-      data: months
+      data: months,
     },
     yAxis: {
-      ...defaultYAxis
+      ...defaultYAxis,
     },
     series: [
       {
         data: amounts,
-        ...defaultSeries
+        ...defaultSeries,
       },
     ],
   };
@@ -316,22 +325,22 @@ export const echartOptionsMonthlyLeisureCosts = (monthlyLeisureCosts) => {
 
   const options = {
     grid: {
-      ...defaultGrid
+      ...defaultGrid,
     },
     tooltip: {
-      ...defaultTooltip
+      ...defaultTooltip,
     },
     xAxis: {
       ...defaultXAxis,
-      data: months
+      data: months,
     },
     yAxis: {
-      ...defaultYAxis
+      ...defaultYAxis,
     },
     series: [
       {
         data: amounts,
-        ...defaultSeries
+        ...defaultSeries,
       },
     ],
   };

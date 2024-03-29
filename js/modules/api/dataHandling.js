@@ -61,7 +61,7 @@ import {
   monthlyGroceryCostsChart,
   monthlyProfitBarChart,
   monthlyRevenuesBarChart,
-  monthlyLeisureCostsChart
+  monthlyLeisureCostsChart,
 } from "../utils/initEcharts.js";
 
 import {
@@ -71,7 +71,7 @@ import {
   averageGroceryCostsField,
   averageShoppingCostsField,
   averageLeisureCostsField,
-} from "../utils/getFields.js"
+} from "../utils/getFields.js";
 
 let fixedCosts = 0;
 let sumFixedCosts = 0;
@@ -148,7 +148,8 @@ export const loadData = async () => {
   );
 
   handleMonthlyProfits(
-    echartOptionsMonthlyProfits(monthlyRevenues, monthlyExpenditures), monthlyProfitBarChart
+    echartOptionsMonthlyProfits(monthlyRevenues, monthlyExpenditures),
+    monthlyProfitBarChart
   );
 
   handleFixedCostsDistribution(
@@ -183,13 +184,11 @@ export const loadData = async () => {
   handleMonthlyShoppingCosts(
     echartOptionsMonthlyShoppingCosts(monthlyShoppingCosts),
     monthlyShoppingCostsChart
-  )
+  );
   handleAverageLeisureCosts(averageLeisureCosts, averageLeisureCostsField);
 
   handleMonthlyLeisureCosts(
     echartOptionsMonthlyShoppingCosts(monthlyLeisureCosts),
     monthlyLeisureCostsChart
-  )
+  );
 };
-
-

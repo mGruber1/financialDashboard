@@ -62,21 +62,21 @@ export const handleAverageShoppingCosts = (
   averageShoppingCostsField
 ) => {
   averageShoppingCostsField.innerHTML = averageShoppingCosts + " €";
-}
+};
 
 export const handleMonthlyShoppingCosts = (
   echartOptions,
   monthlyShoppingCostsChart
 ) => {
   monthlyShoppingCostsChart.setOption(echartOptions);
-}
+};
 
 export const handleAverageLeisureCosts = (
   averageLeisureCosts,
   averageLeisureCostsField
 ) => {
   averageLeisureCostsField.innerHTML = averageLeisureCosts + " €";
-}
+};
 
 export const handleMonthlyLeisureCosts = (
   echartOptions,
@@ -96,17 +96,23 @@ export const handleSurplusFunds = (surplusFunds, generalInfoField) => {
   createNewDataRow(generalInfoField, "Surplus-Funds", surplusFunds, "€");
 };
 
-export const handleMonthlyRevenues = (echartOptions, monthlyRevenuesBarChart) => {
+export const handleMonthlyRevenues = (
+  echartOptions,
+  monthlyRevenuesBarChart
+) => {
   monthlyRevenuesBarChart.setOption(echartOptions);
 };
 
-export const handleMonthlyExpenditures = (echartOptions, monthlyExpendituresBarChart) => {
+export const handleMonthlyExpenditures = (
+  echartOptions,
+  monthlyExpendituresBarChart
+) => {
   monthlyExpendituresBarChart.setOption(echartOptions);
 };
 
 export const handleMonthlyProfits = (echartOptions, monthlyProfitsBarChart) => {
   monthlyProfitsBarChart.setOption(echartOptions);
-}
+};
 
 export const handleFixedCostsDistribution = (
   echartOptions,
