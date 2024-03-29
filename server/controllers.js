@@ -303,6 +303,21 @@ const insertNewCategory = (req, res) => {
     res.json({ status: 0, message: "Data inserted successfully" });
 }
 
+const updateFixedCosts = (req,res) => {
+    const data = req.body.data;
+    pool.query(
+        `UPDATE fixed_costs SET ${data[0]} = ${data[1]}`,
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send("Internal Server Error");
+                return;
+            }
+        }
+    );
+    res.json({ status: 0, message: "Data inserted successfully" });
+}
+
 
 module.exports = {
     getMonthlyExpenditures,
@@ -323,5 +338,6 @@ module.exports = {
     getAverageLeisureCosts,
     getMonthlyLeisureCosts,
     getCategories,
-    insertNewCategory
+    insertNewCategory,
+    updateFixedCosts
 };

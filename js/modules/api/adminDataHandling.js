@@ -6,12 +6,12 @@ import {
 
 
 import {
-  populateCategoryDropDown
-} from "./dataHandlingFunctions.js";
+  populateDropdownField
+} from "./adminDataHandlingFunctions.js";
 
 
 import {
-  expenditureTypeField
+  expenditureTypeField, fixedCostsField
 } from "../utils/getFields.js"
 
 let categories =[];
@@ -26,7 +26,8 @@ export const loadData = async () => {
   }
   categories= data[0];
 
-  populateCategoryDropDown(categories, expenditureTypeField);
+  populateDropdownField(categories, expenditureTypeField, "select-option");
+  populateDropdownField(categories, fixedCostsField, "select-option");
 };
 
 

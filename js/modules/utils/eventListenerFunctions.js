@@ -1,6 +1,6 @@
 "use strict"
 import { BACKEND_HOST } from "../../../client-env.js"
-import { expenditureTypeField, expenditureMonthField, expenditureYearField, expenditureAmountField, revenueYearField, revenueMonthField, revenueAmountField, categoryNameField, categoryDescriptionField} from "./getFields.js"
+import { expenditureTypeField, expenditureMonthField, expenditureYearField, expenditureAmountField, revenueYearField, revenueMonthField, revenueAmountField, categoryNameField, categoryDescriptionField, fixedCostsField, fixedCostsAmountField} from "./getFields.js"
 
 export const isExpenditureDataEmpty = () => {
     if (expenditureTypeField.value != "" && expenditureMonthField.value != "" && expenditureYearField.value != "" && expenditureAmountField.value != "") {
@@ -25,6 +25,14 @@ export const isCategoryDataEmpty = () => {
     }
 }
 
+export const isFixedCostsDataEmtpy = () => {
+    if (fixedCostsField.value != "" && fixedCostsAmountField.value != "") {
+        return false
+    } else {
+        return true
+    }
+}
+
 export const getExpenditureData = () => {
     const dataSet = [expenditureTypeField.value, expenditureMonthField.value, expenditureYearField.value, expenditureAmountField.value];
     return dataSet
@@ -37,6 +45,11 @@ export const getRevenueData = () => {
 
 export const getCategoryData = () => {
     const dataSet = [categoryNameField.value, categoryDescriptionField.value];
+    return dataSet
+}
+
+export const getFixedCostsData = () => {
+    const dataSet = [fixedCostsField.value, fixedCostsAmountField.value];
     return dataSet
 }
 
@@ -114,3 +127,26 @@ export const sendCategoryDataToServer = async (data) => {
         console.error("Error:", error);
     }
 }
+
+export const sendFixedCostsDataToServer = async (data) => {
+    try {
+        const response = await fetch("http://"+BACKEND_HOST+":3000/api/updateFixedCosts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ data }),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            fixedCostsAmountField.value = "";
+            alert("Success!")
+        } else {
+            console.error("Failed to insert data:", response.statusText);
+            alert(response.statusText);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+};

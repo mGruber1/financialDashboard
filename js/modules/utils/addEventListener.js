@@ -1,7 +1,7 @@
 "use strict"
 
-import { isExpenditureDataEmpty, sendExpenditureDataToServer, getExpenditureData, isRevenueDataEmpty, sendRevenueDataToServer, getRevenueData, isCategoryDataEmpty, sendCategoryDataToServer, getCategoryData } from "./eventListenerFunctions.js";
-import { expenditureSubmitDataButton, revenueSubmitDataButton, categorySubmitDataButton } from "./getFields.js";
+import { isExpenditureDataEmpty, sendExpenditureDataToServer, getExpenditureData, isRevenueDataEmpty, sendRevenueDataToServer, getRevenueData, isCategoryDataEmpty, sendCategoryDataToServer, getCategoryData, isFixedCostsDataEmtpy,sendFixedCostsDataToServer, getFixedCostsData } from "./eventListenerFunctions.js";
+import { expenditureSubmitDataButton, revenueSubmitDataButton, categorySubmitDataButton, fixedCostsSubmitDataButton } from "./getFields.js";
 
 export const expenditureSubmitDataButtonEventListener = expenditureSubmitDataButton.addEventListener("click", () => {
     if (!isExpenditureDataEmpty()) {
@@ -26,4 +26,12 @@ export const CategoryDataButtonEventListener = categorySubmitDataButton.addEvent
         alert("No empty Data allowed");
     }
 });
+
+export const FixedCostsDataButtonEventListener = fixedCostsSubmitDataButton.addEventListener("click", () => {
+    if (!isFixedCostsDataEmtpy()) {
+        sendFixedCostsDataToServer(getFixedCostsData());
+    } else {
+        alert("No empty Data allowed");
+    }
+})
 

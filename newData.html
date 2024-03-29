@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>DatenJahr</title>
         <script type="module">
-            import {expenditureSubmitDataButtonEventListener, revenueSubmitDataButtonEventListener} from "./js/modules/utils/addEventListener.js";
+            import {expenditureSubmitDataButtonEventListener, revenueSubmitDataButtonEventListener} from "./js/modules/utils/addEventListener.js"; // TODO: are those imports needed?
             import { checkBackendAvailability } from "./js/modules/api/apiCalls.js";
             import {showEmptyDataMessage} from "./js/modules/api/dataHandlingFunctions.js";
             import {loadData} from "./js/modules/api/adminDataHandling.js";
@@ -102,6 +102,23 @@
                                 <input type="text" class="form-control" id="category_description">
                                 <button type="button" class="mt-auto btn btn-sm btn-primary form-control" id="category_submitDataButton">Submit</button>
                             </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-header">
+                  <h5>Fixed Costs</h5>
+                </div>
+                <div class="card-body">
+                            <div class="form-group h-100 d-flex flex-column">
+                              <!-- TODO: Check if categories exist -->
+                                <label for="type">Type</label>
+                                <select id="fixedCostsField" class="form-control"></select>
+                                <label for="type">Amount</label>
+                                <input type="text" class="form-control" id="fixedCostsAmountField">
+                                <button type="button" class="mt-auto btn btn-sm btn-primary form-control" id="fixedCosts_submitDataButton">Submit</button>
+                              </div>
                     </div>
                 </div>
             </div>

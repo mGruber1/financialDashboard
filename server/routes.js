@@ -28,5 +28,6 @@ router.post("/insertMonthlyRevenues", controllers.insertMonthlyRevenues);
 
 router.get("/getCategories", controllers.getCategories)
 router.post("/insertNewCategory", controllers.insertNewCategory);
+router.post("/updateFixedCosts", controllers.updateFixedCosts);
 
 module.exports = router;
