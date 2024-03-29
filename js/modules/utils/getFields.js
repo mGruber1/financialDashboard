@@ -21,3 +21,7 @@ export const revenueMonthField = getElement("revenue_month");
 export const revenueYearField = getElement("revenue_year");
 export const revenueAmountField = getElement("revenue_amount");
 export const revenueSubmitDataButton = getElement("revenue_submitDataButton");
+
+export const categoryNameField = getElement("category_name");
+export const categoryDescriptionField = getElement("category_description");
+export const categorySubmitDataButton = getElement("category_submitDataButton");

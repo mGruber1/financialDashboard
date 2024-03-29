@@ -41,3 +41,7 @@ export const getAverageShoppingCosts = () => fetchData("getAverageShoppingCosts"
 export const getMonthlyShoppingCosts = () => fetchData("getMonthlyShoppingCosts");
 export const getAverageLeisureCosts = () => fetchData("getAverageLeisureCosts");
 export const getMonthlyLeisureCosts = () => fetchData("getMonthlyLeisureCosts");
+
+// ADMIN
+
+export const getCategories = () => fetchData("getCategories");

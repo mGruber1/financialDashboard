@@ -15,7 +15,8 @@ import {
   getAverageShoppingCosts,
   getMonthlyShoppingCosts,
   getAverageLeisureCosts,
-  getMonthlyLeisureCosts
+  getMonthlyLeisureCosts,
+  getCategories
 } from "./apiCalls.js";
 
 import {
@@ -88,6 +89,7 @@ let averageShoppingCosts = 0;
 let monthlyShoppingCosts = 0;
 let averageLeisureCosts = 0;
 let monthlyLeisureCosts = 0;
+let categories =[];
 
 export const loadData = async () => {
   try {
@@ -106,7 +108,8 @@ export const loadData = async () => {
       getAverageShoppingCosts(),
       getMonthlyShoppingCosts(),
       getAverageLeisureCosts(),
-      getMonthlyLeisureCosts()
+      getMonthlyLeisureCosts(),
+      getCategories()
     ]);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -126,6 +129,7 @@ export const loadData = async () => {
   monthlyShoppingCosts = data[12];
   averageLeisureCosts = data[13][0].averageLeisureCosts.toFixed(2);
   monthlyLeisureCosts = data[14];
+  categories = data[15];
 
   handleIncomeRate(incomeRate, generalInfoField);
   handleFixedCosts(sumFixedCosts, generalInfoField);
@@ -190,6 +194,8 @@ export const loadData = async () => {
     echartOptionsMonthlyShoppingCosts(monthlyLeisureCosts),
     monthlyLeisureCostsChart
   )
+
+  // ADMIN
 };
 
 

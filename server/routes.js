@@ -24,4 +24,9 @@ router.get("/getMonthlyLeisureCosts", controllers.getMonthlyLeisureCosts);
 router.post("/insertMonthlyExpenditures", controllers.insertMonthlyExpenditures);
 router.post("/insertMonthlyRevenues", controllers.insertMonthlyRevenues);
 
+// ADMIN
+
+router.get("/getCategories", controllers.getCategories)
+router.post("/insertNewCategory", controllers.insertNewCategory);
+
 module.exports = router;

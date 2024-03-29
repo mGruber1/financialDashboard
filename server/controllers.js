@@ -271,6 +271,39 @@ const insertMonthlyRevenues = (req, res) => {
     res.json({ status: 0, message: "Data inserted successfully" });
 }
 
+// ADMIN
+const getCategories = (req, res) => {
+    pool.query(
+        `SELECT * FROM categories`,
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send("Internal Server Error");
+                return;
+            }
+
+            res.json(results);
+        }
+    );
+}
+
+const insertNewCategory = (req, res) => {
+    const data = req.body.data;
+    pool.query(
+        `INSERT INTO categories (name, description) VALUES ('${data[0]}', '${data[1]}')`,
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send("Internal Server Error");
+                return;
+            }
+        }
+    );
+
+    res.json({ status: 0, message: "Data inserted successfully" });
+}
+
+
 module.exports = {
     getMonthlyExpenditures,
     getMonthlyRevenues,
@@ -288,6 +321,7 @@ module.exports = {
     getAverageShoppingCosts,
     getMonthlyShoppingCosts,
     getAverageLeisureCosts,
-    getMonthlyLeisureCosts
-
+    getMonthlyLeisureCosts,
+    getCategories,
+    insertNewCategory
 };
