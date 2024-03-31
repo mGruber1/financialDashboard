@@ -12,10 +12,8 @@
   </head>
   <script type="module">
     import { loadData } from "./js/modules/api/dataHandling.js";
-
     import { checkBackendAvailability } from "./js/modules/api/fetchData.js";
     import { showEmptyDataMessage } from "./js/modules/api/dataHandlingFunctions.js";
-
     if (await checkBackendAvailability()) {
       loadData();
     } else {
@@ -108,97 +106,8 @@
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card d-flex flex-column h-100">
-            <div class="card-header">
-              <h5>Investments</h5>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-center align-items-center">
-                <h3 class="me-1">&oslash;</h3>
-                <h2 id="averageInvestmentCostsField"></h2>
-              </div>
-              <div
-                class="d-flex justify-content-center"
-                id="monthlyInvestmentCostsChart"
-                style="height: 100px"
-              ></div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card d-flex flex-column h-100">
-            <div class="card-header">
-              <h5>Car Gas</h5>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-center align-items-center">
-                <h3 class="me-1">&oslash;</h3>
-                <h2 id="averageCarGasDisplayField"></h2>
-              </div>
-              <div
-                class="d-flex justify-content-center"
-                id="monthlyCarGasCostsChart"
-                style="height: 100px"
-              ></div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card d-flex flex-column h-100">
-            <div class="card-header">
-              <h5>Groceries</h5>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-center align-items-center">
-                <h3 class="me-1">&oslash;</h3>
-                <h2 id="averageGroceryCostsField"></h2>
-              </div>
-              <div
-                class="d-flex justify-content-center"
-                id="monthlyGroceryCostsChart"
-                style="height: 100px"
-              ></div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card d-flex flex-column h-100">
-            <div class="card-header">
-              <h5>Shopping</h5>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-center align-items-center">
-                <h3 class="me-1">&oslash;</h3>
-                <h2 id="averageShoppingCostsField"></h2>
-              </div>
-              <div
-                class="d-flex justify-content-center"
-                id="monthlyShoppingCostsChart"
-                style="height: 100px"
-              ></div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card d-flex flex-column h-100">
-            <div class="card-header">
-              <h5>Leisure</h5>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-center align-items-center">
-                <h3 class="me-1">&oslash;</h3>
-                <h2 id="averageLeisureCostsField"></h2>
-              </div>
-              <div
-                class="d-flex justify-content-center"
-                id="monthlyLeisureCostsChart"
-                style="height: 100px"
-              ></div>
-            </div>
-          </div>
-        </div>
       </div>
+      <div class="row w-100 gy-2" id="kpiDisplayField">
     </div>
     <script src="assets/echarts/5.5.0/echarts.min.js"></script>
   </body>

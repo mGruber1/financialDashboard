@@ -93,155 +93,6 @@ const getSumFixedCosts = (req, res) => {
   );
 };
 
-const getAverageCarGasCosts = (req, res) => {
-  pool.query(
-    `SELECT AVG(amount) as averageCarGasCosts FROM expenditures WHERE year = ${currentYear} AND type= "car-gas";`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
-};
-
-const getMonthlyCarGasCosts = (req, res) => {
-  pool.query(
-    `SELECT amount, month FROM expenditures where type="car-gas" and year = ${currentYear} ORDER BY month;`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
-};
-
-const getAverageInvestmentCosts = (req, res) => {
-  pool.query(
-    `SELECT AVG(amount) as averageInvestmentCosts FROM expenditures WHERE year = ${currentYear} AND type= "investment-plan";`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
-};
-
-const getMonthlyInvestmentPlanCosts = (req, res) => {
-  pool.query(
-    `SELECT amount, month FROM expenditures where type="investment-plan" and year = ${currentYear} ORDER BY month;`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
-};
-
-const getAverageGroceryCosts = (req, res) => {
-  pool.query(
-    `SELECT AVG(amount) as averageGroceryCosts FROM expenditures WHERE year = ${currentYear} AND type= "grocery";`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
-};
-
-const getAverageShoppingCosts = (req, res) => {
-  pool.query(
-    `SELECT AVG(amount) as averageShoppingCosts FROM expenditures WHERE year = ${currentYear} AND type= "shopping";`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
-};
-
-const getMonthlyShoppingCosts = (req, res) => {
-  pool.query(
-    `SELECT amount, month FROM expenditures where type="shopping" and year = ${currentYear} ORDER BY month;`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
-};
-
-const getAverageLeisureCosts = (req, res) => {
-  pool.query(
-    `SELECT AVG(amount) as averageLeisureCosts FROM expenditures WHERE year = ${currentYear} AND type= "leisure-spending";`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
-};
-const getMonthlyLeisureCosts = (req, res) => {
-  pool.query(
-    `SELECT amount, month FROM expenditures where type="leisure-spending" and year = ${currentYear} ORDER BY month;`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
-};
-
-const getMonthlyGroceryCosts = (req, res) => {
-  pool.query(
-    `SELECT amount, month FROM expenditures where type="grocery" and year = ${currentYear} ORDER BY month;`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
-};
-
 const insertMonthlyExpenditures = (req, res) => {
   const data = req.body.data;
 
@@ -318,25 +169,41 @@ const updateFixedCosts = (req, res) => {
   res.json({ status: 0, message: "Data inserted successfully" });
 };
 
+const getAverageCosts = (req, res) => {
+  const { query } = req.body;
+  pool.query(query, (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+      return;
+    }
+    res.json(results);
+  });
+};
+
+const getMonthlyCosts = (req, res) => {
+  const { query } = req.body;
+  pool.query(query, (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+      return;
+    }
+    res.json(results);
+  });
+};
+
 module.exports = {
   getMonthlyExpenditures,
   getMonthlyRevenues,
   getIncomeRate,
   getFixedCosts,
   getSumFixedCosts,
-  getAverageCarGasCosts,
-  getMonthlyCarGasCosts,
-  getAverageInvestmentCosts,
-  getMonthlyInvestmentPlanCosts,
-  getAverageGroceryCosts,
-  getMonthlyGroceryCosts,
   insertMonthlyExpenditures,
   insertMonthlyRevenues,
-  getAverageShoppingCosts,
-  getMonthlyShoppingCosts,
-  getAverageLeisureCosts,
-  getMonthlyLeisureCosts,
   getCategories,
   insertNewCategory,
   updateFixedCosts,
+  getAverageCosts,
+  getMonthlyCosts,
 };

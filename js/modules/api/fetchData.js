@@ -31,20 +31,6 @@ export const getSumFixedCosts = () => fetchData("getSumFixedCosts");
 export const getIncomeRate = () => fetchData("getIncomeRate");
 export const getMonthlyExpenditures = () => fetchData("getMonthlyExpenditures");
 export const getMonthlyRevenues = () => fetchData("getMonthlyRevenues");
-export const getAverageCarGasCosts = () => fetchData("getAverageCarGasCosts");
-export const getAverageGroceryCosts = () => fetchData("getAverageGroceryCosts");
-export const getMonthlyGroceryCosts = () => fetchData("getMonthlyGroceryCosts");
-export const getAverageInvestmentCosts = () =>
-  fetchData("getAverageInvestmentCosts");
-export const getMonthlyCarGasCosts = () => fetchData("getMonthlyCarGasCosts");
-export const getMonthlyInvestmentPlanCosts = () =>
-  fetchData("getMonthlyInvestmentPlanCosts");
-export const getAverageShoppingCosts = () =>
-  fetchData("getAverageShoppingCosts");
-export const getMonthlyShoppingCosts = () =>
-  fetchData("getMonthlyShoppingCosts");
-export const getAverageLeisureCosts = () => fetchData("getAverageLeisureCosts");
-export const getMonthlyLeisureCosts = () => fetchData("getMonthlyLeisureCosts");
 
 // ADMIN
 

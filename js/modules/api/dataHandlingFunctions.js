@@ -1,6 +1,19 @@
 "use strict";
 
 import { createNewDataRow } from "../utils/createNewDataRow.js";
+import { BACKEND_HOST } from "../../../client-env.js";
+import {
+  defaultGrid,
+  defaultSeries,
+  defaultTooltip,
+  defaultXAxis,
+  defaultYAxis,
+} from "../echarts/echartConstants.js";
+
+var currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+currentDate.setDate(0);
+var lastMonth = currentDate.getMonth() + 1;
 
 export const handleIncomeRate = (incomeRate, generalInfoField) => {
   createNewDataRow(generalInfoField, "Income Rate", incomeRate, "€");
@@ -20,76 +33,6 @@ export const handleFixedCostsIncomeRateRatio = (
     fixedCostsIncomeRateRatio,
     "%"
   );
-};
-
-export const handleAverageCarGasCosts = (
-  averageCarGasCosts,
-  averageCarGasDisplayField
-) => {
-  averageCarGasDisplayField.innerHTML = averageCarGasCosts + " €";
-};
-
-export const handleMonthlyCarGasCosts = (
-  echartOptions,
-  monthlyCarGasCostsChart
-) => {
-  monthlyCarGasCostsChart.setOption(echartOptions);
-};
-
-export const handleAverageInvestmentCosts = (
-  averageInvestmentCosts,
-  averageInvestmentCostsField
-) => {
-  averageInvestmentCostsField.innerHTML = averageInvestmentCosts + " €";
-};
-
-export const handleMonthlyInvestmentCosts = (
-  echartOptions,
-  monthlyInvestmentCostsChart
-) => {
-  monthlyInvestmentCostsChart.setOption(echartOptions);
-};
-
-export const handleAverageGroceryCosts = (
-  averageGroceryCosts,
-  averageGroceryCostsDisplayField
-) => {
-  averageGroceryCostsDisplayField.innerHTML = averageGroceryCosts + " €";
-};
-
-export const handleAverageShoppingCosts = (
-  averageShoppingCosts,
-  averageShoppingCostsField
-) => {
-  averageShoppingCostsField.innerHTML = averageShoppingCosts + " €";
-};
-
-export const handleMonthlyShoppingCosts = (
-  echartOptions,
-  monthlyShoppingCostsChart
-) => {
-  monthlyShoppingCostsChart.setOption(echartOptions);
-};
-
-export const handleAverageLeisureCosts = (
-  averageLeisureCosts,
-  averageLeisureCostsField
-) => {
-  averageLeisureCostsField.innerHTML = averageLeisureCosts + " €";
-};
-
-export const handleMonthlyLeisureCosts = (
-  echartOptions,
-  monthlyLeisureCostsChart
-) => {
-  monthlyLeisureCostsChart.setOption(echartOptions);
-};
-
-export const handleMonthlyGroceryCosts = (
-  echartOptions,
-  monthlyGroceryCostsChart
-) => {
-  monthlyGroceryCostsChart.setOption(echartOptions);
 };
 
 export const handleSurplusFunds = (surplusFunds, generalInfoField) => {
@@ -143,5 +86,142 @@ export const showEmptyDataMessage = () => {
 
     emptyMessageContainer.appendChild(emptyMessage);
     cardBody.appendChild(emptyMessageContainer);
+  }
+};
+
+export const handleKPIDisplay = async (categories, kpiDisplayField) => {
+  let kpiToShow = categories.filter((item) => item.show_KPI === 1);
+
+  for (const category of kpiToShow) {
+    try {
+      const avgSQLQuery = `SELECT AVG(amount) as averageValue FROM expenditures WHERE year = ${currentYear} AND type= '${category.name}';`;
+
+      const avgDataResponse = await fetch(
+        "http://" + BACKEND_HOST + ":3000/api/getAverageCosts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query: avgSQLQuery }),
+        }
+      );
+
+      if (!avgDataResponse.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      const avgData = await avgDataResponse.json();
+
+      const monthlyCostsQuery = `SELECT amount, month FROM expenditures where type='${category.name}' and year = ${currentYear} ORDER BY month;`;
+
+      const monthlyCostsResponse = await fetch(
+        "http://" + BACKEND_HOST + ":3000/api/getMonthlyCosts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query: monthlyCostsQuery }),
+        }
+      );
+
+      if (!monthlyCostsResponse.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      const monthlyCostsData = await monthlyCostsResponse.json();
+
+      const column = document.createElement("div");
+      column.classList.add("col");
+
+      const cardElement = document.createElement("div");
+      cardElement.classList.add("card", "d-flex", "flex-column", "h-100");
+
+      const cardElementHeader = document.createElement("div");
+      cardElementHeader.classList.add("card-header");
+      cardElementHeader.innerHTML = `<h5>${
+        category.name[0].toUpperCase() + category.name.slice(1)
+      }</h5>`;
+
+      const cardElementBody = document.createElement("div");
+      cardElementBody.classList.add("card-body");
+
+      const cardElementBodyValuesContainer = document.createElement("div");
+      cardElementBodyValuesContainer.classList.add(
+        "d-flex",
+        "justify-content-center",
+        "align-items-center"
+      );
+
+      const cardElementAverageIcon = document.createElement("h3");
+      cardElementAverageIcon.classList.add("me-1");
+      cardElementAverageIcon.innerHTML = "&oslash";
+      const cardElementAverageDataField = document.createElement("h2");
+      cardElementAverageDataField.id = category.name;
+      cardElementAverageDataField.innerHTML =
+        avgData[0]?.averageValue.toFixed(2) + " €" || "N/A";
+
+      const cardElementBodyChartContainer = document.createElement("div");
+      cardElementBodyChartContainer.innerHTML = "Chartcontainer";
+      cardElementBodyChartContainer.classList.add(
+        "d-flex",
+        "justify-content-center"
+      );
+
+      cardElementBodyChartContainer.style.height = "100px";
+      cardElementBodyChartContainer.id = category.name + "Chart";
+
+      cardElementBodyValuesContainer.appendChild(cardElementAverageIcon);
+      cardElementBodyValuesContainer.appendChild(cardElementAverageDataField);
+      cardElementBody.appendChild(cardElementBodyValuesContainer);
+      cardElementBody.appendChild(cardElementBodyChartContainer);
+      cardElement.appendChild(cardElementHeader);
+      cardElement.appendChild(cardElementBody);
+      column.appendChild(cardElement);
+
+      kpiDisplayField.appendChild(column);
+
+      const chart = echarts.init(
+        document.getElementById(category.name + "Chart"),
+        null,
+        {
+          width: "100%",
+          height: "100%",
+        }
+      );
+
+      const echartOptions = () => {
+        const months = monthlyCostsData.map((entry) => entry.month);
+        const amounts = monthlyCostsData.map((entry) => entry.amount);
+
+        const options = {
+          grid: {
+            ...defaultGrid,
+          },
+          tooltip: {
+            ...defaultTooltip,
+          },
+          xAxis: {
+            ...defaultXAxis,
+            data: months,
+          },
+          yAxis: {
+            ...defaultYAxis,
+          },
+          series: [
+            {
+              data: amounts,
+              ...defaultSeries,
+            },
+          ],
+        };
+        return options;
+      };
+      chart.setOption(echartOptions());
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      // TODO Error Handling
+    }
   }
 };
