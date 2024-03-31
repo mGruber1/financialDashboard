@@ -12,6 +12,7 @@ import {
   categoryDescriptionField,
   fixedCostsField,
   fixedCostsAmountField,
+  showAsKPIField,
 } from "./getFields.js";
 
 const isFieldDataEmpty = (...fields) =>
@@ -34,7 +35,15 @@ export const isCategoryDataEmpty = () =>
 export const isFixedCostsDataEmtpy = () =>
   isFieldDataEmpty(fixedCostsField, fixedCostsAmountField);
 
-const getFieldData = (...fields) => fields.map((field) => field.value);
+const getFieldData = (...fields) =>
+  fields.map((field) => {
+    if (field.type === "checkbox") {
+      const fieldState = field.checked ? 1 : 0;
+      return fieldState;
+    } else {
+      return field.value;
+    }
+  });
 
 export const getExpenditureData = () =>
   getFieldData(
@@ -48,7 +57,7 @@ export const getRevenueData = () =>
   getFieldData(revenueYearField, revenueMonthField, revenueAmountField);
 
 export const getCategoryData = () =>
-  getFieldData(categoryNameField, categoryDescriptionField);
+  getFieldData(categoryNameField, categoryDescriptionField, showAsKPIField);
 
 export const getFixedCostsData = () =>
   getFieldData(fixedCostsField, fixedCostsAmountField);

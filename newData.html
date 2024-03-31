@@ -134,6 +134,7 @@
         </div>
       </div>
       <div class="row">
+        <!-- TODO: Enable to enable/disable the kpi-display for specific categories here -->
         <div class="col">
           <div class="card h-100">
             <div class="card-header">
@@ -149,6 +150,14 @@
                   class="form-control"
                   id="category_description"
                 />
+                <div class="d-flex justify-content-between">
+                  <label for="showAsKPIField">Show as KPI?</label>
+                  <input
+                    type="checkbox"
+                    id="showAsKPIField"
+                    name="showAsKPIField"
+                  />
+                </div>
                 <button
                   type="button"
                   class="mt-auto btn btn-sm btn-primary form-control"

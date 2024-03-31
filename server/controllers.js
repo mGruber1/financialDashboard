@@ -141,7 +141,7 @@ const getCategories = (req, res) => {
 const insertNewCategory = (req, res) => {
   const data = req.body.data;
   pool.query(
-    `INSERT INTO categories (name, description) VALUES ('${data[0]}', '${data[1]}')`,
+    `INSERT INTO categories (name, description, show_KPI) VALUES ('${data[0]}', '${data[1]}', '${data[2]}')`,
     (error, results, fields) => {
       if (error) {
         console.error(error);

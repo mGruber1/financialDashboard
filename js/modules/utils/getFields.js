@@ -29,3 +29,4 @@ export const fixedCostsSubmitDataButton = getElement(
 );
 
 export const kpiDisplayField = getElement("kpiDisplayField");
+export const showAsKPIField = getElement("showAsKPIField");
