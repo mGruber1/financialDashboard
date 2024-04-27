@@ -61,7 +61,7 @@ export const loadData = async () => {
   }
   fixedCosts = data[3];
   sumFixedCosts = data[1][0].total_fixed_costs;
-  incomeRate = data[0][0].amount;
+  incomeRate = data[0][0].income;
   monthlyExpenditures = data[2];
   monthlyRevenues = data[4];
   categories = data[5];

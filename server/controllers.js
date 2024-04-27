@@ -49,18 +49,15 @@ const getMonthlyRevenues = (req, res) => {
 };
 
 const getIncomeRate = (req, res) => {
-  pool.query(
-    `SELECT amount FROM revenues WHERE month = ${lastMonth} AND year = ${currentYear};`,
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
+  pool.query(`SELECT income FROM fixed_costs;`, (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+      return;
     }
-  );
+
+    res.json(results);
+  });
 };
 
 const getFixedCosts = (req, res) => {
