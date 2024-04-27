@@ -62,7 +62,7 @@ const getIncomeRate = (req, res) => {
 
 const getFixedCosts = (req, res) => {
   pool.query(
-    "SELECT rent, insurance, grocery,investment_plan, car_gas, health, savings, shopping,leisure_spending FROM fixed_costs;",
+    "SELECT rent, insurance, grocery,investment_plan, car_gas, health, savings, shopping,leisure_spending,subscriptions,sports FROM fixed_costs;",
     (error, results, fields) => {
       if (error) {
         console.error(error);
