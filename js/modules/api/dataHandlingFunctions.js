@@ -13,7 +13,6 @@ import {
 var currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 currentDate.setDate(0);
-var lastMonth = currentDate.getMonth() + 1;
 
 export const handleIncomeRate = (incomeRate, generalInfoField) => {
   createNewDataRow(generalInfoField, "Income Rate", incomeRate, "€");

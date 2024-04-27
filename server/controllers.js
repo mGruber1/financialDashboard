@@ -3,7 +3,6 @@ const pool = require("./db/mysql");
 var currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 currentDate.setDate(0);
-var lastMonth = currentDate.getMonth() + 1;
 
 const getMonthlyExpenditures = (req, res) => {
   pool.query(
@@ -190,6 +189,19 @@ const getMonthlyCosts = (req, res) => {
   });
 };
 
+// APP-INSTALLATION
+const getTables = (req, res) => {
+  const { query } = req.body;
+  pool.query(query, (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+      return;
+    }
+    res.json(results);
+  });
+};
+
 module.exports = {
   getMonthlyExpenditures,
   getMonthlyRevenues,
@@ -203,4 +215,5 @@ module.exports = {
   updateFixedCosts,
   getAverageCosts,
   getMonthlyCosts,
+  getTables,
 };
