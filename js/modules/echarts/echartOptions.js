@@ -167,10 +167,10 @@ export const echartOptionsMonthlyProfits = (
 };
 
 export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
-  const categories = Object.keys(fixedCosts[0]);
+  const categories = Object.keys(fixedCosts);
   const data = categories.map((category) => ({
     name: category,
-    value: fixedCosts[0][category],
+    value: fixedCosts[category],
   }));
 
   const options = {

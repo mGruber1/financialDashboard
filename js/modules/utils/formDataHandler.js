@@ -9,10 +9,10 @@ import {
   revenueMonthField,
   revenueAmountField,
   categoryNameField,
-  categoryDescriptionField,
   fixedCostsField,
   fixedCostsAmountField,
   showAsKPIField,
+  isFixedCostField,
 } from "./getFields.js";
 
 const isFieldDataEmpty = (...fields) =>
@@ -29,8 +29,7 @@ export const isExpenditureDataEmpty = () =>
 export const isRevenueDataEmpty = () =>
   isFieldDataEmpty(revenueYearField, revenueMonthField, revenueAmountField);
 
-export const isCategoryDataEmpty = () =>
-  isFieldDataEmpty(categoryNameField, categoryDescriptionField);
+export const isCategoryDataEmpty = () => isFieldDataEmpty(categoryNameField);
 
 export const isFixedCostsDataEmtpy = () =>
   isFieldDataEmpty(fixedCostsField, fixedCostsAmountField);
@@ -57,7 +56,7 @@ export const getRevenueData = () =>
   getFieldData(revenueYearField, revenueMonthField, revenueAmountField);
 
 export const getCategoryData = () =>
-  getFieldData(categoryNameField, categoryDescriptionField, showAsKPIField);
+  getFieldData(categoryNameField, showAsKPIField, isFixedCostField);
 
 export const getFixedCostsData = () =>
   getFieldData(fixedCostsField, fixedCostsAmountField);
@@ -71,7 +70,6 @@ const clearInputFields = () => {
   revenueMonthField.value = "";
   revenueAmountField.value = "";
   categoryNameField.value = "";
-  categoryDescriptionField.value = "";
   fixedCostsField.value = "";
   fixedCostsAmountField.value = "";
 };

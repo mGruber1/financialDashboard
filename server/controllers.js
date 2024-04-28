@@ -60,33 +60,15 @@ const getIncomeRate = (req, res) => {
 };
 
 const getFixedCosts = (req, res) => {
-  pool.query(
-    "SELECT rent, insurance, grocery,investment_plan, car_gas, health, savings, shopping,leisure_spending,subscriptions,sports FROM fixed_costs;",
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
+  pool.query("SELECT * FROM fixed_costs;", (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+      return;
     }
-  );
-};
 
-const getSumFixedCosts = (req, res) => {
-  pool.query(
-    "SELECT rent, insurance, grocery,investment_plan, car_gas, health, savings, shopping,leisure_spending,(rent + insurance + grocery + investment_plan + car_gas + health + savings + shopping + leisure_spending) AS total_fixed_costs FROM fixed_costs; ",
-    (error, results, fields) => {
-      if (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-        return;
-      }
-
-      res.json(results);
-    }
-  );
+    res.json(results);
+  });
 };
 
 const insertMonthlyExpenditures = (req, res) => {
@@ -137,7 +119,7 @@ const getCategories = (req, res) => {
 const insertNewCategory = (req, res) => {
   const data = req.body.data;
   pool.query(
-    `INSERT INTO categories (name, description, show_KPI) VALUES ('${data[0]}', '${data[1]}', '${data[2]}')`,
+    `INSERT INTO categories (id, name, isKPI, isFixedCost) VALUES (null,'${data[0]}', '${data[1]}', '${data[2]}')`,
     (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -189,25 +171,11 @@ const getMonthlyCosts = (req, res) => {
   });
 };
 
-// APP-INSTALLATION
-const getTables = (req, res) => {
-  const { query } = req.body;
-  pool.query(query, (error, results, fields) => {
-    if (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
-      return;
-    }
-    res.json(results);
-  });
-};
-
 module.exports = {
   getMonthlyExpenditures,
   getMonthlyRevenues,
   getIncomeRate,
   getFixedCosts,
-  getSumFixedCosts,
   insertMonthlyExpenditures,
   insertMonthlyRevenues,
   getCategories,
@@ -215,5 +183,4 @@ module.exports = {
   updateFixedCosts,
   getAverageCosts,
   getMonthlyCosts,
-  getTables,
 };

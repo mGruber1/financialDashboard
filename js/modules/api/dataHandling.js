@@ -2,7 +2,6 @@
 
 import {
   getFixedCosts,
-  getSumFixedCosts,
   getIncomeRate,
   getMonthlyExpenditures,
   getMonthlyRevenues,
@@ -40,7 +39,6 @@ import {
 import { generalInfoField, kpiDisplayField } from "../utils/getFields.js";
 
 let fixedCosts = 0;
-let sumFixedCosts = 0;
 let incomeRate = 0;
 let monthlyExpenditures = 0;
 let monthlyRevenues = 0;
@@ -50,7 +48,6 @@ export const loadData = async () => {
   try {
     var data = await Promise.all([
       getIncomeRate(),
-      getSumFixedCosts(),
       getMonthlyExpenditures(),
       getFixedCosts(),
       getMonthlyRevenues(),
@@ -59,15 +56,16 @@ export const loadData = async () => {
   } catch (error) {
     console.error("Error fetching data:", error);
   }
-  fixedCosts = data[3];
-  sumFixedCosts = data[1][0].total_fixed_costs;
-  incomeRate = data[0][0].income;
-  monthlyExpenditures = data[2];
-  monthlyRevenues = data[4];
-  categories = data[5];
+  incomeRate = data[0][0]?.income ?? 0;
+  monthlyExpenditures = data[1] ?? 0;
+  fixedCosts = data[2][0] ?? 0;
+  monthlyRevenues = data[3] ?? 0;
+  categories = data[4] ?? 0;
+
+  console.log(fixedCosts);
 
   handleIncomeRate(incomeRate, generalInfoField);
-  handleFixedCosts(sumFixedCosts, generalInfoField);
+  handleFixedCosts(fixedCosts, generalInfoField, incomeRate);
   handleFixedCostsIncomeRateRatio(
     calculateFixedCostsIncomeRateRatio(incomeRate, sumFixedCosts),
     generalInfoField

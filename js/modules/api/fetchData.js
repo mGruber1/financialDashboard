@@ -27,7 +27,6 @@ export const checkBackendAvailability = async () => {
 };
 
 export const getFixedCosts = () => fetchData("getFixedCosts");
-export const getSumFixedCosts = () => fetchData("getSumFixedCosts");
 export const getIncomeRate = () => fetchData("getIncomeRate");
 export const getMonthlyExpenditures = () => fetchData("getMonthlyExpenditures");
 export const getMonthlyRevenues = () => fetchData("getMonthlyRevenues");
@@ -35,3 +34,5 @@ export const getMonthlyRevenues = () => fetchData("getMonthlyRevenues");
 // ADMIN
 
 export const getCategories = () => fetchData("getCategories");
+export const getFixedCostsCategories = () =>
+  fetchData("getFixedCostsCategories");

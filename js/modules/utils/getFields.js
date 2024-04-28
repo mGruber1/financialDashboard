@@ -20,7 +20,6 @@ export const revenueAmountField = getElement("revenue_amount");
 export const revenueSubmitDataButton = getElement("revenue_submitDataButton");
 
 export const categoryNameField = getElement("category_name");
-export const categoryDescriptionField = getElement("category_description");
 export const categorySubmitDataButton = getElement("category_submitDataButton");
 export const fixedCostsField = getElement("fixedCostsField");
 export const fixedCostsAmountField = getElement("fixedCostsAmountField");
@@ -30,3 +29,4 @@ export const fixedCostsSubmitDataButton = getElement(
 
 export const kpiDisplayField = getElement("kpiDisplayField");
 export const showAsKPIField = getElement("showAsKPIField");
+export const isFixedCostField = getElement("isFixedCostField");
