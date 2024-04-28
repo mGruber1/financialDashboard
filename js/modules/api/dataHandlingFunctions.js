@@ -23,15 +23,9 @@ export const handleFixedCosts = (fixedCosts, generalInfoField, incomeRate) => {
   Object.keys(fixedCosts).forEach((key) => {
     sumFixedCosts += fixedCosts[key];
   });
-
   // remove income rate from sumFixedCosts
   sumFixedCosts = sumFixedCosts - incomeRate;
-  createNewDataRow(
-    generalInfoField,
-    "Fixed Costs",
-    sumFixedCosts - incomeRate,
-    "€"
-  );
+  createNewDataRow(generalInfoField, "Fixed Costs", sumFixedCosts, "€");
 };
 
 export const handleFixedCostsIncomeRateRatio = (
