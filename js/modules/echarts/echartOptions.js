@@ -171,8 +171,6 @@ export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
   if ("income" in fixedCosts) {
     delete fixedCosts["income"];
   }
-
-  console.log(fixedCosts);
   const categories = Object.keys(fixedCosts);
   const data = categories.map((category) => ({
     name: category,

@@ -81,7 +81,14 @@ export const calculateFixedCostsIncomeRateRatio = (incomeRate, fixedCosts) => {
 };
 
 export const calculateSurPlusFunds = (incomeRate, fixedCosts) => {
-  const surplusFunds = incomeRate - fixedCosts;
+  let sumFixedCosts = 0;
+  Object.keys(fixedCosts).forEach((key) => {
+    sumFixedCosts += fixedCosts[key];
+  });
+
+  // remove income rate from sumFixedCosts
+  sumFixedCosts = sumFixedCosts - incomeRate;
+  const surplusFunds = incomeRate - sumFixedCosts;
   return surplusFunds;
 };
 

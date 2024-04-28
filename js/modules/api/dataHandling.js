@@ -62,16 +62,14 @@ export const loadData = async () => {
   monthlyRevenues = data[3] ?? 0;
   categories = data[4] ?? 0;
 
-  console.log(fixedCosts);
-
   handleIncomeRate(incomeRate, generalInfoField);
   handleFixedCosts(fixedCosts, generalInfoField, incomeRate);
   handleFixedCostsIncomeRateRatio(
-    calculateFixedCostsIncomeRateRatio(incomeRate, sumFixedCosts),
+    calculateFixedCostsIncomeRateRatio(incomeRate, fixedCosts),
     generalInfoField
   );
   handleSurplusFunds(
-    calculateSurPlusFunds(incomeRate, sumFixedCosts),
+    calculateSurPlusFunds(incomeRate, fixedCosts),
     generalInfoField
   );
 
