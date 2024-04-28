@@ -28,8 +28,6 @@ poolWithOutDB.getConnection((err, connection) => {
 
   console.log("Connected to mySQL-Server!");
 
-  // CREATE DATABASE IF NOT EXISTS
-
   connection.query(
     `CREATE DATABASE IF NOT EXISTS ${process.env.DB_DATABASE}`,
     (error, results, fields) => {
@@ -62,7 +60,6 @@ poolWithOutDB.getConnection((err, connection) => {
           }
         );
 
-        // INSERT first category
         dbConnection.query(
           "INSERT INTO categories VALUES(null,'income',0,1);",
           (error, results, fields) => {
@@ -72,7 +69,7 @@ poolWithOutDB.getConnection((err, connection) => {
               return;
             }
 
-            console.log(`Created table 'categories'`);
+            console.log(`Inserted into table 'categories'`);
           }
         );
 
@@ -118,7 +115,5 @@ poolWithOutDB.getConnection((err, connection) => {
       });
     }
   );
-
-  // RELEASE
   connection.release();
 });
