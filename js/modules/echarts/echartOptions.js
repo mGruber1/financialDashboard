@@ -167,6 +167,12 @@ export const echartOptionsMonthlyProfits = (
 };
 
 export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
+  // DIRTY FIX: Remove income from object-array
+  if ("income" in fixedCosts) {
+    delete fixedCosts["income"];
+  }
+
+  console.log(fixedCosts);
   const categories = Object.keys(fixedCosts);
   const data = categories.map((category) => ({
     name: category,
