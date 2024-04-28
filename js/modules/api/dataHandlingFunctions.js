@@ -106,8 +106,9 @@ export const showEmptyDataMessage = () => {
 };
 
 export const handleKPIDisplay = async (categories, kpiDisplayField) => {
-  let kpiToShow = categories.filter((item) => item.show_KPI === 1);
+  let kpiToShow = categories.filter((item) => item.isKPI === 1);
 
+  console.log(kpiToShow);
   for (const category of kpiToShow) {
     try {
       const avgSQLQuery = `SELECT AVG(amount) as averageValue FROM expenditures WHERE year = ${currentYear} AND type= '${category.name}';`;
