@@ -74,7 +74,7 @@ poolWithOutDB.getConnection((err, connection) => {
         );
 
         dbConnection.query(
-          "CREATE TABLE IF NOT EXISTS revenues (id INT AUTO_INCREMENT PRIMARY KEY,year INT, month INT, amount DOUBLE )",
+          "CREATE TABLE IF NOT EXISTS revenues (id INT AUTO_INCREMENT PRIMARY KEY, month INT,year INT, amount DOUBLE )",
           (error, results, fields) => {
             if (error) {
               console.error("Error creating database:", error);
@@ -96,6 +96,19 @@ poolWithOutDB.getConnection((err, connection) => {
             }
 
             console.log(`Created table 'fixed_costs'`);
+          }
+        );
+
+        dbConnection.query(
+          "INSERT INTO fixed_costs (income) VALUES(0);",
+          (error, results, fields) => {
+            if (error) {
+              console.error("Error creating database:", error);
+              dbConnection.release();
+              return;
+            }
+
+            console.log(`Inserted into table 'fixed_costs'`);
           }
         );
 

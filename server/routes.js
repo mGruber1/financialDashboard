@@ -19,6 +19,7 @@ router.post("/insertMonthlyRevenues", controllers.insertMonthlyRevenues);
 // ADMIN
 
 router.get("/getCategories", controllers.getCategories);
+router.post("/syncFixedCostsCategories", controllers.syncFixedCostsCategories);
 router.post("/insertNewCategory", controllers.insertNewCategory);
 router.post("/updateFixedCosts", controllers.updateFixedCosts);
 router.post("/getAverageCosts", controllers.getAverageCosts);

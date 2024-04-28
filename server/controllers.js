@@ -116,6 +116,23 @@ const getCategories = (req, res) => {
   });
 };
 
+const syncFixedCostsCategories = (req, res) => {
+  const data = req.body.data;
+
+  if (data[2] === 1) {
+    pool.query(
+      `ALTER TABLE fixed_costs ADD COLUMN ${data[0]} DOUBLE;`,
+      (error, results, fields) => {
+        if (error) {
+          console.error(error);
+          res.status(500).send("Internal Server Error");
+          return;
+        }
+      }
+    );
+  }
+};
+
 const insertNewCategory = (req, res) => {
   const data = req.body.data;
   pool.query(
@@ -135,7 +152,7 @@ const insertNewCategory = (req, res) => {
 const updateFixedCosts = (req, res) => {
   const data = req.body.data;
   pool.query(
-    `UPDATE fixed_costs SET ${data[0]} = ${data[1]}`,
+    `UPDATE fixed_costs SET ${data[0]} = ${data[1]};`,
     (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -183,4 +200,5 @@ module.exports = {
   updateFixedCosts,
   getAverageCosts,
   getMonthlyCosts,
+  syncFixedCostsCategories,
 };

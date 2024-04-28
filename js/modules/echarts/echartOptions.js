@@ -133,7 +133,7 @@ export const echartOptionsMonthlyProfits = (
       text: "Profits",
     },
     grid: {
-      top: "10%",
+      top: "20%",
       bottom: "20%",
       left: "10%",
       right: "10%",
@@ -167,15 +167,17 @@ export const echartOptionsMonthlyProfits = (
 };
 
 export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
-  // DIRTY FIX: Remove income from object-array
-  if ("income" in fixedCosts) {
-    delete fixedCosts["income"];
+  if (typeof fixedCosts === "object") {
+    // DIRTY FIX: Remove income from object-array
+    if ("income" in fixedCosts) {
+      delete fixedCosts["income"];
+    }
+    const categories = Object.keys(fixedCosts);
+    var data = categories.map((category) => ({
+      name: category,
+      value: fixedCosts[category],
+    }));
   }
-  const categories = Object.keys(fixedCosts);
-  const data = categories.map((category) => ({
-    name: category,
-    value: fixedCosts[category],
-  }));
 
   const options = {
     title: {

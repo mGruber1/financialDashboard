@@ -107,6 +107,7 @@ export const sendRevenueDataToServer = async (data) => {
 
 export const sendCategoryDataToServer = async (data) => {
   await sendFormDataToServer("insertNewCategory", data, "Success!");
+  await sendFormDataToServer("syncFixedCostsCategories", data, "Success!");
 };
 
 export const sendFixedCostsDataToServer = async (data) => {
