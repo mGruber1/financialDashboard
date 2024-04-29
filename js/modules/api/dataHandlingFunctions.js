@@ -155,7 +155,7 @@ export const handleKPIDisplay = async (categories, kpiDisplayField) => {
       cardElement.classList.add("card", "d-flex", "flex-column", "h-100");
 
       const cardElementHeader = document.createElement("div");
-      cardElementHeader.classList.add("card-header");
+      cardElementHeader.classList.add("card-header", "bg-dark", "text-light");
       cardElementHeader.innerHTML = `<h5>${
         category.name[0].toUpperCase() + category.name.slice(1)
       }</h5>`;

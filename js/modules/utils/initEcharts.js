@@ -26,6 +26,6 @@ export const {
   fixedDistributionChart: echarts.init(
     getElement("fixedCostsDistributionChart"),
     null,
-    { width: "450px", height: "350px" }
+    { width: "450px", height: "450px" }
   ),
 };

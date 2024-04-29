@@ -64,51 +64,100 @@
         </div>
       </nav>
     </div>
-    <div class="container-fluid w-75 h-100">
+    <div class="container-fluid w-75">
       <div class="row w-100">
         <div class="col h-100 p-2">
           <div class="row mb-2">
             <div class="col">
               <div class="card">
-                <div class="card-header">
-                  <h5>Monthly Data</h5>
-                </div>
                 <div class="card-body">
-                  <div class="row mb-4">
+                  <div class="row mb-4 gy-2">
                     <div class="col">
-                      <div class="mb-2" id="monthlyProfitsBarChart"></div>
-                      <div class="mb-2" id="monthlyRevenuesBarChart"></div>
-                      <div class="mb-2" id="monthlyExpendituresBarChart"></div>
+                      <div class="card">
+                        <div class="card-header bg-dark text-light">
+                          <h5>Fixed Costs Distribution</h5>
+                        </div>
+                        <div class="card-body">
+                          <div
+                            class="d-flex justify-content-center"
+                            id="fixedCostsDistributionChart"
+                          ></div>
+                        </div>
+                      </div>
                     </div>
                     <div class="col">
-                      <div
-                        class="d-flex justify-content-center align-items-center"
-                        id="fixedCostsDistributionChart"
-                      ></div>
+                      <div class="card d-flex flex-column h-100">
+                        <div class="card-header bg-dark text-light">
+                          <h5>Monthly Cash Flow</h5>
+                        </div>
+                        <div
+                          class="card-body d-flex justify-content-center align-items-center"
+                        >
+                          <table
+                            class="table text-center"
+                            id="generalInfoField"
+                          ></table>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  <div class="row mb-2">
+                    <div class="col">
+                      <div class="card">
+                        <div class="card-header bg-dark text-light">
+                          <h5>Profits</h5>
+                        </div>
+                        <div class="card-body">
+                          <div
+                            class="mb-2"
+                            style="height: 150px"
+                            id="monthlyProfitsBarChart"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-2">
+                    <div class="col">
+                      <div class="card">
+                        <div class="card-header bg-dark text-light">
+                          <h5>Revenues</h5>
+                        </div>
+                        <div class="card-body">
+                          <div
+                            class="mb-2 d-flex align-items-center"
+                            style="height: 150px"
+                            id="monthlyRevenuesBarChart"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-2">
+                    <div class="col">
+                      <div class="card">
+                        <div class="card-header bg-dark text-light">
+                          <h5>Expenditures</h5>
+                        </div>
+                        <div class="card-body">
+                          <div
+                            class="mb-2 d-flex align-items-center"
+                            style="height: 150px"
+                            id="monthlyExpendituresBarChart"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row gy-2" id="kpiDisplayField"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row w-100 gy-2 mb-3">
-        <div class="col">
-          <div class="card d-flex flex-column h-100">
-            <div class="card-header">
-              <h5>General Info</h5>
-            </div>
-            <div
-              class="card-body d-flex justify-content-center align-items-center"
-            >
-              <table class="table text-center" id="generalInfoField"></table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row w-100 gy-2" id="kpiDisplayField">
     </div>
+
     <script src="assets/echarts/5.5.0/echarts.min.js"></script>
   </body>
 </html>

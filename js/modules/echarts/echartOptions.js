@@ -7,16 +7,6 @@ export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
   }));
 
   var options = {
-    title: {
-      text: "Revenues",
-    },
-    grid: {
-      top: "20%",
-      bottom: "20%",
-      left: "10%",
-      right: "10%",
-    },
-    tooltip: {},
     xAxis: {
       data: data.map((item) => item.name),
       name: "Month",
@@ -54,19 +44,6 @@ export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
   }));
 
   var options = {
-    title: {
-      text: "Expenditures",
-      textStyle: {
-        padding: [0, 0, 50, 0],
-      },
-    },
-    grid: {
-      top: "20%",
-      bottom: "20%",
-      left: "10%",
-      right: "10%",
-    },
-    tooltip: {},
     xAxis: {
       data: data.map((item) => item.name),
       name: "Month",
@@ -129,16 +106,6 @@ export const echartOptionsMonthlyProfits = (
   }));
 
   var options = {
-    title: {
-      text: "Profits",
-    },
-    grid: {
-      top: "20%",
-      bottom: "20%",
-      left: "10%",
-      right: "10%",
-    },
-    tooltip: {},
     xAxis: {
       data: data.map((item) => item.name),
       name: "Month",
@@ -180,23 +147,30 @@ export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
   }
 
   const options = {
-    title: {
-      text: "Fixed Cost Distribution",
-      left: "center",
-    },
     tooltip: {
       trigger: "item",
-      formatter: "{b}: {c} € ({d}%)",
+      formatter: "{c} € ({d}%)",
     },
     series: [
       {
         type: "pie",
-        center: ["50%", "50%"],
+        radius: ["40%", "70%"],
+        avoidLabelOverlap: false,
         data: data,
         label: {
           show: true,
-          position: "outside",
-          formatter: "{b}: {d}%",
+          position: "inside",
+          formatter: "{b}",
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 20,
+            fontWeight: "bold",
+          },
+        },
+        labelLine: {
+          show: false,
         },
       },
     ],
