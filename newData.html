@@ -70,51 +70,45 @@
       <div class="row">
         <div class="col">
           <div class="card h-100">
-            <div class="card-header">
+            <div class="card-header bg-dark text-light">
               <h5>New Expenditure</h5>
             </div>
-            <div class="card-body">
-              <div class="col">
-                <div class="form-group h-100 d-flex flex-column">
-                  <label for="expenditure_type">Type</label>
-                  <select id="expenditure_type" class="form-control"></select>
-                  <label for="expenditure_month">Month</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="expenditure_month"
-                  />
-                  <label for="expenditure_year">Year</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="expenditure_year"
-                  />
-                  <label for="amount">Amount</label>
-                  <input
-                    type="text"
-                    class="form-control mb-2"
-                    id="expenditure_amount"
-                  />
-                  <button
-                    type="button"
-                    class="mt-auto btn btn-sm btn-primary form-control"
-                    id="expenditure_submitDataButton"
-                  >
-                    Submit
-                  </button>
-                </div>
+            <div class="card-body d-flex justify-content-center">
+              <div class="form-group h-100">
+                <label for="expenditure_type">Type</label>
+                <select id="expenditure_type" class="form-control"></select>
+                <label for="expenditure_month">Month</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="expenditure_month"
+                />
+                <label for="expenditure_year">Year</label>
+                <input type="text" class="form-control" id="expenditure_year" />
+                <label for="amount">Amount</label>
+                <input
+                  type="text"
+                  class="form-control mb-2"
+                  id="expenditure_amount"
+                />
+                <button
+                  type="button"
+                  class="mt-2 btn btn-sm btn-primary form-control w-25"
+                  id="expenditure_submitDataButton"
+                >
+                  Submit
+                </button>
               </div>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card h-100">
-            <div class="card-header">
+            <div class="card-header bg-dark text-light">
               <h5>New Revenue</h5>
             </div>
-            <div class="card-body">
-              <div class="form-group h-100 d-flex flex-column">
+            <div class="card-body d-flex justify-content-center">
+              <div class="form-group h-100">
                 <label for="year">Year</label>
                 <input type="text" class="form-control" id="revenue_year" />
                 <label for="month">Month</label>
@@ -123,7 +117,7 @@
                 <input type="text" class="form-control" id="revenue_amount" />
                 <button
                   type="button"
-                  class="mt-auto btn btn-sm btn-primary form-control"
+                  class="mt-2 btn btn-sm btn-primary form-control w-25 mx-auto"
                   id="revenue_submitDataButton"
                 >
                   Submit
@@ -137,11 +131,11 @@
         <!-- TODO: Enable to enable/disable the kpi-display for specific categories here -->
         <div class="col">
           <div class="card h-100">
-            <div class="card-header">
+            <div class="card-header bg-dark text-light">
               <h5>New Category</h5>
             </div>
-            <div class="card-body">
-              <div class="form-group h-100 d-flex flex-column">
+            <div class="card-body d-flex justify-content-center">
+              <div class="form-group h-100">
                 <label for="name">Category Name</label>
                 <input type="text" class="form-control" id="category_name" />
                 <div class="d-flex justify-content-between">
@@ -162,7 +156,7 @@
                 </div>
                 <button
                   type="button"
-                  class="mt-auto btn btn-sm btn-primary form-control"
+                  class="mt-2 btn btn-sm btn-primary form-control w-25 mx-auto"
                   id="category_submitDataButton"
                 >
                   Submit
@@ -173,11 +167,11 @@
         </div>
         <div class="col">
           <div class="card h-100">
-            <div class="card-header">
+            <div class="card-header bg-dark text-light">
               <h5>Fixed Costs</h5>
             </div>
-            <div class="card-body">
-              <div class="form-group h-100 d-flex flex-column">
+            <div class="card-body d-flex justify-content-center">
+              <div class="form-group h-100">
                 <label for="type">Type</label>
                 <select id="fixedCostsField" class="form-control"></select>
                 <label for="type">Amount</label>
@@ -188,7 +182,7 @@
                 />
                 <button
                   type="button"
-                  class="mt-auto btn btn-sm btn-primary form-control"
+                  class="mt-2 btn btn-sm btn-primary form-control w-25 mx-auto"
                   id="fixedCosts_submitDataButton"
                 >
                   Submit
