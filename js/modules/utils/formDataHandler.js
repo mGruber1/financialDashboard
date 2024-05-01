@@ -63,11 +63,7 @@ export const getFixedCostsData = () =>
 
 const clearInputFields = () => {
   expenditureTypeField.value = "";
-  expenditureMonthField.value = "";
-  expenditureYearField.value = "";
   expenditureAmountField.value = "";
-  revenueYearField.value = "";
-  revenueMonthField.value = "";
   revenueAmountField.value = "";
   categoryNameField.value = "";
   fixedCostsField.value = "";
