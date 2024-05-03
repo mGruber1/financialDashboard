@@ -7,6 +7,7 @@ router.get("/ConnectionTest", (req, res) => {
   res.json({ status: 0 });
 });
 router.get("/getMonthlyExpenditures", controllers.getMonthlyExpenditures);
+router.get("/getLastMonthExpenditures", controllers.getLastMonthExpenditures);
 router.get("/getMonthlyRevenues", controllers.getMonthlyRevenues);
 router.get("/getIncomeRate", controllers.getIncomeRate);
 router.get("/getFixedCosts", controllers.getFixedCosts);

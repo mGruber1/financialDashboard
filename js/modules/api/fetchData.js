@@ -29,6 +29,8 @@ export const checkBackendAvailability = async () => {
 export const getFixedCosts = () => fetchData("getFixedCosts");
 export const getIncomeRate = () => fetchData("getIncomeRate");
 export const getMonthlyExpenditures = () => fetchData("getMonthlyExpenditures");
+export const getLastMonthExpenditures = () =>
+  fetchData("getLastMonthExpenditures");
 export const getMonthlyRevenues = () => fetchData("getMonthlyRevenues");
 
 // ADMIN

@@ -6,6 +6,7 @@ import {
   getMonthlyExpenditures,
   getMonthlyRevenues,
   getCategories,
+  getLastMonthExpenditures,
 } from "./fetchData.js";
 
 import {
@@ -13,6 +14,7 @@ import {
   echartOptionsMonthlyExpenditures,
   echartOptionsMonthlyProfits,
   echartOptionsMonthlyRevenues,
+  echartOptionsTop3Expenditures,
 } from "../echarts/echartOptions.js";
 
 import {
@@ -27,6 +29,7 @@ import {
   handleMonthlyProfits,
   handleMonthlyRevenues,
   handleKPIDisplay,
+  handleTop3Expenditures,
 } from "./dataHandlingFunctions.js";
 
 import {
@@ -34,6 +37,7 @@ import {
   fixedDistributionChart,
   monthlyProfitBarChart,
   monthlyRevenuesBarChart,
+  top3ExpendituresChart,
 } from "../utils/initEcharts.js";
 
 import { generalInfoField, kpiDisplayField } from "../utils/getFields.js";
@@ -43,6 +47,7 @@ let incomeRate = 0;
 let monthlyExpenditures = 0;
 let monthlyRevenues = 0;
 let categories = [];
+let lastMonthExpenditures = [];
 
 export const loadData = async () => {
   try {
@@ -52,6 +57,7 @@ export const loadData = async () => {
       getFixedCosts(),
       getMonthlyRevenues(),
       getCategories(),
+      getLastMonthExpenditures(),
     ]);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -61,6 +67,7 @@ export const loadData = async () => {
   fixedCosts = data[2][0] ?? 0;
   monthlyRevenues = data[3] ?? 0;
   categories = data[4] ?? 0;
+  lastMonthExpenditures = data[5] ?? 0;
 
   handleIncomeRate(incomeRate, generalInfoField);
   handleFixedCosts(fixedCosts, generalInfoField, incomeRate);
@@ -93,4 +100,9 @@ export const loadData = async () => {
   );
 
   handleKPIDisplay(categories, kpiDisplayField);
+
+  handleTop3Expenditures(
+    echartOptionsTop3Expenditures(lastMonthExpenditures),
+    top3ExpendituresChart
+  );
 };

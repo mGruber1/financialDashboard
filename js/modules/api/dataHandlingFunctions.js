@@ -150,10 +150,8 @@ export const handleKPIDisplay = async (categories, kpiDisplayField) => {
 
       const column = document.createElement("div");
       column.classList.add("col");
-
       const cardElement = document.createElement("div");
       cardElement.classList.add("card", "d-flex", "flex-column", "h-100");
-
       const cardElementHeader = document.createElement("div");
       cardElementHeader.classList.add("card-header", "bg-dark", "text-light");
       cardElementHeader.innerHTML = `<h5>${
@@ -176,7 +174,9 @@ export const handleKPIDisplay = async (categories, kpiDisplayField) => {
       const cardElementAverageDataField = document.createElement("h2");
       cardElementAverageDataField.id = category.name;
       cardElementAverageDataField.innerHTML =
-        avgData[0]?.averageValue.toFixed(2) + " €" || "N/A";
+        avgData[0].averageValue !== null
+          ? avgData[0].averageValue?.toFixed(2) + " €"
+          : "no data";
 
       const cardElementBodyChartContainer = document.createElement("div");
       cardElementBodyChartContainer.innerHTML = "Chartcontainer";
@@ -184,8 +184,6 @@ export const handleKPIDisplay = async (categories, kpiDisplayField) => {
         "d-flex",
         "justify-content-center"
       );
-
-      cardElementBodyChartContainer.style.height = "100px";
       cardElementBodyChartContainer.id = category.name + "Chart";
 
       cardElementBodyValuesContainer.appendChild(cardElementAverageIcon);
@@ -240,4 +238,8 @@ export const handleKPIDisplay = async (categories, kpiDisplayField) => {
       // TODO Error Handling
     }
   }
+};
+
+export const handleTop3Expenditures = (echartOptions, top3ExpenditureChart) => {
+  top3ExpenditureChart.setOption(echartOptions);
 };

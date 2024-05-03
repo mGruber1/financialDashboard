@@ -178,3 +178,49 @@ export const echartOptionsFixedCostsDistribution = (fixedCosts) => {
 
   return options;
 };
+
+export const echartOptionsTop3Expenditures = (lastMonthExpenditures) => {
+  if (typeof lastMonthExpenditures === "object") {
+    const categories = Object.keys(lastMonthExpenditures);
+    var data = categories.map((category) => ({
+      name: lastMonthExpenditures[category].type,
+      value: lastMonthExpenditures[category].lastMonthExpenditure.toFixed(2),
+    }));
+
+    data.sort((a, b) => b.value - a.value);
+  }
+
+  // Shrink Array to have only 3 Entries
+  if (data.length >= 3) {
+    let i = 0;
+    let arrayLength = data.length;
+
+    for (i; i <= arrayLength - 4; i++) {
+      data.pop();
+    }
+  }
+
+  var options = {
+    xAxis: {
+      data: data.map((item) => item.name),
+    },
+    yAxis: {
+      type: "value",
+      axisLabel: {
+        formatter: "{value} €",
+      },
+      show: false,
+    },
+    series: {
+      type: "bar",
+      data: data,
+      label: {
+        show: true,
+        position: "top",
+        formatter: "{c} €",
+      },
+    },
+  };
+
+  return options;
+};

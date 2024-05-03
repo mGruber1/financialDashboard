@@ -4,6 +4,12 @@ var currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 currentDate.setDate(0);
 
+function getLastMonth() {
+  const today = new Date();
+  const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+  return lastMonth.getMonth() + 1;
+}
+
 const getMonthlyExpenditures = (req, res) => {
   pool.query(
     `
@@ -12,6 +18,25 @@ const getMonthlyExpenditures = (req, res) => {
     WHERE year = ${currentYear}
     GROUP BY month
     ORDER BY month;
+  `,
+    (error, results, fields) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+
+      res.json(results);
+    }
+  );
+};
+
+const getLastMonthExpenditures = (req, res) => {
+  pool.query(
+    `
+    SELECT type, SUM(amount) AS lastMonthExpenditure
+    FROM expenditures
+    WHERE year = ${currentYear} AND month = ${getLastMonth()} GROUP BY type;
   `,
     (error, results, fields) => {
       if (error) {
@@ -201,4 +226,5 @@ module.exports = {
   getAverageCosts,
   getMonthlyCosts,
   syncFixedCostsCategories,
+  getLastMonthExpenditures,
 };

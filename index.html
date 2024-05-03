@@ -71,7 +71,22 @@
             <div class="col">
               <div class="card">
                 <div class="card-body">
-                  <div class="row mb-4 gy-2">
+                  <div class="row mb-2 gy-2">
+                    <div class="col">
+                      <div class="card d-flex flex-column h-100">
+                        <div class="card-header bg-dark text-light">
+                          <h5>Monthly Cash Flow</h5>
+                        </div>
+                        <div
+                          class="card-body d-flex justify-content-center align-items-center"
+                        >
+                          <table
+                            class="table text-center"
+                            id="generalInfoField"
+                          ></table>
+                        </div>
+                      </div>
+                    </div>
                     <div class="col">
                       <div class="card">
                         <div class="card-header bg-dark text-light">
@@ -88,21 +103,18 @@
                     <div class="col">
                       <div class="card d-flex flex-column h-100">
                         <div class="card-header bg-dark text-light">
-                          <h5>Monthly Cash Flow</h5>
+                          <h5>Top 3 Last Month</h5>
                         </div>
                         <div
                           class="card-body d-flex justify-content-center align-items-center"
                         >
-                          <table
-                            class="table text-center"
-                            id="generalInfoField"
-                          ></table>
+                          <div id="top3ExpendituresChart"></div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="row mb-2">
-                    <div class="col">
+                  <div class="row mb-2 gy-2">
+                    <div class="col-lg col-sm-12">
                       <div class="card">
                         <div class="card-header bg-dark text-light">
                           <h5>Profits</h5>
@@ -116,9 +128,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row mb-2">
-                    <div class="col">
+                    <div class="col-lg col-sm-12">
                       <div class="card">
                         <div class="card-header bg-dark text-light">
                           <h5>Revenues</h5>
@@ -132,9 +142,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row mb-2">
-                    <div class="col">
+                    <div class="col-lg col-sm-12">
                       <div class="card">
                         <div class="card-header bg-dark text-light">
                           <h5>Expenditures</h5>
