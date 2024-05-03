@@ -1,0 +1,19 @@
+﻿1.) Run Installation-Script
+
+If it fails, create just the database by hand (phpmyadmin) and grant the rights to access it via:
+
+GRANT ALL PRIVILEGES ON datenjahr.* TO 'root'@'192.168.8.6' IDENTIFIED BY 'pass''word';
+FLUSH PRIVILEGES;
+
+After that, run the installation script again – now it should be able to create all tables necessary!
+
+2.) After the db-installation is done, create categories.
+
+A category can be:
+
+	a.) KPI – Showing a tile with monthly average value and monthly trend
+	b.) Fixed-Cost – Showing up in the fixed-cost-distribution-chart
+
+3.) Now insert your fixed costs via selecting the category and setting the amount for it
+
+4.) Insert Monthly Expenditures and Revenues based on your categories
