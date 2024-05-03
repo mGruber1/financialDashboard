@@ -174,6 +174,9 @@ export const handleKPIDisplay = async (categories, kpiDisplayField) => {
           xAxis: {
             ...defaultXAxis,
             data: months,
+            name: "Month",
+            nameLocation: "middle",
+            nameGap: 30,
           },
           yAxis: {
             ...defaultYAxis,

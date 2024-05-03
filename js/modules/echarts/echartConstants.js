@@ -1,10 +1,8 @@
 "use strict";
 
 export const defaultGrid = {
-  top: "10%",
-  bottom: "20%",
-  left: "10%",
-  right: "10%",
+  top: 0,
+  bottom: 40,
 };
 
 export const defaultXAxis = {

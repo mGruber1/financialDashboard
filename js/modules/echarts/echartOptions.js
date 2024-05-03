@@ -11,7 +11,7 @@ export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
       data: data.map((item) => item.name),
       name: "Month",
       nameLocation: "middle",
-      nameGap: 20,
+      nameGap: 30,
     },
     yAxis: {
       type: "value",
@@ -21,7 +21,8 @@ export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
       show: false,
     },
     series: {
-      type: "bar",
+      type: "line",
+      areaStyle: {},
       data: data.map((item) => item.value.toFixed(2)),
       label: {
         show: true,
@@ -29,7 +30,7 @@ export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
         formatter: "{c} €",
       },
       itemStyle: {
-        color: "grey",
+        color: "green",
       },
     },
   };
@@ -48,7 +49,7 @@ export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
       data: data.map((item) => item.name),
       name: "Month",
       nameLocation: "middle",
-      nameGap: 20,
+      nameGap: 30,
     },
     yAxis: {
       type: "value",
@@ -58,7 +59,8 @@ export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
       show: false,
     },
     series: {
-      type: "bar",
+      type: "line",
+      areaStyle: {},
       data: data.map((item) => item.value.toFixed(2)),
       label: {
         show: true,
@@ -66,7 +68,7 @@ export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
         formatter: "{c} €",
       },
       itemStyle: {
-        color: "grey",
+        color: "red",
       },
     },
   };
@@ -110,7 +112,7 @@ export const echartOptionsMonthlyProfits = (
       data: data.map((item) => item.name),
       name: "Month",
       nameLocation: "middle",
-      nameGap: 20,
+      nameGap: 30,
     },
     yAxis: {
       type: "value",
@@ -203,6 +205,9 @@ export const echartOptionsTop3Expenditures = (lastMonthExpenditures) => {
   var options = {
     xAxis: {
       data: data.map((item) => item.name),
+      name: "Most expensive expenditures of last month",
+      nameLocation: "middle",
+      nameGap: 30,
     },
     yAxis: {
       type: "value",
