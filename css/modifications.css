@@ -34,3 +34,7 @@ h6 {
   align-items: center;
   justify-content: center;
 }
+
+.custom-chart {
+  min-height: 200px;
+}
