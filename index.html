@@ -5,6 +5,10 @@
       href="./assets/bootstrap/bootstrap-5.3.3-dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
     <link href="./css/modifications.css" rel="stylesheet" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,6 +75,19 @@
             <div class="col">
               <div class="card">
                 <div class="card-body">
+                  <div class="row mb-2 gy-2">
+                    <div class="col">
+                      <div class="card">
+                        <button
+                          type="button"
+                          id="btnEnableDarkMode"
+                          class="btn btn-dark align-self-end d-flex justify-content-center align-items-center"
+                        >
+                          <i id="colorThemeIcon" class="bi-moon-fill"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                   <div class="row mb-2 gy-2">
                     <div class="col">
                       <div class="card d-flex flex-column h-100">
@@ -164,5 +181,6 @@
     </div>
 
     <script src="assets/echarts/5.5.0/echarts.min.js"></script>
+    <script src="js/modules/utils/toggleDarkMode.js"></script>
   </body>
 </html>
