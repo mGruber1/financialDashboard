@@ -6,6 +6,20 @@ h5,
 h6 {
   margin: unset;
 }
+/*Chrome, Safari, Opera*/
+body ::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+/*Firefox*/
+body {
+  overflow: -moz-scrollbars-none;
+}
+
+/*Internet Explorer, Edge*/
+body {
+  -ms-overflow-style: none;
+}
 
 .card-header {
   padding: 8px;
