@@ -1,18 +1,13 @@
 "use strict";
-import { echartDataHistory } from "../utils/configuration.js";
+import { echartDataHistoryLength } from "../utils/configuration.js";
 
 export const calculateDataHistory = (data) => {
-  const amountEntries = echartDataHistory;
-  const reversedMonthlyRevenues = data.toReversed();
+  const amountEntries = echartDataHistoryLength;
+  const reversedMonthlyRevenues = [...data].reverse();
 
   if (reversedMonthlyRevenues.length > amountEntries) {
-    for (let revenue of reversedMonthlyRevenues) {
-      if (reversedMonthlyRevenues.length === amountEntries) {
-        break;
-      }
-      reversedMonthlyRevenues.pop();
-    }
+    reversedMonthlyRevenues.splice(amountEntries);
   }
 
-  return reversedMonthlyRevenues.toReversed();
+  return reversedMonthlyRevenues.reverse();
 };

@@ -1,3 +1,3 @@
 "use strict";
 
-export const echartDataHistory = 6;
+export const echartDataHistoryLength = 6;
