@@ -1,7 +1,9 @@
 "use strict";
 
+import { calculateDataHistory } from "./helperFunctions.js";
+
 export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
-  const data = monthlyRevenues.map((item) => ({
+  const data = calculateDataHistory(monthlyRevenues).map((item) => ({
     name: item.month,
     value: item.monthly_revenues,
   }));
@@ -39,7 +41,7 @@ export const echartOptionsMonthlyRevenues = (monthlyRevenues) => {
 };
 
 export const echartOptionsMonthlyExpenditures = (monthlyExpenditures) => {
-  const data = monthlyExpenditures.map((item) => ({
+  const data = calculateDataHistory(monthlyExpenditures).map((item) => ({
     name: item.month,
     value: item.monthly_expenditures,
   }));
@@ -99,7 +101,7 @@ export const echartOptionsMonthlyProfits = (
       "Arrays must have the same length for element-wise subtraction."
     );
   }
-  const data = differenceArray.map((item) => ({
+  const data = calculateDataHistory(differenceArray).map((item) => ({
     name: item.month,
     value: item.difference,
     itemStyle: {
