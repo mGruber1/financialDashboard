@@ -1,6 +1,6 @@
 const express = require("express");
 const dataController = require("../controllers/data");
-const adminController = require("../controllers/admin");
+
 const router = express.Router();
 
 router.get("/ConnectionTest", (req, res) => {
