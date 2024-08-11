@@ -1,4 +1,4 @@
-const pool = require("./db/mysql");
+const pool = require("../server/db/mysql");
 
 var currentDate = new Date();
 const currentYear = currentDate.getFullYear();
