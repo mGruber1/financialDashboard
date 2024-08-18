@@ -7,8 +7,10 @@ dotenv.config({ path: envPath });
 
 const express = require("express");
 const cors = require("cors");
-const dataRoutes = require("../routes/data");
+
+const indexRoutes = require("../routes/index");
 const adminRoutes = require("../routes/admin");
+const dashboardRoutes = require("../routes/dashboard");
 
 const app = express();
 const port = 3000;
@@ -22,8 +24,10 @@ app.use(
 );
 app.use(express.json());
 
-app.use("/api", dataRoutes);
+app.use("/api", indexRoutes);
 app.use("/api", adminRoutes);
+app.use("/api", dashboardRoutes);
+
 app.listen(port, () => {
   console.log(
     `Server is running at http://${process.env.BACKEND_HOST}:${port}`

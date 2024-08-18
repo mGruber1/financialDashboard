@@ -38,3 +38,7 @@ export const getMonthlyRevenues = () => fetchData("getMonthlyRevenues");
 export const getCategories = () => fetchData("getCategories");
 export const getFixedCostsCategories = () =>
   fetchData("getFixedCostsCategories");
+
+// DASHBOARD
+
+export const getYears = () => fetchData("getYears");
