@@ -2,22 +2,22 @@
 <html lang="en">
   <head>
     <link
-      href="./assets/bootstrap/bootstrap-5.3.3-dist/css/bootstrap.min.css"
+      href="../assets/bootstrap/bootstrap-5.3.3-dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
-      href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.css"
+      href="../assets/bootstrap-icons-1.11.3/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link href="./css/modifications.css" rel="stylesheet" />
+    <link href="../css/modifications.css" rel="stylesheet" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DatenJahr</title>
     <script type="module">
-      import * as eventListeners from "./js/modules/utils/addEventListener.js"; // TODO: are those imports needed?
-      import { checkBackendAvailability } from "./js/modules/api/fetchData.js";
-      import { showEmptyDataMessage } from "./js/modules/api/dataHandlingFunctions.js";
-      import { loadData } from "./js/modules/api/adminDataHandling.js";
+      import * as eventListeners from "../js/modules/utils/addEventListener.js"; // TODO: are those imports needed?
+      import { checkBackendAvailability } from "../js/modules/api/fetchData.js";
+      import { showEmptyDataMessage } from "../js/modules/api/dataHandlingFunctions.js";
+      import { loadData } from "../js/modules/api/adminDataHandling.js";
 
       if ((await checkBackendAvailability()) === false) {
         showEmptyDataMessage();
@@ -196,7 +196,7 @@
         </div>
       </div>
     </div>
-    <script src="assets/echarts/5.5.0/echarts.min.js"></script>
-    <script src="js/modules/utils/toggleDarkMode.js"></script>
+    <script src="../assets/echarts/5.5.0/echarts.min.js"></script>
+    <script src="../js/modules/utils/toggleDarkMode.js"></script>
   </body>
 </html>

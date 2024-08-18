@@ -2,22 +2,22 @@
 <html lang="en" class="w-100 h-100">
   <head>
     <link
-      href="./assets/bootstrap/bootstrap-5.3.3-dist/css/bootstrap.min.css"
+      href="../assets/bootstrap/bootstrap-5.3.3-dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
-      href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.css"
+      href="../assets/bootstrap-icons-1.11.3/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link href="./css/modifications.css" rel="stylesheet" />
+    <link href="../css/modifications.css" rel="stylesheet" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DatenJahr</title>
   </head>
   <script type="module">
-    import { loadData } from "./js/modules/api/dataHandling.js";
-    import { checkBackendAvailability } from "./js/modules/api/fetchData.js";
-    import { showEmptyDataMessage } from "./js/modules/api/dataHandlingFunctions.js";
+    import { loadData } from "../js/modules/api/dataHandling.js";
+    import { checkBackendAvailability } from "../js/modules/api/fetchData.js";
+    import { showEmptyDataMessage } from "../js/modules/api/dataHandlingFunctions.js";
     if (await checkBackendAvailability()) {
       loadData();
     } else {
@@ -168,7 +168,7 @@
       </div>
     </div>
 
-    <script src="assets/echarts/5.5.0/echarts.min.js"></script>
-    <script src="js/modules/utils/toggleDarkMode.js"></script>
+    <script src="../assets/echarts/5.5.0/echarts.min.js"></script>
+    <script src="../js/modules/utils/toggleDarkMode.js"></script>
   </body>
 </html>
