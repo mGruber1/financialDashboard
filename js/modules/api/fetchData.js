@@ -42,3 +42,5 @@ export const getFixedCostsCategories = () =>
 // DASHBOARD
 
 export const getYears = () => fetchData("getYears");
+export const getAllExpenditures = () => fetchData("getAllExpenditures");
+export const getAllRevenues = () => fetchData("getAllRevenues");
