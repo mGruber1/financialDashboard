@@ -24,43 +24,21 @@ export const handleDashboardData = (
     row.appendChild(column);
     dashboardDataField.appendChild(row);
 
-    // Profits
-    const filteredRevenues = allRevenues.filter(
-      (entry) => entry.year === year.year
-    );
-    const filteredExpenditures = allExpenditures.filter(
-      (entry) => entry.year === year.year
-    );
+    const filteredRevenues = filterForYear(allRevenues, year);
+    const filteredExpenditures = filterForYear(allExpenditures, year);
 
-    const totalRevenues = filteredRevenues.reduce(
-      (sum, entry) => sum + entry.amount,
-      0
-    );
+    const totalRevenues = calculateYearlyData(filteredRevenues);
+    const totalExpenditures = calculateYearlyData(filteredExpenditures);
 
-    const totalExpenditures = filteredExpenditures.reduce(
-      (sum, entry) => sum + entry.amount,
-      0
-    );
+    const profits = (totalRevenues - totalExpenditures).toFixed(2);
 
-    const profit = (totalRevenues - totalExpenditures).toFixed(2);
-
-    createCard("Profits", "€ " + profit, row);
-
-    // REVENUES / EXPENDITURES
-
-    createCard(
-      "Revenues VS Profits",
-      "€ " +
-        totalRevenues.toFixed(2) +
-        " / " +
-        "€ " +
-        totalExpenditures.toFixed(2),
-      row
-    );
+    createCard("Profits", "€ " + profits, row);
+    createCard("Revenues", "€ " + totalRevenues.toFixed(2), row);
+    createCard("Expenditures", "€ " + totalExpenditures.toFixed(2), row);
   });
 };
 
-export const createCard = (title, innerHTML, row) => {
+const createCard = (title, innerHTML, row) => {
   let column = document.createElement("div");
   column.classList.add("col");
 
@@ -72,7 +50,12 @@ export const createCard = (title, innerHTML, row) => {
   cardHeader.innerHTML = title;
 
   let cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
+  cardBody.classList.add(
+    "card-body",
+    "d-flex",
+    "justify-content-center",
+    "align-items-center"
+  );
   cardBody.innerHTML = innerHTML;
 
   card.appendChild(cardHeader);
@@ -80,4 +63,12 @@ export const createCard = (title, innerHTML, row) => {
   column.appendChild(card);
 
   row.appendChild(column);
+};
+
+const filterForYear = (data, year) => {
+  return data.filter((entry) => entry.year === year.year);
+};
+
+const calculateYearlyData = (data) => {
+  return data.reduce((sum, entry) => sum + entry.amount, 0);
 };
