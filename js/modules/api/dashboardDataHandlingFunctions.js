@@ -14,7 +14,9 @@ export const handleDashboardData = (
       "border",
       "d-flex",
       "justify-content-center",
-      "align-items-center"
+      "align-items-center",
+      "flex-column",
+      "flex-md-row"
     );
     let column = document.createElement("div");
     column.classList.add("col");
@@ -84,7 +86,8 @@ const createCard = (title, data, row, icon) => {
   cardDataCol2.classList.add(
     "col",
     "d-flex",
-    "justify-content-end",
+    "justify-content-xl-end",
+    "justify-content-sm-center",
     "align-items-center"
   );
 
