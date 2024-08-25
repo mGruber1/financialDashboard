@@ -27,11 +27,8 @@
     </script>
   </head>
   <body class="w-100 h-100">
-    <div class="container-fluid mb-4 d-flex justify-content-center text-white">
-      <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">
-          <i class="bi bi-box-fill"></i>
-        </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+      <div class="container-fluid">
         <button
           class="navbar-toggler"
           type="button"
@@ -44,7 +41,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav mx-auto">
             <li class="nav-item">
               <a class="nav-link" href="dashboard.html">Dashboard</a>
             </li>
@@ -55,9 +52,16 @@
               <a class="nav-link" href="newData.html">New Data</a>
             </li>
           </ul>
+          <button
+            type="button"
+            id="btnEnableDarkMode"
+            class="btn btn-dark align-self-end d-flex justify-content-center align-items-center"
+          >
+            <i id="colorThemeIcon" class="bi-moon-fill"></i>
+          </button>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
     <div class="container">
       <div class="row">
         <div class="col d-flex justify-content-end">
