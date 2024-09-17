@@ -79,8 +79,7 @@ const getIncomeRate = (req, res) => {
       res.status(500).send("Internal Server Error");
       return;
     }
-
-    res.json(results);
+    res.json(results[0].income);
   });
 };
 
@@ -91,8 +90,7 @@ const getFixedCosts = (req, res) => {
       res.status(500).send("Internal Server Error");
       return;
     }
-
-    res.json(results);
+    res.json(results[0]);
   });
 };
 

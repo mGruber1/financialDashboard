@@ -62,9 +62,9 @@ export const loadData = async () => {
   } catch (error) {
     console.error("Error fetching data:", error);
   }
-  incomeRate = data[0][0]?.income ?? 0;
+  incomeRate = data[0] ?? 0;
   monthlyExpenditures = data[1] ?? 0;
-  fixedCosts = data[2][0] ?? 0;
+  fixedCosts = data[2] ?? 0;
   monthlyRevenues = data[3] ?? 0;
   categories = data[4] ?? 0;
   lastMonthExpenditures = data[5] ?? 0;
