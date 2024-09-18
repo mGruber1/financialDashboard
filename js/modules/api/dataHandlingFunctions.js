@@ -64,29 +64,6 @@ export const handleFixedCostsDistribution = (
   fixedDistributionChart.setOption(echartOptions);
 };
 
-export const calculateFixedCostsIncomeRateRatio = (incomeRate, fixedCosts) => {
-  const fixedCostsIncomeRateRatio =
-    (calculateSumFixedCosts(fixedCosts, incomeRate) / incomeRate) * 100;
-  return fixedCostsIncomeRateRatio;
-};
-
-export const calculateSurPlusFunds = (incomeRate, fixedCosts) => {
-  const surplusFunds =
-    incomeRate - calculateSumFixedCosts(fixedCosts, incomeRate);
-  return surplusFunds;
-};
-
-// TODO: DELETE
-export const calculateSumFixedCosts = (fixedCosts, incomeRate) => {
-  let sumFixedCosts = 0;
-  Object.keys(fixedCosts).forEach((key) => {
-    sumFixedCosts += fixedCosts[key];
-  });
-  // remove income rate from sumFixedCosts
-  sumFixedCosts = sumFixedCosts - incomeRate;
-  return sumFixedCosts;
-};
-
 export const showEmptyDataMessage = () => {
   const cardBodies = document.getElementsByClassName("card");
 

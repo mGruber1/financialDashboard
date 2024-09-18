@@ -8,6 +8,8 @@ import {
   getMonthlyRevenues,
   getCategories,
   getLastMonthExpenditures,
+  getIncomeFixedCostsRatio,
+  getSurplusFunds,
 } from "./fetchData.js";
 
 import {
@@ -24,8 +26,6 @@ import {
   handleFixedCostsIncomeRateRatio,
   handleMonthlyExpenditures,
   handleFixedCostsDistribution,
-  calculateFixedCostsIncomeRateRatio,
-  calculateSurPlusFunds,
   handleSurplusFunds,
   handleMonthlyProfits,
   handleMonthlyRevenues,
@@ -50,6 +50,8 @@ let monthlyExpenditures = 0;
 let monthlyRevenues = 0;
 let categories = [];
 let lastMonthExpenditures = [];
+let incomeFixedCostsRatio = 0;
+let surplusFunds = 0;
 
 export const loadData = async () => {
   try {
@@ -61,6 +63,8 @@ export const loadData = async () => {
       getCategories(),
       getLastMonthExpenditures(),
       getSumFixedCosts(),
+      getIncomeFixedCostsRatio(),
+      getSurplusFunds(),
     ]);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -72,17 +76,13 @@ export const loadData = async () => {
   categories = data[4] ?? 0;
   lastMonthExpenditures = data[5] ?? 0;
   sumFixedCosts = data[6];
+  incomeFixedCostsRatio = data[7];
+  surplusFunds = data[8];
 
   handleIncomeRate(incomeRate, generalInfoField);
   handleFixedCosts(sumFixedCosts, generalInfoField);
-  handleFixedCostsIncomeRateRatio(
-    calculateFixedCostsIncomeRateRatio(incomeRate, allFixedCosts),
-    generalInfoField
-  );
-  handleSurplusFunds(
-    calculateSurPlusFunds(incomeRate, allFixedCosts),
-    generalInfoField
-  );
+  handleFixedCostsIncomeRateRatio(incomeFixedCostsRatio, generalInfoField);
+  handleSurplusFunds(surplusFunds, generalInfoField);
 
   handleMonthlyRevenues(
     echartOptionsMonthlyRevenues(monthlyRevenues),

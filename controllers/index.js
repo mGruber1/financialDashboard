@@ -107,6 +107,41 @@ const getSumFixedCosts = (req, res) => {
   });
 };
 
+const getSurplusFunds = (req, res) => {
+  pool.query("SELECT * FROM fixed_costs;", (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+    let surplusFunds = 0;
+    let income = results[0].income;
+    delete results[0].income;
+
+    let fixedCosts = Object.values(results[0]).reduce((a, b) => a + b);
+    surplusFunds = income - fixedCosts;
+    res.json(surplusFunds);
+  });
+};
+
+const getIncomeFixedCostsRatio = (req, res) => {
+  pool.query("SELECT * FROM fixed_costs;", (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+    let incomeFixedCostsRatio = 0;
+    let income = results[0].income;
+
+    delete results[0].income;
+
+    let fixedCosts = Object.values(results[0]).reduce((a, b) => a + b);
+    incomeFixedCostsRatio = (fixedCosts / income) * 100;
+    res.json(incomeFixedCostsRatio);
+  });
+};
+
 const insertMonthlyExpenditures = (req, res) => {
   const data = req.body.data;
 
@@ -174,4 +209,6 @@ module.exports = {
   getMonthlyCosts,
   getLastMonthExpenditures,
   getSumFixedCosts,
+  getIncomeFixedCostsRatio,
+  getSurplusFunds,
 };

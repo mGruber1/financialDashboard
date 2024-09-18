@@ -15,6 +15,11 @@ router.get("/getMonthlyRevenues", indexController.getMonthlyRevenues);
 router.get("/getIncomeRate", indexController.getIncomeRate);
 router.get("/getAllFixedCosts", indexController.getAllFixedCosts);
 router.get("/getSumFixedCosts", indexController.getSumFixedCosts);
+router.get(
+  "/getIncomeFixedCostsRatio",
+  indexController.getIncomeFixedCostsRatio
+);
+router.get("/getSurplusFunds", indexController.getSurplusFunds);
 router.post(
   "/insertMonthlyExpenditures",
   indexController.insertMonthlyExpenditures
