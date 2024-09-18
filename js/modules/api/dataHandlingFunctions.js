@@ -19,13 +19,8 @@ export const handleIncomeRate = (incomeRate, generalInfoField) => {
   createNewDataRow(generalInfoField, "Income Rate", incomeRate, "€");
 };
 
-export const handleFixedCosts = (fixedCosts, generalInfoField, incomeRate) => {
-  createNewDataRow(
-    generalInfoField,
-    "Fixed Costs",
-    calculateSumFixedCosts(fixedCosts, incomeRate),
-    "€"
-  );
+export const handleFixedCosts = (fixedCosts, generalInfoField) => {
+  createNewDataRow(generalInfoField, "Fixed Costs", fixedCosts, "€");
 };
 
 export const handleFixedCostsIncomeRateRatio = (
@@ -81,6 +76,7 @@ export const calculateSurPlusFunds = (incomeRate, fixedCosts) => {
   return surplusFunds;
 };
 
+// TODO: DELETE
 export const calculateSumFixedCosts = (fixedCosts, incomeRate) => {
   let sumFixedCosts = 0;
   Object.keys(fixedCosts).forEach((key) => {

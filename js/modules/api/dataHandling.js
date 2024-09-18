@@ -1,7 +1,8 @@
 "use strict";
 
 import {
-  getFixedCosts,
+  getAllFixedCosts,
+  getSumFixedCosts,
   getIncomeRate,
   getMonthlyExpenditures,
   getMonthlyRevenues,
@@ -42,7 +43,8 @@ import {
 
 import { generalInfoField, kpiDisplayField } from "../utils/getFields.js";
 
-let fixedCosts = 0;
+let allFixedCosts = 0;
+let sumFixedCosts = 0;
 let incomeRate = 0;
 let monthlyExpenditures = 0;
 let monthlyRevenues = 0;
@@ -54,29 +56,31 @@ export const loadData = async () => {
     var data = await Promise.all([
       getIncomeRate(),
       getMonthlyExpenditures(),
-      getFixedCosts(),
+      getAllFixedCosts(),
       getMonthlyRevenues(),
       getCategories(),
       getLastMonthExpenditures(),
+      getSumFixedCosts(),
     ]);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
   incomeRate = data[0] ?? 0;
   monthlyExpenditures = data[1] ?? 0;
-  fixedCosts = data[2] ?? 0;
+  allFixedCosts = data[2] ?? 0;
   monthlyRevenues = data[3] ?? 0;
   categories = data[4] ?? 0;
   lastMonthExpenditures = data[5] ?? 0;
+  sumFixedCosts = data[6];
 
   handleIncomeRate(incomeRate, generalInfoField);
-  handleFixedCosts(fixedCosts, generalInfoField, incomeRate);
+  handleFixedCosts(sumFixedCosts, generalInfoField);
   handleFixedCostsIncomeRateRatio(
-    calculateFixedCostsIncomeRateRatio(incomeRate, fixedCosts),
+    calculateFixedCostsIncomeRateRatio(incomeRate, allFixedCosts),
     generalInfoField
   );
   handleSurplusFunds(
-    calculateSurPlusFunds(incomeRate, fixedCosts),
+    calculateSurPlusFunds(incomeRate, allFixedCosts),
     generalInfoField
   );
 
@@ -95,7 +99,7 @@ export const loadData = async () => {
   );
 
   handleFixedCostsDistribution(
-    echartOptionsFixedCostsDistribution(fixedCosts),
+    echartOptionsFixedCostsDistribution(allFixedCosts),
     fixedDistributionChart
   );
 

@@ -83,7 +83,7 @@ const getIncomeRate = (req, res) => {
   });
 };
 
-const getFixedCosts = (req, res) => {
+const getAllFixedCosts = (req, res) => {
   pool.query("SELECT * FROM fixed_costs;", (error, results, fields) => {
     if (error) {
       console.error(error);
@@ -91,6 +91,19 @@ const getFixedCosts = (req, res) => {
       return;
     }
     res.json(results[0]);
+  });
+};
+
+const getSumFixedCosts = (req, res) => {
+  pool.query("SELECT * FROM fixed_costs;", (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+    delete results[0].income;
+
+    res.json(Object.values(results[0]).reduce((a, b) => a + b));
   });
 };
 
@@ -154,10 +167,11 @@ module.exports = {
   getMonthlyExpenditures,
   getMonthlyRevenues,
   getIncomeRate,
-  getFixedCosts,
+  getAllFixedCosts,
   insertMonthlyExpenditures,
   insertMonthlyRevenues,
   getAverageCosts,
   getMonthlyCosts,
   getLastMonthExpenditures,
+  getSumFixedCosts,
 };

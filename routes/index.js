@@ -13,7 +13,8 @@ router.get(
 );
 router.get("/getMonthlyRevenues", indexController.getMonthlyRevenues);
 router.get("/getIncomeRate", indexController.getIncomeRate);
-router.get("/getFixedCosts", indexController.getFixedCosts);
+router.get("/getAllFixedCosts", indexController.getAllFixedCosts);
+router.get("/getSumFixedCosts", indexController.getSumFixedCosts);
 router.post(
   "/insertMonthlyExpenditures",
   indexController.insertMonthlyExpenditures
