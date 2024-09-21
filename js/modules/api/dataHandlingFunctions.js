@@ -11,6 +11,7 @@ import {
 } from "../echarts/echartConstants.js";
 import { createKPIField } from "../utils/createKPIField.js";
 import { calculateDataHistory } from "../echarts/helperFunctions.js";
+import { echartOptionsKPIDisplay } from "../echarts/echartOptions.js";
 var currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 currentDate.setDate(0);
@@ -79,7 +80,7 @@ export const showEmptyDataMessage = () => {
   }
 };
 
-export const handleKPIDisplay = async (categories, kpiDisplayField) => {
+export const handleKPIDisplay = async (categories) => {
   let kpiToShow = categories.filter((item) => item.isKPI === 1);
 
   for (const category of kpiToShow) {
@@ -133,41 +134,16 @@ export const handleKPIDisplay = async (categories, kpiDisplayField) => {
         }
       );
 
-      const echartOptions = () => {
-        const months = calculateDataHistory(monthlyCostsData).map(
-          (entry) => entry.month
-        );
-        const amounts = calculateDataHistory(monthlyCostsData).map(
-          (entry) => entry.amount
-        );
-
-        const options = {
-          grid: {
-            ...defaultGrid,
-          },
-          tooltip: {
-            ...defaultTooltip,
-          },
-          xAxis: {
-            ...defaultXAxis,
-            data: months,
-            name: "Month",
-            nameLocation: "middle",
-            nameGap: 30,
-          },
-          yAxis: {
-            ...defaultYAxis,
-          },
-          series: [
-            {
-              data: amounts,
-              ...defaultSeries,
-            },
-          ],
-        };
-        return options;
-      };
-      chart.setOption(echartOptions());
+      chart.setOption(
+        echartOptionsKPIDisplay(
+          monthlyCostsData,
+          defaultGrid,
+          defaultTooltip,
+          defaultXAxis,
+          defaultYAxis,
+          defaultSeries
+        )
+      );
     } catch (error) {
       console.error("Error fetching data:", error);
       // TODO Error Handling

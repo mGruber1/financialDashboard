@@ -231,3 +231,45 @@ export const echartOptionsTop3Expenditures = (lastMonthExpenditures) => {
 
   return options;
 };
+
+export const echartOptionsKPIDisplay = (
+  monthlyCostsData,
+  defaultGrid,
+  defaultTooltip,
+  defaultXAxis,
+  defaultYAxis,
+  defaultSeries
+) => {
+  const months = calculateDataHistory(monthlyCostsData).map(
+    (entry) => entry.month
+  );
+  const amounts = calculateDataHistory(monthlyCostsData).map(
+    (entry) => entry.amount
+  );
+
+  const options = {
+    grid: {
+      ...defaultGrid,
+    },
+    tooltip: {
+      ...defaultTooltip,
+    },
+    xAxis: {
+      ...defaultXAxis,
+      data: months,
+      name: "Month",
+      nameLocation: "middle",
+      nameGap: 30,
+    },
+    yAxis: {
+      ...defaultYAxis,
+    },
+    series: [
+      {
+        data: amounts,
+        ...defaultSeries,
+      },
+    ],
+  };
+  return options;
+};

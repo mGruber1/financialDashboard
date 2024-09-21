@@ -1,7 +1,7 @@
 "use strict";
 export const createKPIField = (category, avgData) => {
   const column = document.createElement("div");
-  column.classList.add("col");
+  column.classList.add("col-sm-12", "col-md-3");
   const cardElement = document.createElement("div");
   cardElement.classList.add("card", "d-flex", "flex-column", "h-100");
   const cardElementHeader = document.createElement("div");
